@@ -1,295 +1,566 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>HyG</title>
+	<meta name="description" content="浩阳的博客 前端爱好者">
+	
+	<link rel="canonical" href="/">
+	<link rel="alternate" type="application/rss+xml" title="HyG" href="/feed.xml" />
+	
+	<!-- <link rel="stylesheet" href="/css/main.css"> -->
 
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/fontawesome/4.2.0/css/font-awesome.min.css"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css"> -->
+	
 
-<meta property="og:title" content="Blog of Gyujin">
-<title>Blog of Gyujin</title>
-<meta property="og:description" content="Freshman21 is a Jekyll blog theme.">
-<meta property="og:url" content="https://yulijia.net/freshman21/">
-<meta property="og:site_name" content="Blog of Gyujin">
-<meta property="og:locale" content="en_US">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:site" content="@yulijia">
-<meta name="twitter:creator" content="@yulijia">
-<meta name="twitter:title" content="Blog of Gyujin">
-<meta name="twitter:description" content="Freshman21 is a Jekyll blog theme.">
-<meta name="twitter:url" content="https://yulijia.net/freshman21/">
+	<link rel="stylesheet" type="text/css" href="/static/css/index.css">
+	
+	<!-- <script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="/static/js/bootstrap.min.js"></script> -->
 
-<meta name="keywords" content="Jekyll, theme, Freshman21">
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
-<link rel="icon" href="/freshman21/images/favicon.ico">
-<link rel="stylesheet" href="/freshman21/css/main.css">
-<link rel="canonical" href="https://yulijia.net/freshman21/">
-<link rel="alternate" type="application/atom+xml" title="Blog of Gyujin" href="https://yulijia.net/freshman21/feed.xml" />
+	<script type="text/javascript" src="/static/js/index.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/highlight.js/8.4/styles/monokai_sublime.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/highlight.js/8.4/styles/railscasts.min.css"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/highlight.js/8.4/styles/monokai.min.css"> -->
+	<!-- <script type="text/javascript" src="http://apps.bdimg.com/libs/highlight.js/8.4/languages/dos.min.js"></script> -->
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/highlight.js/8.4/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?b636473d6ffa17615f94e5db1459ea81";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
 
 </head>
 
+ <!--  <body data-spy="scroll" data-target="#myAffix"> -->
+  <body>
 
+    <header>
 
+<!-- navbar -->
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">HyG</a>
+      <p class="navbar-text">Front-end Dev Engineer</p>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
 
-<body>
+        
+          <li>
+        
+          <a href="/"><span class="glyphicon glyphicon-th-large"></span> Blog</a></li>
 
-<div class="container">
-
-  <header class="site-header">
-
-  <div class="wrapper">
-
-    <h1 class="site-title"><a href="/freshman21/">Blog of Gyujin</a></h1>
-    <h3 class="site-meta">Another Jekyll theme, Freshman twenty-first</h3>
-
-    <nav class="site-nav">
-      <a href="#" class="menu-icon">
-        <svg viewBox="0 0 18 15">
-          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
-          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
-          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
-        </svg>
-      </a>
-      <div class="trigger">
         
+          
+            
+              <li>
+            
+            <a href="/demo/"><span class="glyphicon glyphicon-play"></span> Demo</a></li>
+          
         
-        <a class="page-link" href="/freshman21/">Home</a>
+          
+            
+              <li>
+            
+            <a href="/about/"><span class="glyphicon glyphicon-heart"></span> About</a></li>
+          
         
+          
+            
+              <li>
+            
+            <a href="/about/"><span class="glyphicon "></span> About</a></li>
+          
         
+          
         
-        <a class="page-link" href="/freshman21/about/">About</a>
+          
         
+          
         
-        
-        <a class="page-link" href="/freshman21/archives/">Archives</a>
-        
-        
-        
-        <a class="page-link" href="/freshman21/categories/">Categories</a>
-        
-        
-        
-        <a class="page-link" href="/freshman21/tags/">Tags</a>
-        
-        
-        
-        <a class="page-link" href="/freshman21/guestbook/">Guestbook</a>
-        
-        
-        
-        <a class="page-link" href="/freshman21/feed.xml">Subscribe</a>
-        
-        
-        
-        
-        
-        
-      </div>
-    </nav>
-
-  </div>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 
 </header>
 
 
-    
-
-  <div class="page-content col-sm-8">
-    <div class="home">
-  <div class="post" itemscope itemtype="http://schema.org/BlogPosting" >
-    
-    
-  
+    <div id="main" class="container main">
+      <div id="index" class="row">
+  <div class="col-sm-9">
+    <div class="post-area">
+      <!-- small button -->
+     <!--  <p class="pull-right visible-xs">
+       <button>toggle</button>
+     </p> -->
+      <div class="post-list-header">
+        Posts
+      </div>
+      <div class="post-list-body">
+        
+        <div class="all-posts" post-cate="All">
+          
+            <a class="post-list-item" href="/2019/01/23/welcome-to-jekyll/">
+              <h2>
+              Welcome to Jekyll!
+              </h2>
+              <span class="">Jan 23, 2019</span>
+            </a>
+          
+            <a class="post-list-item" href="/2015/05/20/scope/">
+              <h2>
+              JavaScript 作用域和作用域链
+              </h2>
+              <span class="">May 20, 2015</span>
+            </a>
+          
+            <a class="post-list-item" href="/2015/05/18/front-end-tools/">
+              <h2>
+              前端的一些资料和工具
+              </h2>
+              <span class="">May 18, 2015</span>
+            </a>
+          
+            <a class="post-list-item" href="/2015/04/22/baidu-ife-2-javascript/">
+              <h2>
+              百度Web前端技术学院(2)-JavaScript 基础
+              </h2>
+              <span class="">Apr 22, 2015</span>
+            </a>
+          
+            <a class="post-list-item" href="/2015/04/15/baidu-ife-1/">
+              <h2>
+              百度Web前端技术学院(1)-HTML, CSS基础
+              </h2>
+              <span class="">Apr 15, 2015</span>
+            </a>
+          
+            <a class="post-list-item" href="/2015/04/12/Syncing-a-fork/">
+              <h2>
+              同步一个 fork
+              </h2>
+              <span class="">Apr 12, 2015</span>
+            </a>
+          
+            <a class="post-list-item" href="/2015/04/06/arrays-similar/">
+              <h2>
+              判断两个数组是否相似 (arraysSimilar)
+              </h2>
+              <span class="">Apr 6, 2015</span>
+            </a>
+          
+            <a class="post-list-item" href="/2015/03/26/sublimeLinter/">
+              <h2>
+              代码校验工具 SublimeLinter 的安装与使用
+              </h2>
+              <span class="">Mar 26, 2015</span>
+            </a>
+          
+            <a class="post-list-item" href="/2015/03/21/teach-girlfriend-html-css/">
+              <h2>
+              Teach Girlfriend to make a Web Pages like Zhihu
+              </h2>
+              <span class="">Mar 21, 2015</span>
+            </a>
+          
+            <a class="post-list-item" href="/2015/02/15/create-my-blog-with-jekyll/">
+              <h2>
+              Jekyll 搭建静态博客
+              </h2>
+              <span class="">Feb 15, 2015</span>
+            </a>
+          
+            <a class="post-list-item" href="/2015/02/10/welcome-to-jekyll/">
+              <h2>
+              hello jekyll!
+              </h2>
+              <span class="">Feb 10, 2015</span>
+            </a>
+          
+        </div>
+        <!-- <div class="posts-in-categories"> -->
+        
+          <div post-cate="jekyll">
+            
+              
+                
+              
+            
+              
+                
+                  <a href="/2019/01/23/welcome-to-jekyll/" class="post-list-item">
+                    <h2>
+                    Welcome to Jekyll!
+                    </h2>
+                    <span class="">Jan 23, 2019</span>
+                  </a>
+                
+              
+                
+                  <a href="/2015/02/15/create-my-blog-with-jekyll/" class="post-list-item">
+                    <h2>
+                    Jekyll 搭建静态博客
+                    </h2>
+                    <span class="">Feb 15, 2015</span>
+                  </a>
+                
+              
+                
+                  <a href="/2015/02/10/welcome-to-jekyll/" class="post-list-item">
+                    <h2>
+                    hello jekyll!
+                    </h2>
+                    <span class="">Feb 10, 2015</span>
+                  </a>
+                
+              
+            
+          </div>
+        
+          <div post-cate="Bootstrap">
+            
+              
+                
+              
+            
+              
+                
+                  <a href="/2015/03/21/teach-girlfriend-html-css/" class="post-list-item">
+                    <h2>
+                    Teach Girlfriend to make a Web Pages like Zhihu
+                    </h2>
+                    <span class="">Mar 21, 2015</span>
+                  </a>
+                
+              
+            
+          </div>
+        
+          <div post-cate="Sublime">
+            
+              
+                
+              
+            
+              
+                
+                  <a href="/2015/03/26/sublimeLinter/" class="post-list-item">
+                    <h2>
+                    代码校验工具 SublimeLinter 的安装与使用
+                    </h2>
+                    <span class="">Mar 26, 2015</span>
+                  </a>
+                
+              
+            
+          </div>
+        
+          <div post-cate="JavaScript">
+            
+              
+                
+              
+            
+              
+                
+                  <a href="/2015/05/20/scope/" class="post-list-item">
+                    <h2>
+                    JavaScript 作用域和作用域链
+                    </h2>
+                    <span class="">May 20, 2015</span>
+                  </a>
+                
+              
+                
+                  <a href="/2015/04/22/baidu-ife-2-javascript/" class="post-list-item">
+                    <h2>
+                    百度Web前端技术学院(2)-JavaScript 基础
+                    </h2>
+                    <span class="">Apr 22, 2015</span>
+                  </a>
+                
+              
+                
+                  <a href="/2015/04/06/arrays-similar/" class="post-list-item">
+                    <h2>
+                    判断两个数组是否相似 (arraysSimilar)
+                    </h2>
+                    <span class="">Apr 6, 2015</span>
+                  </a>
+                
+              
+            
+          </div>
+        
+          <div post-cate="GitHub">
+            
+              
+                
+              
+            
+              
+                
+                  <a href="/2015/04/12/Syncing-a-fork/" class="post-list-item">
+                    <h2>
+                    同步一个 fork
+                    </h2>
+                    <span class="">Apr 12, 2015</span>
+                  </a>
+                
+              
+            
+          </div>
+        
+          <div post-cate="Front-end">
+            
+              
+                
+              
+            
+              
+                
+                  <a href="/2015/05/20/scope/" class="post-list-item">
+                    <h2>
+                    JavaScript 作用域和作用域链
+                    </h2>
+                    <span class="">May 20, 2015</span>
+                  </a>
+                
+              
+                
+                  <a href="/2015/05/18/front-end-tools/" class="post-list-item">
+                    <h2>
+                    前端的一些资料和工具
+                    </h2>
+                    <span class="">May 18, 2015</span>
+                  </a>
+                
+              
+                
+                  <a href="/2015/04/22/baidu-ife-2-javascript/" class="post-list-item">
+                    <h2>
+                    百度Web前端技术学院(2)-JavaScript 基础
+                    </h2>
+                    <span class="">Apr 22, 2015</span>
+                  </a>
+                
+              
+                
+                  <a href="/2015/04/15/baidu-ife-1/" class="post-list-item">
+                    <h2>
+                    百度Web前端技术学院(1)-HTML, CSS基础
+                    </h2>
+                    <span class="">Apr 15, 2015</span>
+                  </a>
+                
+              
+            
+          </div>
+        
+          <div post-cate="HTML">
+            
+              
+                
+              
+            
+              
+                
+                  <a href="/2015/04/15/baidu-ife-1/" class="post-list-item">
+                    <h2>
+                    百度Web前端技术学院(1)-HTML, CSS基础
+                    </h2>
+                    <span class="">Apr 15, 2015</span>
+                  </a>
+                
+              
+            
+          </div>
+        
+          <div post-cate="CSS">
+            
+              
+                
+              
+            
+              
+                
+                  <a href="/2015/04/15/baidu-ife-1/" class="post-list-item">
+                    <h2>
+                    百度Web前端技术学院(1)-HTML, CSS基础
+                    </h2>
+                    <span class="">Apr 15, 2015</span>
+                  </a>
+                
+              
+            
+          </div>
+        
+          <div post-cate="update">
+            
+              
+                
+              
+            
+              
+                
+                  <a href="/2019/01/23/welcome-to-jekyll/" class="post-list-item">
+                    <h2>
+                    Welcome to Jekyll!
+                    </h2>
+                    <span class="">Jan 23, 2019</span>
+                  </a>
+                
+              
+            
+          </div>
+        
+        
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="shadow-corner-curl hidden-xs">
+      <div class="categories-list-header">
+        Categories
+      </div>
+      
+      <a href="javascript:;" class="categories-list-item" cate="All">
+        All<span class="my-badge"> 9</span>
+      </a>
+      
+        <a href="javascript:;" class="categories-list-item" cate="jekyll">
+          jekyll <span class="my-badge">3</span>
+        </a>
+      
+        <a href="javascript:;" class="categories-list-item" cate="Bootstrap">
+          Bootstrap <span class="my-badge">1</span>
+        </a>
+      
+        <a href="javascript:;" class="categories-list-item" cate="Sublime">
+          Sublime <span class="my-badge">1</span>
+        </a>
+      
+        <a href="javascript:;" class="categories-list-item" cate="JavaScript">
+          JavaScript <span class="my-badge">3</span>
+        </a>
+      
+        <a href="javascript:;" class="categories-list-item" cate="GitHub">
+          GitHub <span class="my-badge">1</span>
+        </a>
+      
+        <a href="javascript:;" class="categories-list-item" cate="Front-end">
+          Front-end <span class="my-badge">4</span>
+        </a>
+      
+        <a href="javascript:;" class="categories-list-item" cate="HTML">
+          HTML <span class="my-badge">1</span>
+        </a>
+      
+        <a href="javascript:;" class="categories-list-item" cate="CSS">
+          CSS <span class="my-badge">1</span>
+        </a>
+      
+        <a href="javascript:;" class="categories-list-item" cate="update">
+          update <span class="my-badge">1</span>
+        </a>
+      
+    </div>
   </div>
 </div>
+    </div>
 
-    <section class="pager">
-  
-  
-</section>
+    
+    <div id="top" data-toggle="tooltip" data-placement="left" title="回到顶部">
+      <a href="javascript:;">
+        <div class="arrow"></div>
+        <div class="stick"></div>
+      </a>
+    </div>
 
+    <footer class="">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <a href="mailto:gaohaoyang126@126.com"><span class="glyphicon glyphicon-envelope"></span> gaohaoyang126@126.com</a>
+        <span class="point"> · </span>
+        
+          
+          <a href="https://github.com/Gaohaoyang">
+            <span class="icon">
+              <svg viewBox="0 0 16 16">
+                <path fill="#aaa" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+              </svg>
+            </span>
+            Github
+            <!-- <span>Gaohaoyang</span> -->
+          </a>
+          
+          
+          <span class="point"> · </span>
+          <span><a href="/feed.xml">RSS</a></span>
+          <span class="point"> · </span>
+          <span>浩阳的博客 前端爱好者</span>
+          <span class="point"> · </span>
+          <span>&copy; 2015 Gaohaoyang</span>
+          <span class="point"> · </span>
+          <span>Designed by <a href="https://github.com/Gaohaoyang">HyG</a></span>
 
+      </div>
+    </div>
   </div>
-  <div class="col-sm-2">
-<div class="sidebar-module about">
-  <h4>About Me</h4>
-  <img title="Gyujin Cho" src="https://i.imgur.com/Mdc4szJl.jpg# your photo." alt="Gyujin Cho"/>
-  <span>Hi, this is Lijia Yu. I made the Freshman21 theme. Please enjoy it.</span>
-  <br />
-
-  
-
-  You can contact me via:
-
-  
-  <a href="mailto:gyujin7@gmail.com" title="mailto: gyujin7@gmail.com">Email</a> /
-  
-  
-  <a href="https://github.com/yulijia" title="GithubID: yulijia">Github</a> /
-  
-  
-  <a href="https://twitter.com/yulijia" title="TwitterID: yulijia">Twitter</a>
-  
-
-  
-
-</div>
-
-<div class="sidebar-module"> <!-- sidebar-module-inset">-->
-  <h4>Copyright Notice</h4>
-
-  
-
-  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
-    <img src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png">
-  </a>
-  <br />
-  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Attribution-NonCommercial-ShareAlike</a>
-
-  
-
-</div>
-
-
-<div class="sidebar-module">
-  <h4>Recent Posts</h4>
-  
-  <li>
-  <a href="/freshman21/news/2015/03/31/2.0version.html" title="2.0 version" rel="bookmark">2.0 version</a>
-  </li>
-  
-  <li>
-  <a href="/freshman21/articles/howto/2014/12/19/how-to-set-the-config-file.html" title="How to set the config.yml file" rel="bookmark">How to set the config.yml file</a>
-  </li>
-  
-  <li>
-  <a href="/freshman21/articles/howto/2014/12/19/freshman21-structure.html" title="Theme structure" rel="bookmark">Theme structure</a>
-  </li>
-  
-  <li>
-  <a href="/freshman21/articles/2014/12/18/how-to-install.html" title="How to install this theme" rel="bookmark">How to install this theme</a>
-  </li>
-  
-  <li>
-  <a href="/freshman21/articles/2014/12/13/simple-post.html" title="Sample Post" rel="bookmark">Sample Post</a>
-  </li>
-  
-</div>
-
-
-<div class="sidebar-module">
-  <h4>Categories</h4>
-  
-  <li><a href="/freshman21/categories/#articles" title="articles" rel="5">articles (5)</a></li>
-  
-  <li><a href="/freshman21/categories/#Howto" title="Howto" rel="2">Howto (2)</a></li>
-  
-  <li><a href="/freshman21/categories/#news" title="news" rel="1">news (1)</a></li>
-  
-</div>
-
-
-<div class="sidebar-module">
-  <h4>Tags</h4>
-  
-    <a href="/freshman21/tags/#Père David's deer" title="Père David's deer" rel="1">Père David's deer</a> &nbsp;
-  
-    <a href="/freshman21/tags/#milu" title="milu" rel="1">milu</a> &nbsp;
-  
-    <a href="/freshman21/tags/#Elaphurus davidianus" title="Elaphurus davidianus" rel="1">Elaphurus davidianus</a> &nbsp;
-  
-    <a href="/freshman21/tags/#sample-post" title="sample-post" rel="2">sample-post</a> &nbsp;
-  
-    <a href="/freshman21/tags/#structure" title="structure" rel="1">structure</a> &nbsp;
-  
-    <a href="/freshman21/tags/#configure" title="configure" rel="1">configure</a> &nbsp;
-  
-    <a href="/freshman21/tags/#version" title="version" rel="1">version</a> &nbsp;
-  
-    <a href="/freshman21/tags/#new features" title="new features" rel="1">new features</a> &nbsp;
-  
-    <a href="/freshman21/tags/#google analytics" title="google analytics" rel="1">google analytics</a> &nbsp;
-  
-    <a href="/freshman21/tags/#google search" title="google search" rel="1">google search</a> &nbsp;
-  
-    <a href="/freshman21/tags/#back to top" title="back to top" rel="1">back to top</a> &nbsp;
-  
-    <a href="/freshman21/tags/#read more" title="read more" rel="1">read more</a> &nbsp;
-  
-</div>
-
-
-<div class="sidebar-module">
-  <h4>Blogroll</h4>
-  
-  <li><a href="http://yulijia.net/freshman" title="Another Jekyll blog theme">Freshman</a></li>
-  
-  <li><a href="http://yulijia.net/" title="Lijia Yu's website">author's website</a></li>
-  
-</div>
-
-
-<div class="sidebar-module">
-  <h4>Archives</h4>
-
-  
-  
-  
-  
-  
-  <li id="2015" > <a href="/freshman21/archives/#2015">2015</a></li>
-  
-  
-  
-  
-  
-  
-  <li id="2014" > <a href="/freshman21/archives/#2014">2014</a></li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <li id="2013" > <a href="/freshman21/archives/#2013">2013</a></li>
-  
-  
-
-</div>
-
-
-</div>
-
-
-
-  
-
-  <footer class="site-footer">
-
-  <p>Copyright &copy; <a href="/freshman21/">Blog of Gyujin</a></p>
-  <p>Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> 
-  on 
-  <a href="https://github.com/">Github</a>
-  | Theme <a href="https://github.com/yulijia/freshman21/">Freshman21</a> Design by <a href="https://yulijia.net">Lijia Yu</a>  
-
 </footer>
 
 
-</div>
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hygblog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+<!-- 多说公共JS代码 end -->
 
-</body>
-
+<!-- 在新窗口中打开 -->
+  <script type="text/javascript">
+    function addBlankTargetForLinks () {
+      $('a[href^="http"]').each(function(){
+          $(this).attr('target', '_blank');
+      });
+    }
+    $(document).bind('DOMNodeInserted', function(event) {
+      addBlankTargetForLinks();
+    });
+  </script>
+  </body>
 </html>

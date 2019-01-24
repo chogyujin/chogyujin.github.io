@@ -1,71 +1,32 @@
-Freshman21
-==========
+# About
 
-Freshman21 is a Jekyll blog theme, base on theme [Freshman](http://github.com/yulijia/freshman). 
+This is my blog based on jekyll. And I change the style and interactive. If you want to use this model of the blog. **Please give a star at this repository**. Then you can clone it as your blog model.
 
-A tribute to WordPress Theme Twenty-Twelve and Twenty-eleven.
+You can visit [here](http://gaohaoyang.github.io) to see this blog.
 
-Enjoy.
+---
 
+这是我的博客，基于 jekyll。我改了所有默认的样式和交互。如果你想使用这个博客模板。**请先在这个仓库上点个star吧**，这也是对我的肯定和鼓励，谢谢了。然后你可以克隆这个仓库用作你自己的博客。
 
-![Screen](http://i.imgur.com/oSp7kacl.png)
+博客访问地址：[点击这里](http://gaohaoyang.github.io)
 
-### Version 2.1 update 2016.06.06
+**使用时请注明模板来源:  Jekyll theme by [Gaohaoyang](https://github.com/Gaohaoyang/gaohaoyang.github.io)**
 
-- master branch: the simplest template, original version with
-	* Open Graph META Tags
-	* Microdata(schema.org)
+<!--
 
-- gh-pages branch: master branch with 
+## 被引用信息
 
-	* [google analytics js template](https://github.com/yulijia/freshman21/blob/gh-pages/_includes/google_analytics.js)
-        * [BackToTop js script](https://github.com/yulijia/freshman21/tree/gh-pages/js)
-        * <q>readmore</q> module
-        * [keyboard shortcuts for pagination](http://yulijia.net/freshman21/news/2016/05/24/new-features.html)
-	* font awesome icon
-	* [Google search](https://github.com/yulijia/freshman21/blob/gh-pages/_includes/google_search.js)
+使用了我的模板并写明来源的人：   
 
-Clone master branch: 
+* [dreamholy](http://dreamholy.github.io/)
 
-` git clone https://github.com/yulijia/freshman21.git -b master --single-branch`
+没有注明来源的人：
 
-Clone gh-pages branch: 
-
-`git clone https://github.com/yulijia/freshman21.git -b gh-pages --single-branch`
+* [yangshuailing](http://yangshuailing.github.io/com/)
+* [huapu728](http://huapu728.github.io/)
+* [greatbuger](http://greatbuger.github.io/) 
 
 
-### A Summary of Features
-
-- Provide single column and two columns layout
-- Powerful configure file
-- Comments by Disqus
-- Support LaTeX (by MathJax)
-- Syntax highlighting
-- Multiple Languages support 
-    * English
-    * Chinese
-    * Japanese (Contributed by [kokeiro001](https://github.com/kokeiro001))
-    * Polish (Contributed by [Derson5](https://github.com/Derson5))
-    * Korean (Contributed by [Clifford Choi](https://github.com/ulgoon))
-    * Russian (Contributed by [Anton Alekseev](https://github.com/alexeyev))
-    * Turkish (Contributed by [Muhammet Kara](https://github.com/mrkara))
-    * Indonesian (Contributed by [Samsul Ma'arif](https://github.com/samsulmaarif))
-
-### How to install this theme?
-
-```
-# please make sure you have already installed git tools and ruby tools(gem)
-$ gem install sass
-$ gem install jekyll
-$ git clone https://github.com/yulijia/freshman21.git
-$ mv freshman21/ yourblogname.github.io/
-
-```
-
-### Demo
-
-Single column, please see [my own blog](http://yulijia.net/en/)
-
-Two columns, please see the [theme website](http://yulijia.net/freshman21/)
+-->
 
 
