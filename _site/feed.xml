@@ -1,40 +1,535 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Your awesome title</title>
-    <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-</description>
-    <link>http://yourdomain.com/</link>
-    <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 23 Jan 2019 21:15:23 -0800</pubDate>
-    <lastBuildDate>Wed, 23 Jan 2019 21:15:23 -0800</lastBuildDate>
+    <title>Blog of Gyujin</title>
+    <description>Freshman21 is a Jekyll blog theme.</description>
+    <link>https://yulijia.net/freshman21/</link>
+    <atom:link href="https://yulijia.net/freshman21/zfeed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Wed, 23 Jan 2019 21:39:17 -0800</pubDate>
+    <lastBuildDate>Wed, 23 Jan 2019 21:39:17 -0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
-        <title>Welcome to Jekyll!</title>
-        <description>&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+        <title>2.0 version</title>
+        <description>&lt;p&gt;Today, I update the theme with some new features. Welcome to use freshman21 2.0 version(gh-pages branch).&lt;/p&gt;
 
-&lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;gh-pages branch new features&lt;/strong&gt; :&lt;/p&gt;
 
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Google  search&lt;/li&gt;
+  &lt;li&gt;Google analytics&lt;/li&gt;
+  &lt;li&gt;Read more mode&lt;/li&gt;
+  &lt;li&gt;Open Graph META Tags&lt;/li&gt;
+  &lt;li&gt;Microdata(schema.org)&lt;/li&gt;
+  &lt;li&gt;back to top button&lt;/li&gt;
+  &lt;li&gt;font awesome icon&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;Tom&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &#39;Hi, Tom&#39; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;master branch new features&lt;/strong&gt; :&lt;/p&gt;
 
-&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Open Graph META Tags&lt;/li&gt;
+  &lt;li&gt;Microdata(schema.org)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The main difference between master and gh-pages: only one Javascript (Mathjax) be included in master branch.&lt;/p&gt;
+
+&lt;p&gt;Master branch is a more purified html+css framework than gh-pages branch.&lt;/p&gt;
+
+&lt;p&gt;Clone master branch:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt; git clone https://github.com/yulijia/freshman21.git -b master --single-branch&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Clone gh-pages branch:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git clone https://github.com/yulijia/freshman21.git -b gh-pages --single-branch&lt;/code&gt;&lt;/p&gt;
+</description>
+        <pubDate>Tue, 31 Mar 2015 00:00:00 -0700</pubDate>
+        <link>https://yulijia.net/freshman21/news/2015/03/31/2.0version.html</link>
+        <guid isPermaLink="true">https://yulijia.net/freshman21/news/2015/03/31/2.0version.html</guid>
+        
+        <category>version</category>
+        
+        <category>new features</category>
+        
+        <category>google analytics</category>
+        
+        <category>google search</category>
+        
+        <category>back to top</category>
+        
+        <category>read more</category>
+        
+        
+        <category>news</category>
+        
+      </item>
+    
+      <item>
+        <title>How to set the config.yml file</title>
+        <description>&lt;p&gt;The &lt;a href=&quot;https://github.com/yulijia/freshman21/blob/master/_config.yml&quot;&gt;config.yml file&lt;/a&gt; in the Freshman21 theme includes five parts.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;First part&lt;/strong&gt; is the site info.&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Freshman21&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# blog title&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;tagline&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Another Jekyll theme, Freshman twenty-first&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# blog sub-titile&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;author&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Lijia YU&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# author name&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;yu@lijiayu.net&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# author email&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Freshman21&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Jekyll&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;blog&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;theme.&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# You can edit this line in _config.yml. It will appear in your document head meta and in &lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;your feed.xml site description&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;keywords&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Jekyll,&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;theme,&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Freshman21&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# html meta keywords&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;baseurl&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/freshman21&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# the subpath of your site, e.g. /blog&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;http://yulijia.net/freshman21&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# the base hostname &amp;amp; protocol for your site&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Part 2&lt;/strong&gt;, Personal info and site tools info, twitter, github, aboutme and aboutme_photo only appears on the sidebar aboutme-box, you can &lt;q&gt;Hide&lt;/q&gt; in two ways &lt;sup&gt;&lt;a href=&quot;#[1]&quot;&gt;[1]&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;twitter_username&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#your twitter handle  &lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;github_username&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;#your github account&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;disqus_shortname&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#disqus shortname&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;favicon&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;     &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;images/favicon.ico&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;aboutme&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Hi, this is Lijia Yu. I made the Freshman21 theme. Please enjoy it.&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# these are shown on aboutme-box(sidebar).&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;aboutme_photo&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;https://i.imgur.com/15BT1.jpg&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# your personal photo.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Part3&lt;/strong&gt;, Site setting:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;ShowContactInfo&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;True&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Personal Info (twitter,github,email) can be seen on aboutme-sidebar, those info only shown where ShowContactInfo == True&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;default_column&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;two&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# blog style: two columns, if default_column != &quot;two&quot;, you will see a one column blog.&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;default_locale&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;en&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# blog sidebar language set, only include: English(en) and Chinese (cn)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Part4&lt;/strong&gt;, Blogroll info, only &lt;em&gt;name&lt;/em&gt; tags can shown on the page.&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;Blogroll&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Freshman&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;http://yulijia.net/freshman&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Another Jekyll blog theme&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;author&#39;s website&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;http://yulijia.net/&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Lijia Yu&#39;s website&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Part5&lt;/strong&gt;, Build settings&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;markdown&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;kramdown&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;highlighter&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;pygments&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# highlight&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;paginate&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;5&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# how many post can seen in the main page&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;=====&lt;/p&gt;
+
+&lt;ul style=&quot;list-style-type:none;&quot;&gt; 
+&lt;li id=&quot;[1]&quot;&gt; [1], you can set those info at &lt;strong&gt;Part3&lt;/strong&gt; or just delete the &lt;q&gt;aboutme.html&lt;/q&gt; at &lt;q&gt;sidebar.html&lt;/q&gt; in &lt;code&gt;_include&lt;/code&gt; folder. &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;col-sm-2&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;&amp;lt;!--{ % include Aboutme.html % }--&amp;gt;&lt;/span&gt;
+   { % include Copyright_Notice.html % }
+   { % include Recent_Posts.html % }
+   { % include Categories.html % }
+   { % include Tags.html % }
+   { % include Blogroll.html % }
+   { % include Archives.html % }
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 </description>
-        <pubDate>Wed, 23 Jan 2019 21:14:45 -0800</pubDate>
-        <link>http://yourdomain.com/jekyll/update/2019/01/23/welcome-to-jekyll.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/jekyll/update/2019/01/23/welcome-to-jekyll.html</guid>
+        <pubDate>Fri, 19 Dec 2014 00:00:00 -0800</pubDate>
+        <link>https://yulijia.net/freshman21/articles/howto/2014/12/19/how-to-set-the-config-file.html</link>
+        <guid isPermaLink="true">https://yulijia.net/freshman21/articles/howto/2014/12/19/how-to-set-the-config-file.html</guid>
+        
+        <category>configure</category>
         
         
-        <category>jekyll</category>
+        <category>articles</category>
         
-        <category>update</category>
+        <category>Howto</category>
+        
+      </item>
+    
+      <item>
+        <title>Theme structure</title>
+        <description>&lt;h2 id=&quot;1the-structure-of-freshman21-theme&quot;&gt;1.The structure of freshman21 theme&lt;/h2&gt;
+
+&lt;p&gt;You can see the simplest way of adding a page is just to add an HTML ( or markdown ) file in the root directory with a suitable name for the page you want to create. For example, aahome.md is the homepage link, about.md is the about page.&lt;/p&gt;
+
+&lt;p&gt;All sidebar boxes html files are in the &lt;code&gt;_include&lt;/code&gt; directory, their name begin with upper case. You can chose which sidebar boxes appears in the main page on the &lt;q&gt;sidebar.html&lt;/q&gt; in the &lt;code&gt;_includes&lt;/code&gt; directory.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+|-- a_home.md                 &lt;span class=&quot;c&quot;&gt;# home page link at navigation bar&lt;/span&gt;
+|-- b_about.md                &lt;span class=&quot;c&quot;&gt;# about link at navigation bar&lt;/span&gt;
+|-- c_archives.md             &lt;span class=&quot;c&quot;&gt;# archives link at navigation bar&lt;/span&gt;
+|-- _config.yml
+|-- css
+|   &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; main.scss
+|-- d_categories.md           &lt;span class=&quot;c&quot;&gt;# categories link at navigation bar &lt;/span&gt;
+|-- e_tags.md                 &lt;span class=&quot;c&quot;&gt;# tags at main navigation bar&lt;/span&gt;
+|-- feed.xml                  &lt;span class=&quot;c&quot;&gt;# RSS at main navigation bar&lt;/span&gt;
+|-- f_guestbook.md            &lt;span class=&quot;c&quot;&gt;# guest book like at navigation bar&lt;/span&gt;
+|-- images
+|   &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; favicon.ico           &lt;span class=&quot;c&quot;&gt;# here is your website favicon&lt;/span&gt;
+|-- _includes
+|   |-- Aboutme.html          &lt;span class=&quot;c&quot;&gt;# right column sidebar content&lt;/span&gt;
+|   |-- Archives.html         &lt;span class=&quot;c&quot;&gt;# right column sidebar content&lt;/span&gt;
+|   |-- Blogroll.html         &lt;span class=&quot;c&quot;&gt;# right column sidebar content&lt;/span&gt;
+|   |-- Categories.html       &lt;span class=&quot;c&quot;&gt;# right column sidebar content&lt;/span&gt;
+|   |-- comments.html         &lt;span class=&quot;c&quot;&gt;# right column sidebar content&lt;/span&gt;
+|   |-- Copyright_Notice.html &lt;span class=&quot;c&quot;&gt;# right column sidebar content&lt;/span&gt;
+|   |-- footer.html
+|   |-- header.html
+|   |-- head.html
+|   |-- page_pagination.html
+|   |-- post_pagination.html
+|   |-- Recent_Posts.html     &lt;span class=&quot;c&quot;&gt;# right column sidebar content&lt;/span&gt;
+|   |-- sidebar.html          &lt;span class=&quot;c&quot;&gt;# you can set you own sidebar content in here&lt;/span&gt;
+|   &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; Tags.html             &lt;span class=&quot;c&quot;&gt;# right column sidebar content&lt;/span&gt;
+|-- index.html
+|-- _layouts
+|   |-- default.html
+|   |-- page.html
+|   &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; post.html
+|-- LICENSE
+|-- _posts
+|   |-- 2013-10-10-milu.md
+|   |-- 2014-12-13-simple-post.md
+|   |-- 2014-12-18-how-to-install.md
+|   |-- 2014-12-19-freshman21-structure.md
+|   |-- 2014-12-19-how-to-set-the-config-file.md
+|   &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; 2015-03-31-readme.md
+|-- README.md
+&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; _sass
+    |-- _base.scss
+    |-- _layout.scss
+    |-- _syntax-highlighting-native.scss
+    &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; _syntax-highlighting.scss
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;2structure-with-named-folders-containing-index-html-files&quot;&gt;2.Structure with Named folders containing index HTML files&lt;/h2&gt;
+
+&lt;p&gt;There is nothing wrong with the above method, however some people like to keep their URLs free from things like filename extensions. To achieve clean URLs for pages using Jekyll, you simply need to create a folder for each top-level page you want, and then place an index.html file in each page’s folder. You can find the more detail at &lt;a href=&quot;http://jekyllrb.com/docs/pages/&quot; title=&quot;Creating pages&quot;&gt;Jekyll documentation&lt;/a&gt;. Here is my own blog structure with page-folders to contain each pages.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+├── _backup
+│   ├── en.tar.gz
+│   └── style.css
+├── categories                              &lt;span class=&quot;c&quot;&gt;# =&amp;gt; http://yulijia.net/en/categories/ &lt;/span&gt;
+│   └── index.md
+├── _config.yml
+├── css
+│   └── main.scss
+├── feed                                    &lt;span class=&quot;c&quot;&gt;# =&amp;gt; http://yulijia.net/en/feed/index.xml&lt;/span&gt;
+│   └── index.xml
+├── guestbook                               &lt;span class=&quot;c&quot;&gt;# =&amp;gt; http://yulijia.net/en/guestbook/&lt;/span&gt;
+│   └── index.md
+├── home.md
+├── _includes
+│   ├── Aboutme.html
+│   ├── Archives.html
+│   ├── Blogroll.html
+│   ├── Categories.html
+│   ├── comments.html
+│   ├── Copyright_Notice.html
+│   ├── footer.html
+│   ├── header.html
+│   ├── head.html
+│   ├── page_pagination.html
+│   ├── post_pagination.html
+│   ├── Recent_Posts.html
+│   ├── sidebar.html
+│   └── Tags.html
+├── index.html
+├── _layouts
+│   ├── default.html
+│   ├── page.html
+│   └── post.html
+├── _posts
+│   ├── 2011-07-22-hello-world.md
+│   ├── 2011-08-06-how-to-calculate-word-frequencies-with-r.md
+│   ├── 2011-08-18-should-draco-be-effective-against-virtually-all-viruses.md
+│   ├── 2011-10-21-why-viruses-produce-long-dsrna-but-not-endogenous-ones.md
+│   ├── 2012-03-22-100-things-bioinformatics-students-should-do-before-graduating.md
+│   ├── 2012-10-08-a-new-site.md
+│   ├── 2012-10-09-github-pages.md
+│   ├── 2012-10-22-a-conference-of-Genomics-and-Epigenomics.md
+│   ├── 2012-10-23-CSHL-Asia-interesting-talks-on-genomics-and-epigenomics.md
+│   └── 2013-01-30-how-to-get-RefSeq-gene-annotations-from-UCSCdatabase.md
+├── README.md
+├── _sass
+│   ├── _base.scss
+│   ├── _layout.scss
+│   └── _syntax-highlighting.scss
+└── tags
+    └── index.md
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;3-how-to-change-the-highlight-style&quot;&gt;3. How to change the highlight style?&lt;/h2&gt;
+
+&lt;p&gt;This theme’s default highlighter is pygments.&lt;/p&gt;
+
+&lt;p&gt;To change the highlight style, you should install &lt;strong&gt;pygments&lt;/strong&gt;, and generate the css style which you wanted with code&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;pygmentize -S default -f html &amp;gt; freshman/_sass/_syntax-highlighting.scss&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Please make sure, add &lt;code&gt;.highlight {&lt;/code&gt; at the head  and &lt;code&gt;}&lt;/code&gt; at the end of file &lt;q&gt;_syntax-highlighting.scss&lt;/q&gt;.&lt;/p&gt;
+
+&lt;p&gt;See more,&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;http://pygments.org/languages/&quot;&gt;Pygments Supported languages&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/9652490/do-i-need-to-generate-a-css-file-from-pygments-for-my-jekyll-blog-to-enable-col&quot;&gt;Pygments online deme&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Fri, 19 Dec 2014 00:00:00 -0800</pubDate>
+        <link>https://yulijia.net/freshman21/articles/howto/2014/12/19/freshman21-structure.html</link>
+        <guid isPermaLink="true">https://yulijia.net/freshman21/articles/howto/2014/12/19/freshman21-structure.html</guid>
+        
+        <category>structure</category>
+        
+        
+        <category>articles</category>
+        
+        <category>Howto</category>
+        
+      </item>
+    
+      <item>
+        <title>How to install this theme</title>
+        <description>&lt;h2 id=&quot;how-to-install-freshman-theme&quot;&gt;How to install Freshman theme?&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# please make sure you have already installed git tools and ruby tools(gem)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem install sass
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem install jekyll
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone https://github.com/yulijia/freshman21.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then, change the folder name to you own github page name, forexample&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mv freshman thisisyouname.github.io
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Thu, 18 Dec 2014 00:00:00 -0800</pubDate>
+        <link>https://yulijia.net/freshman21/articles/2014/12/18/how-to-install.html</link>
+        <guid isPermaLink="true">https://yulijia.net/freshman21/articles/2014/12/18/how-to-install.html</guid>
+        
+        <category>sample-post</category>
+        
+        
+        <category>articles</category>
+        
+      </item>
+    
+      <item>
+        <title>Sample Post</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#heading&quot; id=&quot;markdown-toc-heading&quot;&gt;Heading&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#body-text&quot; id=&quot;markdown-toc-body-text&quot;&gt;Body text&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#blockquotes&quot; id=&quot;markdown-toc-blockquotes&quot;&gt;Blockquotes&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#list-types&quot; id=&quot;markdown-toc-list-types&quot;&gt;List Types&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#ordered-lists&quot; id=&quot;markdown-toc-ordered-lists&quot;&gt;Ordered Lists&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#unordered-lists&quot; id=&quot;markdown-toc-unordered-lists&quot;&gt;Unordered Lists&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#tables&quot; id=&quot;markdown-toc-tables&quot;&gt;Tables&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#code-snippets&quot; id=&quot;markdown-toc-code-snippets&quot;&gt;Code Snippets&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#highlight-with-line-number&quot; id=&quot;markdown-toc-highlight-with-line-number&quot;&gt;highlight with line number.&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#highlight-using-triple-backticks&quot; id=&quot;markdown-toc-highlight-using-triple-backticks&quot;&gt;highlight using triple backticks&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#latex&quot; id=&quot;markdown-toc-latex&quot;&gt;&lt;script type=&quot;math/tex&quot;&gt;\LaTeX&lt;/script&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#q-tag&quot; id=&quot;markdown-toc-q-tag&quot;&gt;&amp;lt;q&amp;gt; tag&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is a sample post.&lt;/p&gt;
+
+&lt;p&gt;Below is just about everything you’ll need to style in the theme. Check the source code to see the many embedded elements within paragraphs.&lt;/p&gt;
+
+&lt;h2 id=&quot;heading&quot;&gt;Heading&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Heading 1
+
+## Heading 2
+
+### Heading 3
+
+#### Heading 4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;body-text&quot;&gt;Body text&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;This is strong&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;This is figure&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/Mdc4szJl.jpg&quot; alt=&quot;Elaphurus davidianus&quot; title=&quot;Père David&#39;s deer&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;This is emphasized&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;53 = 125. Water is H&lt;sub&gt;2&lt;/sub&gt;O.&lt;/p&gt;
+
+&lt;p&gt;The New York Times &lt;cite&gt;(That’s a citation)&lt;/cite&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;u&gt;Underline&lt;/u&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;del&gt;HTML and CSS are our tools&lt;/del&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;blockquotes&quot;&gt;Blockquotes&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Justification:
+This species is listed as Extinct in the Wild, as all populations are still under captive management. The captive population in China has increased in recent years, and the possibility remains that free-ranging populations can be established some time in the near future. When that happens, its Red List status will need to be reassessed.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I follow up the quest. Despite of day and night and death and hell.&lt;/p&gt;
+  &lt;center&gt; -- Idylls of the King, Tennyson &lt;/center&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;list-types&quot;&gt;List Types&lt;/h2&gt;
+
+&lt;h3 id=&quot;ordered-lists&quot;&gt;Ordered Lists&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Item one
+    &lt;ol&gt;
+      &lt;li&gt;sub item one&lt;/li&gt;
+      &lt;li&gt;sub item two&lt;/li&gt;
+      &lt;li&gt;sub item three&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Item two&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;unordered-lists&quot;&gt;Unordered Lists&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Item one&lt;/li&gt;
+  &lt;li&gt;Item two&lt;/li&gt;
+  &lt;li&gt;Item three&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;tables&quot;&gt;Tables&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;Header1&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Header2&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;Header3&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;cell1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;cell2&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;cell3&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;cell4&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;cell5&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;cell6&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;cell7&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;cell8&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;cell9&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Kingdom&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Phylum&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Class&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Order&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Family&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;ANIMALIA&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;CHORDATA&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;MAMMALIA&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;CETARTIODACTYLA&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;CERVIDAE&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;code-snippets&quot;&gt;Code Snippets&lt;/h2&gt;
+
+&lt;p&gt;Syntax highlighting via Pygments&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nf&quot;&gt;#container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;-240px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;highlight-with-line-number&quot;&gt;highlight with line number.&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;foo&#39;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;highlight-using-triple-backticks&quot;&gt;highlight using triple backticks&lt;/h4&gt;
+
+&lt;div class=&quot;language-r highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;latex&quot;&gt;&lt;script type=&quot;math/tex&quot;&gt;\LaTeX&lt;/script&gt;&lt;/h2&gt;
+
+&lt;p&gt;you can use latex with &lt;q&gt;double $$ &lt;/q&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;e^{i\pi}+1=0&lt;/script&gt;
+
+&lt;h2 id=&quot;q-tag&quot;&gt;&amp;lt;q&amp;gt; tag&lt;/h2&gt;
+
+&lt;p&gt;here is a &amp;lt;q&amp;gt; q tag &amp;lt;/q&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;here is a &lt;q&gt; q tag &lt;/q&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sat, 13 Dec 2014 00:00:00 -0800</pubDate>
+        <link>https://yulijia.net/freshman21/articles/2014/12/13/simple-post.html</link>
+        <guid isPermaLink="true">https://yulijia.net/freshman21/articles/2014/12/13/simple-post.html</guid>
+        
+        <category>sample-post</category>
+        
+        
+        <category>articles</category>
+        
+      </item>
+    
+      <item>
+        <title>Père David&#39;s deer</title>
+        <description>&lt;p&gt;Père David’s deer (Elaphurus davidianus), also known as the milu (Chinese: 麋鹿; pinyin: mílù) or elaphure, is a species of deer that is currently extinct in the wild—all known specimens are found only in captivity. 
+This semiaquatic animal prefers marshland, and is native to the subtropics of China. 
+It grazes mainly on grass and aquatic plants. 
+It is the only extant member of the genus Elaphurus. 
+Based on genetic comparisons, Père David’s deer is closely related to the deer of the genus Cervus, leading many experts to suggest merging Elaphurus into Cervus&lt;sup&gt;[1]&lt;/sup&gt; or demoting Elaphurus to a subgenus of Cervus.&lt;/p&gt;
+
+&lt;p&gt;[1] &lt;strong&gt;Pitra, C.; Fickel, J.; Meijaard, E.; Groves, C. (1 December 2004).&lt;/strong&gt; &lt;a href=&quot;http://arts.anu.edu.au/grovco/pitra%20deer.pdf&quot;&gt;“Evolution and phylogeny of old world deer”&lt;/a&gt;. &lt;em&gt;Molecular Phylogenetics and Evolution&lt;/em&gt; &lt;strong&gt;33&lt;/strong&gt; (3): 880–895.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 10 Oct 2013 00:00:00 -0700</pubDate>
+        <link>https://yulijia.net/freshman21/articles/2013/10/10/milu.html</link>
+        <guid isPermaLink="true">https://yulijia.net/freshman21/articles/2013/10/10/milu.html</guid>
+        
+        <category>Père David&#39;s deer</category>
+        
+        <category>milu</category>
+        
+        <category>Elaphurus davidianus</category>
+        
+        
+        <category>articles</category>
         
       </item>
     

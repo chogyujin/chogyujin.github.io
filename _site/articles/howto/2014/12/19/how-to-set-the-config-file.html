@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="How to set the config.yml file">
+<title>How to set the config.yml file</title>
+<meta property="og:description" content="The config.yml file in the Freshman21 theme includes five parts.First part is the site info.title: Freshman21 # blog titletagline: Another Jekyll theme, Fres...">
+<meta property="og:url" content="https://yulijia.net/freshman21/articles/howto/2014/12/19/how-to-set-the-config-file.html">
+<meta property="og:site_name" content="Blog of Gyujin">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@yulijia">
+<meta name="twitter:creator" content="@yulijia">
+<meta name="twitter:title" content="How to set the config.yml file">
+<meta name="twitter:description" content="The config.yml file in the Freshman21 theme includes five parts.First part is the site info.title: Freshman21 # blog titletagline: Another Jekyll theme, Fres...">
+<meta name="twitter:url" content="https://yulijia.net/freshman21/articles/howto/2014/12/19/how-to-set-the-config-file.html">
+
+<meta name="keywords" content="Jekyll, theme, Freshman21">
+
+<link rel="icon" href="/freshman21/images/favicon.ico">
+<link rel="stylesheet" href="/freshman21/css/main.css">
+<link rel="canonical" href="https://yulijia.net/freshman21/articles/howto/2014/12/19/how-to-set-the-config-file.html">
+<link rel="alternate" type="application/atom+xml" title="Blog of Gyujin" href="https://yulijia.net/freshman21/feed.xml" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+</head>
+
+
+
+
+<body>
+
+<div class="container">
+
+  <header class="site-header">
+
+  <div class="wrapper">
+
+    <h1 class="site-title"><a href="/freshman21/">Blog of Gyujin</a></h1>
+    <h3 class="site-meta">Another Jekyll theme, Freshman twenty-first</h3>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+      <div class="trigger">
+        
+        
+        <a class="page-link" href="/freshman21/">Home</a>
+        
+        
+        
+        <a class="page-link" href="/freshman21/about/">About</a>
+        
+        
+        
+        <a class="page-link" href="/freshman21/archives/">Archives</a>
+        
+        
+        
+        <a class="page-link" href="/freshman21/categories/">Categories</a>
+        
+        
+        
+        <a class="page-link" href="/freshman21/tags/">Tags</a>
+        
+        
+        
+        <a class="page-link" href="/freshman21/guestbook/">Guestbook</a>
+        
+        
+        
+        <a class="page-link" href="/freshman21/feed.xml">Subscribe</a>
+        
+        
+        
+        
+        
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    
+
+  <div class="page-content col-sm-8">
+    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 itemprop="name" class="post-title">How to set the config.yml file</h1>
+    <meta itemprop="keywords" content="configure" />
+    <p class="post-meta">
+    Posted in
+    
+    <a href="/freshman21/categories/#articles">articles</a>, 
+    
+    <a href="/freshman21/categories/#Howto">Howto</a>
+     
+    
+    and tagged
+    
+    <a href="/freshman21/tags/#configure" title="configure">configure</a>
+    
+    
+    <time itemprop="datePublished" datetime="2014-12-19">
+    on Dec 19, 2014
+    </time>
+    </p>
+  </header>
+
+  <article class="post-content" itemprop="articleBody">
+    <p>The <a href="https://github.com/yulijia/freshman21/blob/master/_config.yml">config.yml file</a> in the Freshman21 theme includes five parts.</p>
+
+<p><strong>First part</strong> is the site info.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">title</span><span class="pi">:</span> <span class="s">Freshman21</span> <span class="c1"># blog title</span>
+<span class="na">tagline</span><span class="pi">:</span> <span class="s">Another Jekyll theme, Freshman twenty-first</span> <span class="c1"># blog sub-titile</span>
+<span class="na">author</span><span class="pi">:</span> <span class="s">Lijia YU</span> <span class="c1"># author name</span>
+<span class="na">email</span><span class="pi">:</span> <span class="s">yu@lijiayu.net</span> <span class="c1"># author email</span>
+<span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Freshman21</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">Jekyll</span><span class="nv"> </span><span class="s">blog</span><span class="nv"> </span><span class="s">theme."</span> <span class="c1"># You can edit this line in _config.yml. It will appear in your document head meta and in </span>
+<span class="s">your feed.xml site description</span>
+<span class="na">keywords</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Jekyll,</span><span class="nv"> </span><span class="s">theme,</span><span class="nv"> </span><span class="s">Freshman21"</span> <span class="c1"># html meta keywords</span>
+<span class="na">baseurl</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/freshman21"</span> <span class="c1"># the subpath of your site, e.g. /blog</span>
+<span class="na">url</span><span class="pi">:</span> <span class="s2">"</span><span class="s">http://yulijia.net/freshman21"</span> <span class="c1"># the base hostname &amp; protocol for your site</span>
+</code></pre></div></div>
+
+<p><strong>Part 2</strong>, Personal info and site tools info, twitter, github, aboutme and aboutme_photo only appears on the sidebar aboutme-box, you can <q>Hide</q> in two ways <sup><a href="#[1]">[1]</a></sup>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">twitter_username</span><span class="pi">:</span> <span class="c1">#your twitter handle  </span>
+<span class="na">github_username</span><span class="pi">:</span>  <span class="c1">#your github account</span>
+<span class="na">disqus_shortname</span><span class="pi">:</span> <span class="c1">#disqus shortname</span>
+<span class="na">favicon</span><span class="pi">:</span>     <span class="s2">"</span><span class="s">images/favicon.ico"</span>
+<span class="na">aboutme</span><span class="pi">:</span> <span class="s">Hi, this is Lijia Yu. I made the Freshman21 theme. Please enjoy it.</span> <span class="c1"># these are shown on aboutme-box(sidebar).</span>
+<span class="na">aboutme_photo</span><span class="pi">:</span> <span class="s">https://i.imgur.com/15BT1.jpg</span> <span class="c1"># your personal photo.</span>
+</code></pre></div></div>
+
+<p><strong>Part3</strong>, Site setting:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">ShowContactInfo</span><span class="pi">:</span> <span class="s2">"</span><span class="s">True"</span> <span class="c1"># Personal Info (twitter,github,email) can be seen on aboutme-sidebar, those info only shown where ShowContactInfo == True</span>
+<span class="na">default_column</span><span class="pi">:</span> <span class="s2">"</span><span class="s">two"</span> <span class="c1"># blog style: two columns, if default_column != "two", you will see a one column blog.</span>
+<span class="na">default_locale</span><span class="pi">:</span> <span class="s2">"</span><span class="s">en"</span> <span class="c1"># blog sidebar language set, only include: English(en) and Chinese (cn)</span>
+</code></pre></div></div>
+
+<p><strong>Part4</strong>, Blogroll info, only <em>name</em> tags can shown on the page.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">Blogroll</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Freshman</span>
+        <span class="na">href</span><span class="pi">:</span> <span class="s">http://yulijia.net/freshman</span>
+        <span class="na">title</span><span class="pi">:</span> <span class="s">Another Jekyll blog theme</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">author's website</span>
+        <span class="na">href</span><span class="pi">:</span> <span class="s">http://yulijia.net/</span>
+        <span class="na">title</span><span class="pi">:</span> <span class="s">Lijia Yu's website</span>
+</code></pre></div></div>
+
+<p><strong>Part5</strong>, Build settings</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">markdown</span><span class="pi">:</span> <span class="s">kramdown</span>
+<span class="na">highlighter</span><span class="pi">:</span> <span class="s">pygments</span> <span class="c1"># highlight</span>
+<span class="na">paginate</span><span class="pi">:</span> <span class="s">5</span>  <span class="c1"># how many post can seen in the main page</span>
+</code></pre></div></div>
+
+<p>=====</p>
+
+<ul style="list-style-type:none;"> 
+<li id="[1]"> [1], you can set those info at <strong>Part3</strong> or just delete the <q>aboutme.html</q> at <q>sidebar.html</q> in <code>_include</code> folder. </li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-sm-2"</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!--{ % include Aboutme.html % }--&gt;</span>
+   { % include Copyright_Notice.html % }
+   { % include Recent_Posts.html % }
+   { % include Categories.html % }
+   { % include Tags.html % }
+   { % include Blogroll.html % }
+   { % include Archives.html % }
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+
+  </article>
+  <hr />
+</div>
+
+
+<section class="pager">
+  <ul>
+    
+    <li class="previous"><a href="/freshman21/articles/howto/2014/12/19/freshman21-structure.html" title="Theme structure">&larr; Older</a></li>
+    
+    
+    <li class="next"><a href="/freshman21/news/2015/03/31/2.0version.html" title="2.0 version">Newer &rarr;</a></li>
+    
+  </ul>
+</section>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+
+  var disqus_developer = 1;
+
+var disqus_shortname ='freshman21';
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+    <section class="pager">
+  
+  
+</section>
+
+
+  </div>
+  <div class="col-sm-2">
+<div class="sidebar-module about">
+  <h4>About Me</h4>
+  <img title="Gyujin Cho" src="https://i.imgur.com/Mdc4szJl.jpg# your photo." alt="Gyujin Cho"/>
+  <span>Hi, this is Lijia Yu. I made the Freshman21 theme. Please enjoy it.</span>
+  <br />
+
+  
+
+  You can contact me via:
+
+  
+  <a href="mailto:gyujin7@gmail.com" title="mailto: gyujin7@gmail.com">Email</a> /
+  
+  
+  <a href="https://github.com/yulijia" title="GithubID: yulijia">Github</a> /
+  
+  
+  <a href="https://twitter.com/yulijia" title="TwitterID: yulijia">Twitter</a>
+  
+
+  
+
+</div>
+
+<div class="sidebar-module"> <!-- sidebar-module-inset">-->
+  <h4>Copyright Notice</h4>
+
+  
+
+  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
+    <img src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png">
+  </a>
+  <br />
+  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Attribution-NonCommercial-ShareAlike</a>
+
+  
+
+</div>
+
+
+<div class="sidebar-module">
+  <h4>Recent Posts</h4>
+  
+  <li>
+  <a href="/freshman21/news/2015/03/31/2.0version.html" title="2.0 version" rel="bookmark">2.0 version</a>
+  </li>
+  
+  <li>
+  <a href="/freshman21/articles/howto/2014/12/19/how-to-set-the-config-file.html" title="How to set the config.yml file" rel="bookmark">How to set the config.yml file</a>
+  </li>
+  
+  <li>
+  <a href="/freshman21/articles/howto/2014/12/19/freshman21-structure.html" title="Theme structure" rel="bookmark">Theme structure</a>
+  </li>
+  
+  <li>
+  <a href="/freshman21/articles/2014/12/18/how-to-install.html" title="How to install this theme" rel="bookmark">How to install this theme</a>
+  </li>
+  
+  <li>
+  <a href="/freshman21/articles/2014/12/13/simple-post.html" title="Sample Post" rel="bookmark">Sample Post</a>
+  </li>
+  
+</div>
+
+
+<div class="sidebar-module">
+  <h4>Categories</h4>
+  
+  <li><a href="/freshman21/categories/#articles" title="articles" rel="5">articles (5)</a></li>
+  
+  <li><a href="/freshman21/categories/#Howto" title="Howto" rel="2">Howto (2)</a></li>
+  
+  <li><a href="/freshman21/categories/#news" title="news" rel="1">news (1)</a></li>
+  
+</div>
+
+
+<div class="sidebar-module">
+  <h4>Tags</h4>
+  
+    <a href="/freshman21/tags/#Père David's deer" title="Père David's deer" rel="1">Père David's deer</a> &nbsp;
+  
+    <a href="/freshman21/tags/#milu" title="milu" rel="1">milu</a> &nbsp;
+  
+    <a href="/freshman21/tags/#Elaphurus davidianus" title="Elaphurus davidianus" rel="1">Elaphurus davidianus</a> &nbsp;
+  
+    <a href="/freshman21/tags/#sample-post" title="sample-post" rel="2">sample-post</a> &nbsp;
+  
+    <a href="/freshman21/tags/#structure" title="structure" rel="1">structure</a> &nbsp;
+  
+    <a href="/freshman21/tags/#configure" title="configure" rel="1">configure</a> &nbsp;
+  
+    <a href="/freshman21/tags/#version" title="version" rel="1">version</a> &nbsp;
+  
+    <a href="/freshman21/tags/#new features" title="new features" rel="1">new features</a> &nbsp;
+  
+    <a href="/freshman21/tags/#google analytics" title="google analytics" rel="1">google analytics</a> &nbsp;
+  
+    <a href="/freshman21/tags/#google search" title="google search" rel="1">google search</a> &nbsp;
+  
+    <a href="/freshman21/tags/#back to top" title="back to top" rel="1">back to top</a> &nbsp;
+  
+    <a href="/freshman21/tags/#read more" title="read more" rel="1">read more</a> &nbsp;
+  
+</div>
+
+
+<div class="sidebar-module">
+  <h4>Blogroll</h4>
+  
+  <li><a href="http://yulijia.net/freshman" title="Another Jekyll blog theme">Freshman</a></li>
+  
+  <li><a href="http://yulijia.net/" title="Lijia Yu's website">author's website</a></li>
+  
+</div>
+
+
+<div class="sidebar-module">
+  <h4>Archives</h4>
+
+  
+  
+  
+  
+  
+  <li id="2015" > <a href="/freshman21/archives/#2015">2015</a></li>
+  
+  
+  
+  
+  
+  
+  <li id="2014" > <a href="/freshman21/archives/#2014">2014</a></li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li id="2013" > <a href="/freshman21/archives/#2013">2013</a></li>
+  
+  
+
+</div>
+
+
+</div>
+
+
+
+  
+
+  <footer class="site-footer">
+
+  <p>Copyright &copy; <a href="/freshman21/">Blog of Gyujin</a></p>
+  <p>Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> 
+  on 
+  <a href="https://github.com/">Github</a>
+  | Theme <a href="https://github.com/yulijia/freshman21/">Freshman21</a> Design by <a href="https://yulijia.net">Lijia Yu</a>  
+
+</footer>
+
+
+</div>
+
+</body>
+
+</html>
