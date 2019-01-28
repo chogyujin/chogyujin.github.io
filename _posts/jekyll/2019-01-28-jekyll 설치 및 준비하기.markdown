@@ -1,0 +1,8 @@
+---
+layout: post
+title:  "jekyll 설치 및 준비하기"
+date:   2019-01-28 17:14:54
+categories: jekyll
+comments: true
+---
+wait
