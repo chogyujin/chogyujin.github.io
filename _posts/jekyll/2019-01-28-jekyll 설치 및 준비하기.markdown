@@ -10,7 +10,7 @@ comments: true
 
 jekyll은 깃허브와 함께 사용하기에 아주 좋은 툴이다. Markdown 언어를 사용하여 쉽게 글을 작성할 수 있다.
 
-## jekyll 설치
+## 설치
 
 물론 윈도즈에도 설치할 수 있지만 jekyll이 공식적으로 지원하지 않기 때문에 윈도즈에서 할 시, 여러모로 불편한 점이 많다. 때문에 VmWare를 통해 우분투를 할 것을 권장한다.
 
@@ -19,15 +19,18 @@ RVM(Ruby Cersion Manager)을 위해 curl을 설치한다. 루비를 설치하면
 
 `$sudo apt-get install curl`
 
+
 <https://rvm.io/> 사이트를 통해 명령 라인을 얻고 입력한다. 그대로 복사하고 붙여넣으면 된다.
 
 `$gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB`
 
 `$\curl -sSL https://get.rvm.io | bash -s stable`
 
+
 다음은 밑의 명령을 통해 터미널을 다시 시작할 시 루비 설치, 지킬 설치와 사용, 루비 버전 확인 등을 다시 해야하는 번거로움을 없애도록한다.
 
 `$ source /home/vjinn/.rvm/scripts/rvm`
+
 
 1. 터미널 메뉴에서 Edit - Profile Preferences - Title and Command - Run Command as a login shell 실행
 2. 터미널 종료 후 재실행
@@ -36,9 +39,11 @@ RVM(Ruby Cersion Manager)을 위해 curl을 설치한다. 루비를 설치하면
 
 `$rvm install ruby-2.5.1`
 
+
 설치 후 버전을 확인하자.
 
 `$ruby -v`
+
 
 이제 지킬에서 필요한 nodejs를 설치한다.
 
@@ -50,6 +55,7 @@ RVM(Ruby Cersion Manager)을 위해 curl을 설치한다. 루비를 설치하면
 
 `gem install jekyll`
 
+
 버전을 확인한다.
 
 `jekyll -v`
@@ -59,6 +65,7 @@ RVM(Ruby Cersion Manager)을 위해 curl을 설치한다. 루비를 설치하면
 jekyll을 사용할 디렉토리를 만든 후 해당 디렉토리에서 아래의 사항들을 따라해주면 된다.
 
 `jekyll new mysite`
+
 
 위 명령을 통해 디렉토리가 새로 생성됨가 동시에 jekyll 사이트가 생성된다. mysite로 들어가서 serve 명령을 실행하여 확인한다.
 
