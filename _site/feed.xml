@@ -5,61 +5,9 @@
     <description>Gyujin&#39;s Ideas &amp; Blogs</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 29 Jan 2019 04:26:29 -0800</pubDate>
-    <lastBuildDate>Tue, 29 Jan 2019 04:26:29 -0800</lastBuildDate>
+    <pubDate>Tue, 29 Jan 2019 04:35:59 -0800</pubDate>
+    <lastBuildDate>Tue, 29 Jan 2019 04:35:59 -0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
-    
-      <item>
-        <title>jekyll 설치 및 준비하기</title>
-        <description>&lt;h2 id=&quot;jekyll을-github와-연동하기&quot;&gt;Jekyll을 Github와 연동하기&lt;/h2&gt;
-
-&lt;h3 id=&quot;1-github에-repository-생성&quot;&gt;1. Github에 Repository 생성&lt;/h3&gt;
-
-&lt;p&gt;레포 생성 시 Repository name을 &lt;code class=&quot;highlighter-rouge&quot;&gt;자신의Github아이디.Github.io&lt;/code&gt; 로 생성해준다.&lt;/p&gt;
-
-&lt;h3 id=&quot;2-git과-연동하기&quot;&gt;2. Git과 연동하기&lt;/h3&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$git init&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$git add .&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$git commit -m &quot;Commit mesaage&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$git remote add origin &quot;자신의 Git URL주소 ex)https://github.com/asdasd/asdasd.github.io.git&quot;&lt;/code&gt; (해당 Repositrot에서 Clone or download를 클릭하면 볼 수 있다.)&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$git push origin&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;3-확인하기&quot;&gt;3. 확인하기&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;http://자신의Github아이디.github.io&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;를 입력하여 잘 되었는지 확인한다.&lt;/p&gt;
-
-&lt;h2 id=&quot;jekyll-테마-적용하기&quot;&gt;Jekyll 테마 적용하기&lt;/h2&gt;
-
-&lt;h3 id=&quot;1-jekyll-테마-다운하기&quot;&gt;1. Jekyll 테마 다운하기&lt;/h3&gt;
-
-&lt;p&gt;http://jekyllthems.org/&lt;/p&gt;
-
-&lt;p&gt;해당 사이트에 접속하여 마음에 드는 테마를 찾는다. (간혹 불량한 테마도 있으니 잘 찾아보아야한다.)
-테마를 찾은 후 download를 클릭하여 테마를 download한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;2-다운-받은-테마-적용하기&quot;&gt;2. 다운 받은 테마 적용하기&lt;/h3&gt;
-
-&lt;p&gt;다운받은 테마의 압축을 푼 후, 자신의 Jekyll 디렉토리안에 넣어준다.
-넣은 후 위에서 2번을 다시 반복해주면 자신의 테마가 바뀌었음을 확인할 수 있다.
-또는 &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll s&lt;/code&gt;를 통해 바로 확인할 수 있다. &amp;lt;- 방법은 &lt;a href=&quot;https://chogyujin.github.io/2019/01/28/jekyll-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%A4%80%EB%B9%84%ED%95%98%EA%B8%B0/&quot;&gt;jekyll 설치 및 준비하기&lt;/a&gt;를 참고하면 된다.&lt;/p&gt;
-</description>
-        <pubDate>Mon, 28 Jan 2019 09:14:54 -0800</pubDate>
-        <link>/2019/01/28/jekyll-Github%EC%97%B0%EB%8F%99-%EB%B0%8F-%ED%85%8C%EB%A7%88-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/</link>
-        <guid isPermaLink="true">/2019/01/28/jekyll-Github%EC%97%B0%EB%8F%99-%EB%B0%8F-%ED%85%8C%EB%A7%88-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/</guid>
-        
-        
-        <category>jekyll</category>
-        
-      </item>
     
       <item>
         <title>jekyll 설치 및 준비하기</title>

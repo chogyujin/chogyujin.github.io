@@ -1,12 +1,12 @@
 ---
 layout: post
-title:  "jekyll 설치 및 준비하기"
-date:   2019-01-28 17:14:54
+title:  "jekyll-Github연동-및-테마-적용하기"
+date:   2019-01-29 21:14:54
 categories: jekyll
 comments: true
 ---
 
-## Jekyll을 Github와 연동하기
+## Jekyll Github와 연동하기
 
 ### 1. Github에 Repository 생성
 
@@ -44,3 +44,5 @@ http://jekyllthems.org/
 다운받은 테마의 압축을 푼 후, 자신의 Jekyll 디렉토리안에 넣어준다.
 넣은 후 위에서 2번을 다시 반복해주면 자신의 테마가 바뀌었음을 확인할 수 있다.
 또는 `jekyll s`를 통해 바로 확인할 수 있다. <- 방법은 [jekyll 설치 및 준비하기](https://chogyujin.github.io/2019/01/28/jekyll-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%A4%80%EB%B9%84%ED%95%98%EA%B8%B0/)를 참고하면 된다.
+
+이후부턴 `$git init`과 `git remote add origin ~~`는 생략가능 하다.
