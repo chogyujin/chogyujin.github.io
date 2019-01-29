@@ -5,9 +5,137 @@
     <description>Gyujin&#39;s Ideas &amp; Blogs</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 28 Jan 2019 07:06:59 -0800</pubDate>
-    <lastBuildDate>Mon, 28 Jan 2019 07:06:59 -0800</lastBuildDate>
+    <pubDate>Tue, 29 Jan 2019 04:26:29 -0800</pubDate>
+    <lastBuildDate>Tue, 29 Jan 2019 04:26:29 -0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>jekyll 설치 및 준비하기</title>
+        <description>&lt;h2 id=&quot;jekyll을-github와-연동하기&quot;&gt;Jekyll을 Github와 연동하기&lt;/h2&gt;
+
+&lt;h3 id=&quot;1-github에-repository-생성&quot;&gt;1. Github에 Repository 생성&lt;/h3&gt;
+
+&lt;p&gt;레포 생성 시 Repository name을 &lt;code class=&quot;highlighter-rouge&quot;&gt;자신의Github아이디.Github.io&lt;/code&gt; 로 생성해준다.&lt;/p&gt;
+
+&lt;h3 id=&quot;2-git과-연동하기&quot;&gt;2. Git과 연동하기&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$git init&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$git add .&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$git commit -m &quot;Commit mesaage&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$git remote add origin &quot;자신의 Git URL주소 ex)https://github.com/asdasd/asdasd.github.io.git&quot;&lt;/code&gt; (해당 Repositrot에서 Clone or download를 클릭하면 볼 수 있다.)&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$git push origin&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;3-확인하기&quot;&gt;3. 확인하기&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;http://자신의Github아이디.github.io&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;를 입력하여 잘 되었는지 확인한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;jekyll-테마-적용하기&quot;&gt;Jekyll 테마 적용하기&lt;/h2&gt;
+
+&lt;h3 id=&quot;1-jekyll-테마-다운하기&quot;&gt;1. Jekyll 테마 다운하기&lt;/h3&gt;
+
+&lt;p&gt;http://jekyllthems.org/&lt;/p&gt;
+
+&lt;p&gt;해당 사이트에 접속하여 마음에 드는 테마를 찾는다. (간혹 불량한 테마도 있으니 잘 찾아보아야한다.)
+테마를 찾은 후 download를 클릭하여 테마를 download한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;2-다운-받은-테마-적용하기&quot;&gt;2. 다운 받은 테마 적용하기&lt;/h3&gt;
+
+&lt;p&gt;다운받은 테마의 압축을 푼 후, 자신의 Jekyll 디렉토리안에 넣어준다.
+넣은 후 위에서 2번을 다시 반복해주면 자신의 테마가 바뀌었음을 확인할 수 있다.
+또는 &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll s&lt;/code&gt;를 통해 바로 확인할 수 있다. &amp;lt;- 방법은 &lt;a href=&quot;https://chogyujin.github.io/2019/01/28/jekyll-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%A4%80%EB%B9%84%ED%95%98%EA%B8%B0/&quot;&gt;jekyll 설치 및 준비하기&lt;/a&gt;를 참고하면 된다.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 28 Jan 2019 09:14:54 -0800</pubDate>
+        <link>/2019/01/28/jekyll-Github%EC%97%B0%EB%8F%99-%EB%B0%8F-%ED%85%8C%EB%A7%88-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/</link>
+        <guid isPermaLink="true">/2019/01/28/jekyll-Github%EC%97%B0%EB%8F%99-%EB%B0%8F-%ED%85%8C%EB%A7%88-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/</guid>
+        
+        
+        <category>jekyll</category>
+        
+      </item>
+    
+      <item>
+        <title>jekyll 설치 및 준비하기</title>
+        <description>&lt;h2 id=&quot;jekyll&quot;&gt;jekyll&lt;/h2&gt;
+
+&lt;p&gt;jekyll은 깃허브와 함께 사용하기에 아주 좋은 툴이다. Markdown 언어를 사용하여 쉽게 글을 작성할 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;설치&quot;&gt;설치&lt;/h2&gt;
+
+&lt;p&gt;물론 윈도즈에도 설치할 수 있지만 jekyll이 공식적으로 지원하지 않기 때문에 윈도즈에서 할 시, 여러모로 불편한 점이 많다. 때문에 VmWare를 통해 우분투를 할 것을 권장한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;1-지킬이-요구하는-패키지-설치&quot;&gt;1. 지킬이 요구하는 패키지 설치&lt;/h3&gt;
+&lt;p&gt;RVM(Ruby Cersion Manager)을 위해 curl을 설치한다. 루비를 설치하면 여러 버전의 지킬을 사용할 수 있고, 지킬이 루비를 버리지 않는 한 버전업에 따른 환경 변경의 부담을 덜 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$sudo apt-get install curl&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://rvm.io/&quot;&gt;https://rvm.io/&lt;/a&gt; 사이트를 통해 명령 라인을 얻고 입력한다. 그대로 복사하고 붙여넣으면 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$\curl -sSL https://get.rvm.io | bash -s stable&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;다음은 밑의 명령을 통해 터미널을 다시 시작할 시 루비 설치, 지킬 설치와 사용, 루비 버전 확인 등을 다시 해야하는 번거로움을 없애도록한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ source /home/vjinn/.rvm/scripts/rvm&lt;/code&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;터미널 메뉴에서 Edit - Profile Preferences - Title and Command - Run Command as a login shell 실행&lt;/li&gt;
+  &lt;li&gt;터미널 종료 후 재실행&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;이제 루비를 설치한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$rvm install ruby-2.5.1&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;설치 후 버전을 확인하자.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ruby -v&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;이제 지킬에서 필요한 nodejs를 설치한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo apt-get install nodejs&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;2-지킬-설치-및-확인&quot;&gt;2. 지킬 설치 및 확인&lt;/h3&gt;
+
+&lt;p&gt;바로 지킬을 설치한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;gem install jekyll&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;버전을 확인한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll -v&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;3-사이트-생성-변환-테스트&quot;&gt;3. 사이트 생성, 변환 테스트&lt;/h3&gt;
+
+&lt;p&gt;jekyll을 사용할 디렉토리를 만든 후 해당 디렉토리에서 아래의 사항들을 따라해주면 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll new mysite&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;위 명령을 통해 디렉토리가 새로 생성됨가 동시에 jekyll 사이트가 생성된다. mysite로 들어가서 serve 명령을 실행하여 확인한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cd mysite&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt; 또는 &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll s&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;그러면 &lt;code class=&quot;highlighter-rouge&quot;&gt;Serve address: https://127.0.0.1:4000/&lt;/code&gt;가 밑에 나오는데 해당 링크를 들어가면 바로 현재 사이트의 상태를 확인할 수 있다.&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 28 Jan 2019 09:14:54 -0800</pubDate>
+        <link>/2019/01/28/jekyll-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%A4%80%EB%B9%84%ED%95%98%EA%B8%B0/</link>
+        <guid isPermaLink="true">/2019/01/28/jekyll-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%A4%80%EB%B9%84%ED%95%98%EA%B8%B0/</guid>
+        
+        
+        <category>jekyll</category>
+        
+      </item>
     
       <item>
         <title>Empty Template</title>
