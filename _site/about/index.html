@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>About</title>
-	<meta name="description" content="Gyujin's Ideas & Blogs">
+	<meta name="description" content="Gyujin's Ideas & Alogirhm Blogs">
 	
 	<link rel="canonical" href="/about/">
 	<link rel="alternate" type="application/rss+xml" title="Gyujin's Personal Website" href="/feed.xml" />
@@ -146,7 +146,29 @@
 		})();
 	</script>
 	
-    
+   
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://gyujin.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                             
+
   </div>
   <div id="content" class="col-sm-3">
     <!-- <div id="myAffix" class="shadow-bottom-center hidden-xs" data-spy="affix" data-offset-top="0" data-offset-bottom="-20"> -->
@@ -186,7 +208,7 @@
           </a>
           
           <span class="point"> · </span>
-          <span><a href="https://github.com/LiXizhi/LiXizhi.github.io/blob/master/pages/2_about.md">View source</a></span>
+          <span><a href="https://github.com/chogyujin/chogyujin.github.io/blob/master/pages/2_about.md">View source</a></span>
           <span class="point"> · </span>
           <span><a class="newpost" href="javascript:;">New post</a></span>
 		  <span class="point"> · </span>
@@ -205,7 +227,7 @@
         if (title!=null){
             title = title.replace(" ", "-");
             var currentdate = new Date();
-            var urlNewPage = "https://github.com/LiXizhi/LiXizhi.github.io/new/master?filename=_posts/" 
+            var urlNewPage = "https://github.com/chogyujin/chogyujin.github.io/new/master?filename=_posts/" 
                 + currentdate.getFullYear() + "-" + (currentdate.getMonth()+1) + "-" + currentdate.getDate() + "-" + title + ".md";
                 
             var defaultText =  [
