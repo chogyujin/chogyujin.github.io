@@ -1,12 +1,14 @@
 ---
 layout: post
-title:  "jekyll-Github연동-및-테마-적용하기"
+title:  "jekyll-Github연동 및 테마 적용하기"
 date:   2019-01-29 21:14:54
 categories: jekyll
 comments: true
 ---
 
 ## Jekyll Github와 연동하기
+
+----
 
 ### 1. Github에 Repository 생성
 
@@ -31,6 +33,8 @@ comments: true
 를 입력하여 잘 되었는지 확인한다.
 
 ## Jekyll 테마 적용하기
+
+----
 
 ### 1. Jekyll 테마 다운하기
 
