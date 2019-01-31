@@ -1,9 +1,3 @@
-# LiXizhi's Personal Website
+# CS 및 알고리즘 블로그입니다.
 
-Runing on Github + Jekyll theme by [Gaohaoyang](https://github.com/Gaohaoyang/gaohaoyang.github.io)**
-
-# KeepWork
-Create Your Own Personal Website in Markdown. Visit http://keepwork.com 
-
-
-
+CS 및 알고리즘 지식을 기록하고 더 나아가 사람들에게 도움이 되는 블로거가 되고싶습니다.
