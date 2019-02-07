@@ -14,7 +14,6 @@ STL을 사용해서 구현하는 것도 방법이지만 STL을 안쓰고 구현�
 // AlgorithmTest.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
 //
 
-#include "pch.h"
 #include <iostream>
 #include <string>
 using namespace std;
