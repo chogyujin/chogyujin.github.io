@@ -1,0 +1,58 @@
+---
+layout: post
+title:  "[SWEA] 2383 (모의 SW 역량테스트) 점심 식사시간"
+date:   2019-02-06 19:14:54
+categories: algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/10828
+
+STL을 사용해서 구현하는 것도 방법이지만 STL을 안쓰고 구현해보는 것도 좋은 것 같습니다. 삼성같은 경우 STL을 허용하지만 STL을 허용하지 않는 기업도 있기 때문에 한번 코딩해보는 것도 나쁘지 않은 것 같습니다.
+
+~~~
+// AlgorithmTest.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
+//
+
+#include "pch.h"
+#include <iostream>
+#include <string>
+using namespace std;
+
+int d[1000] = {-1,};
+int main()
+{
+	int cnt,input;
+	int size = 0;
+	string str;
+	cin >> cnt;
+	while (cnt) {
+		cnt--;
+		cin >> str;
+		if (str == "push") {
+			cin >> input;
+			size++;
+			d[size] = input;
+		}
+		else if (str == "pop") {
+			if (size != 0) {
+				printf("%d\n", d[size]);
+				d[size] = -1;
+				size--;
+			}
+			else printf("-1\n");
+		}
+		else if (str == "size") {
+			printf("%d\n", size);
+		}
+		else if (str == "empty") {
+			if (size == 0) printf("1\n");
+			else printf("0\n");
+		}
+		else if (str == "top") {
+			printf("%d\n", d[size]);
+		}
+
+	}
+}
+~~~
