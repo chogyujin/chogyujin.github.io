@@ -1,0 +1,60 @@
+---
+layout: post
+title:  "[BOJ] 9465. 스티커(DP)"
+date:   2019-02-08 11:41:54
+categories: algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/9465
+
+이 문제는 Bottom-up 방식으로 풀었습니다.(밑에서부터 차근차근~)
+
+2차원 배열을 사용하여 풀었으며, 초기값만 직접 지정한 뒤에 반복문을 사용하여 다음 값들을 계산했습니다.
+
+
+
+- 혼잣말
+
+앞에서 비슷한 문제를 풀고 와서 그런지 별다른 어려움은 없었지만, 역시 생각하는 시간이 오래 걸렸다.
+
+### Top-down
+~~~
+#include <iostream>
+using namespace std;
+int card[2][100001];
+int _max[2][100001];
+int main() {
+	int test_case, temp;
+	scanf("%d", &test_case);
+	for (int t = 1; t <= test_case; t++) {
+		int n;
+		scanf("%d", &n);
+		for (int i = 0; i < 2; i++) {
+			for (int j = 0; j < n; j++) {
+				scanf("%d", &card[i][j]);
+				_max[i][j] = 0;
+			}
+		}
+		_max[0][0] = card[0][0];
+		_max[1][0] = card[1][0];
+		_max[0][1] = _max[1][0] + card[0][1];
+		_max[1][1] = _max[0][0] + card[1][1];
+		for (int i = 2; i < n; i++) {//처음에 이부분에서 행과 열을 바꿨었는데 문제를 발견하여 행과 열순서를 바꿨다.
+			for (int j = 0; j < 2; j++) {
+				if (j == 0) {
+					temp = _max[j + 1][i - 1] >= _max[j + 1][i - 2] ? _max[j + 1][i - 1] : _max[j + 1][i - 2];
+					_max[j][i] = temp + card[j][i];
+				}
+				else {
+					temp = _max[j - 1][i - 1] >= _max[j - 1][i - 2] ? _max[j - 1][i - 1] : _max[j - 1][i - 2];
+					_max[j][i] = temp + card[j][i];
+				}
+			}
+		}
+		int result = _max[0][n - 1] >= _max[1][n - 1] ? _max[0][n - 1] : _max[1][n - 1];
+		printf("%d\n", result);
+	}
+	return 0;
+}
+~~~
