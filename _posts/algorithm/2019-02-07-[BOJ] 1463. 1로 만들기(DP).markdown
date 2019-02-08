@@ -1,0 +1,81 @@
+---
+layout: post
+title:  "[BOJ] 1463. 1로 만들기(DP)"
+date:   2019-02-07 23:04:54
+categories: algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/1463
+
+DP의 방식은 Top-down, Bottom-up 2가지입니다.
+말그대로 Top-down은 위에서 아래로 생각하는 것, 즉 해당 값을 구하기 위해 그 전녀석을, 그 전녀석을 구하기위해 그 전전녀석을...... 이런식으로 하는 방식이고,
+Bottom-up은 밑에서 위로 생각하는 것, 즉 해당 값을 구하기 위해 밑에서부터 차근차근 계산해나가면서 구하는 방식입니다.
+Top-down은 특성상 재귀함수를 사용하고,
+Bottom-up은 반복문을 사용합니다.
+
+
+-혼잣말
+역시 dp문제는 생각을 많이하게하는 것 같다. 꽤 많은 시간이 걸렸다. 난 Bottom-up이 편한 것 같다....
+
+###Top-down
+~~~
+#include <iostream>
+#include <cstdio>
+using namespace std;
+int d[1000001];
+int temp;
+int fun(int x) {
+	if (x == 1) return 0;
+	if (d[x] > 0) return d[x];
+	d[x] = fun(x - 1) + 1;
+	if (x % 3 == 0) {
+		temp = fun(x / 3) + 1;
+		if (d[x] > temp) d[x] = temp;
+	}
+	if (x % 2 == 0) {
+		temp = fun(x / 2) + 1;
+		if (d[x] > temp) d[x] = temp;
+	}
+	return d[x];
+}
+int main() {
+	int x;
+	
+	scanf("%d", &x);
+	fun(x);
+	printf("%d\n",d[x]);
+	/*
+	cin >> x;
+	cout << fun(x) << '\n';
+    */
+	return 0;
+}
+~~~
+
+
+###Bottom-up
+~~~
+#include <iostream>
+#include <cstdio>
+using namespace std;
+int d[1000001];
+int main() {
+	int x,temp;
+	cin >> x;
+	d[1] = 0;
+	for (int i = 2; i <= x; i++) {
+		d[i] = d[i - 1] + 1;
+		if (i % 2 == 0) {
+			temp = d[i / 2] + 1;
+			if (d[i] > temp) d[i] = temp;
+		}
+		if (i % 3 == 0) {
+			temp = d[i / 3] + 1;
+			if (d[i] > temp) d[i] = temp;
+		}
+	}
+	cout << d[x] << '\n';
+	return 0;
+}
+~~~
