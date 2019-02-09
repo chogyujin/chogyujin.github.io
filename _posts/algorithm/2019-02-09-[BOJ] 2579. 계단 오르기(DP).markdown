@@ -1,0 +1,49 @@
+---
+layout: post
+title:  "[BOJ] 2579. 계단 오르기(DP)"
+date:   2019-02-09 21:55:54
+categories: algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/2579
+
+2차원 배열을 구성해서 풀었습니다.
+
+d[i][j]에서 i는 현재 밟고 있는 계단이고 j는 몇번 연속으로 밟은 상태인지를 나타냅니다.
+
+예를들어 d[3][2]는 3번째 계단이고 현재 계단 포함하여 2번 연속으로 밟은 상태입니다.
+
+
+
+- 혼잣말
+
+풀다가 안돼서 사람들의 코드를 봤다. 보고 어떻게 이런 생각을 했지? 라고 생각한 사람의 코드도 있었고, 엄청 쉽게 짰구나 생각한 사람의 코드도 있었다. 밑 코드는 '어떻게 이런생각을 했지?'의 코드이다.
+
+### Top-down
+~~~
+#include <iostream>
+#include <cstdio>
+using namespace std;
+
+int stair[301];//계단
+int d[301][2];//d[계단][연속적으로 밟은 수]
+int main() {
+	int num, result;
+	bool check = false;
+	scanf("%d", &num);
+	for (int i = 1; i <= num; i++) {
+		scanf("%d", &stair[i]);
+	}
+	d[1][1] = stair[1];
+	for (int i = 2; i <= num; i++) {
+		d[i][2] = d[i - 1][1] + stair[i];
+		d[i][1] = d[i - 2][1] > d[i - 2][2] ? stair[i] + d[i - 2][1] : stair[i] + d[i - 2][2];
+		//d[i][1]은 1번 연속으로 밟는 것이므로 i-2번째를 더한다.
+		//이 과정에서 i-2번째를 더할때 그 계단이 1번연속이든 2번연속이든 상관없으므로
+		//이 중 점수가 큰 값을 더해준다.
+	}
+	result = d[num][1] > d[num][2] ? d[num][1] : d[num][2];
+	printf("%d\n", result);
+}
+~~~
