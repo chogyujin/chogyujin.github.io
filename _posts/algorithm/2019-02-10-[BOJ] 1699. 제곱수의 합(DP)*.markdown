@@ -1,0 +1,41 @@
+---
+layout: post
+title:  "[BOJ] 1699. 제곱수의 합(DP)*"
+date:   2019-02-10 22:05:54
+categories: algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/1699
+
+개인적으로 꽤 난이도가 있는 문제인 것 같습니다.
+
+d[i] -> i에서의 최소 제곱수 항의 갯수를 나타냅니다.
+
+
+
+- 혼잣말
+
+수학적 지식이 딸린 것 같다..... DP는 진짜 멍청한 나에겐 너무 힘든 문제다..
+
+이것도 많이 풀면 늘 수 있을까나..ㅋㅋㅋㅋ;;
+
+~~~
+#include <iostream>
+#include <cstdio>
+using namespace std;
+int d[100001];
+int main() {
+	int n;
+	scanf("%d", &n);
+	for (int i = 0; i <= n; i++) {
+		d[i] = i;
+		for (int j = 1; j*j <= i; j++) {
+			if (d[i] > d[i - j * j] + 1) {
+				d[i] = d[i - j * j] + 1;
+			}
+		}
+	}
+	cout << d[n]<<'\n';
+}
+~~~
