@@ -5,10 +5,10 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Empty Template</title>
-	<meta name="description" content="Empty diary template">
+	<title>[BOJ] 9465. 스티커(DP)</title>
+	<meta name="description" content="https://www.acmicpc.net/problem/9465">
 	
-	<link rel="canonical" href="http://chogyujin.github.io/2015/12/28/empty-template/">
+	<link rel="canonical" href="http://chogyujin.github.io/2019/02/08/BOJ-9465.-%EC%8A%A4%ED%8B%B0%EC%BB%A4(DP)/">
 	<link rel="alternate" type="application/rss+xml" title="Gyujin's Personal Website" href="http://chogyujin.github.io/feed.xml" />
 	
 	<!-- <link rel="stylesheet" href="/css/main.css"> -->
@@ -86,14 +86,63 @@
   <div id="myArticle" class="col-sm-9">
     <div class="post-area post">
       <header>
-        <h1>Empty Template</h1>
-        <p>Dec 28, 2015</p>
+        <h1>[BOJ] 9465. 스티커(DP)</h1>
+        <p>Feb 8, 2019</p>
       </header>
       <hr>
       <article>
-        <h2 id="empty-diary-template">Empty diary template</h2>
+        <p>https://www.acmicpc.net/problem/9465</p>
 
-<p>Empty post template</p>
+<p>이 문제는 Bottom-up 방식으로 풀었습니다.(밑에서부터 차근차근~)</p>
+
+<p>2차원 배열을 사용하여 풀었으며, 초기값만 직접 지정한 뒤에 반복문을 사용하여 다음 값들을 계산했습니다.</p>
+
+<h3 id="top-down">Top-down</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;iostream&gt;
+using namespace std;
+int card[2][100001];
+int _max[2][100001];
+int main() {
+	int test_case, temp;
+	scanf("%d", &amp;test_case);
+	for (int t = 1; t &lt;= test_case; t++) {
+		int n;
+		scanf("%d", &amp;n);
+		for (int i = 0; i &lt; 2; i++) {
+			for (int j = 0; j &lt; n; j++) {
+				scanf("%d", &amp;card[i][j]);
+				_max[i][j] = 0;
+			}
+		}
+		_max[0][0] = card[0][0];
+		_max[1][0] = card[1][0];
+		_max[0][1] = _max[1][0] + card[0][1];
+		_max[1][1] = _max[0][0] + card[1][1];
+		for (int i = 2; i &lt; n; i++) {//처음에 이부분에서 행과 열을 바꿨었는데 문제를 발견하여 행과 열순서를 바꿨다.
+			for (int j = 0; j &lt; 2; j++) {
+				if (j == 0) {
+					temp = _max[j + 1][i - 1] &gt;= _max[j + 1][i - 2] ? _max[j + 1][i - 1] : _max[j + 1][i - 2];
+					_max[j][i] = temp + card[j][i];
+				}
+				else {
+					temp = _max[j - 1][i - 1] &gt;= _max[j - 1][i - 2] ? _max[j - 1][i - 1] : _max[j - 1][i - 2];
+					_max[j][i] = temp + card[j][i];
+				}
+			}
+		}
+		int result = _max[0][n - 1] &gt;= _max[1][n - 1] ? _max[0][n - 1] : _max[1][n - 1];
+		printf("%d\n", result);
+	}
+	return 0;
+}
+</code></pre></div></div>
+
+<ul>
+  <li><strong>혼잣말</strong></li>
+</ul>
+
+<p>앞에서 비슷한 문제를 풀고 와서 그런지 별다른 어려움은 없었지만, 역시 생각하는 시간이 오래 걸렸다.</p>
+
 
       </article>
       <hr>
@@ -119,8 +168,8 @@
     </div>
 	<script>
 		var disqus_config = function () {
-			this.page.url = "http://chogyujin.github.io/2015/12/28/empty-template/"; 
-			this.page.identifier = "/2015/12/28/empty-template"; 
+			this.page.url = "http://chogyujin.github.io/2019/02/08/BOJ-9465.-%EC%8A%A4%ED%8B%B0%EC%BB%A4(DP)/"; 
+			this.page.identifier = "/2019/02/08/[BOJ] 9465. 스티커(DP)"; 
 		};
 		(function() {
 			var d = document, s = d.createElement('script');
@@ -194,7 +243,7 @@ s.setAttribute('data-timestamp', +new Date());
           </a>
           
           <span class="point"> · </span>
-          <span><a href="https://github.com/chogyujin/chogyujin.github.io/blob/master/_posts/diary/2015-12-28-empty-template.md">View source</a></span>
+          <span><a href="https://github.com/chogyujin/chogyujin.github.io/blob/master/_posts/algorithm/2019-02-08-[BOJ] 9465. 스티커(DP).markdown">View source</a></span>
           <span class="point"> · </span>
           <span><a class="newpost" href="javascript:;">New post</a></span>
 		  <span class="point"> · </span>

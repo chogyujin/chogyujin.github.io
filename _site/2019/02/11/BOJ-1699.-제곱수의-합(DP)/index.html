@@ -5,10 +5,10 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Empty Template</title>
-	<meta name="description" content="Empty diary template">
+	<title>[BOJ] 1699. 제곱수의 합(DP)*</title>
+	<meta name="description" content="https://www.acmicpc.net/problem/1699">
 	
-	<link rel="canonical" href="http://chogyujin.github.io/2015/12/28/empty-template/">
+	<link rel="canonical" href="http://chogyujin.github.io/2019/02/10/BOJ-1699.-%EC%A0%9C%EA%B3%B1%EC%88%98%EC%9D%98-%ED%95%A9(DP)/">
 	<link rel="alternate" type="application/rss+xml" title="Gyujin's Personal Website" href="http://chogyujin.github.io/feed.xml" />
 	
 	<!-- <link rel="stylesheet" href="/css/main.css"> -->
@@ -86,14 +86,44 @@
   <div id="myArticle" class="col-sm-9">
     <div class="post-area post">
       <header>
-        <h1>Empty Template</h1>
-        <p>Dec 28, 2015</p>
+        <h1>[BOJ] 1699. 제곱수의 합(DP)*</h1>
+        <p>Feb 10, 2019</p>
       </header>
       <hr>
       <article>
-        <h2 id="empty-diary-template">Empty diary template</h2>
+        <p>https://www.acmicpc.net/problem/1699</p>
 
-<p>Empty post template</p>
+<p>개인적으로 꽤 난이도가 있는 문제인 것 같습니다.</p>
+
+<p>d[i] -&gt; i에서의 최소 제곱수 항의 갯수를 나타냅니다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+using namespace std;
+int d[100001];
+int main() {
+	int n;
+	scanf("%d", &amp;n);
+	for (int i = 0; i &lt;= n; i++) {
+		d[i] = i;
+		for (int j = 1; j*j &lt;= i; j++) {
+			if (d[i] &gt; d[i - j * j] + 1) {
+				d[i] = d[i - j * j] + 1;
+			}
+		}
+	}
+	cout &lt;&lt; d[n]&lt;&lt;'\n';
+}
+</code></pre></div></div>
+
+<ul>
+  <li><strong>혼잣말</strong></li>
+</ul>
+
+<p>수학적 지식이 딸린 것 같다….. DP는 진짜 멍청한 나에겐 너무 힘든 문제다..</p>
+
+<p>이것도 많이 풀면 늘 수 있을까나..ㅋㅋㅋㅋ;;</p>
+
 
       </article>
       <hr>
@@ -119,8 +149,8 @@
     </div>
 	<script>
 		var disqus_config = function () {
-			this.page.url = "http://chogyujin.github.io/2015/12/28/empty-template/"; 
-			this.page.identifier = "/2015/12/28/empty-template"; 
+			this.page.url = "http://chogyujin.github.io/2019/02/10/BOJ-1699.-%EC%A0%9C%EA%B3%B1%EC%88%98%EC%9D%98-%ED%95%A9(DP)/"; 
+			this.page.identifier = "/2019/02/10/[BOJ] 1699. 제곱수의 합(DP)*"; 
 		};
 		(function() {
 			var d = document, s = d.createElement('script');
@@ -194,7 +224,7 @@ s.setAttribute('data-timestamp', +new Date());
           </a>
           
           <span class="point"> · </span>
-          <span><a href="https://github.com/chogyujin/chogyujin.github.io/blob/master/_posts/diary/2015-12-28-empty-template.md">View source</a></span>
+          <span><a href="https://github.com/chogyujin/chogyujin.github.io/blob/master/_posts/algorithm/2019-02-10-[BOJ] 1699. 제곱수의 합(DP)*.markdown">View source</a></span>
           <span class="point"> · </span>
           <span><a class="newpost" href="javascript:;">New post</a></span>
 		  <span class="point"> · </span>

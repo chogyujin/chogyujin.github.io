@@ -5,10 +5,10 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Empty Template</title>
-	<meta name="description" content="Empty diary template">
+	<title>[BOJ] 2579. 계단 오르기(DP)</title>
+	<meta name="description" content="https://www.acmicpc.net/problem/2579">
 	
-	<link rel="canonical" href="http://chogyujin.github.io/2015/12/28/empty-template/">
+	<link rel="canonical" href="http://chogyujin.github.io/2019/02/09/BOJ-2579.-%EA%B3%84%EB%8B%A8-%EC%98%A4%EB%A5%B4%EA%B8%B0(DP)/">
 	<link rel="alternate" type="application/rss+xml" title="Gyujin's Personal Website" href="http://chogyujin.github.io/feed.xml" />
 	
 	<!-- <link rel="stylesheet" href="/css/main.css"> -->
@@ -86,14 +86,52 @@
   <div id="myArticle" class="col-sm-9">
     <div class="post-area post">
       <header>
-        <h1>Empty Template</h1>
-        <p>Dec 28, 2015</p>
+        <h1>[BOJ] 2579. 계단 오르기(DP)</h1>
+        <p>Feb 9, 2019</p>
       </header>
       <hr>
       <article>
-        <h2 id="empty-diary-template">Empty diary template</h2>
+        <p>https://www.acmicpc.net/problem/2579</p>
 
-<p>Empty post template</p>
+<p>2차원 배열을 구성해서 풀었습니다.</p>
+
+<p>d[i][j]에서 i는 현재 밟고 있는 계단이고 j는 몇번 연속으로 밟은 상태인지를 나타냅니다.</p>
+
+<p>예를들어 d[3][2]는 3번째 계단이고 현재 계단 포함하여 2번 연속으로 밟은 상태입니다.</p>
+
+<h3 id="top-down">Top-down</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+using namespace std;
+
+int stair[301];//계단
+int d[301][2];//d[계단][연속적으로 밟은 수]
+int main() {
+	int num, result;
+	bool check = false;
+	scanf("%d", &amp;num);
+	for (int i = 1; i &lt;= num; i++) {
+		scanf("%d", &amp;stair[i]);
+	}
+	d[1][1] = stair[1];
+	for (int i = 2; i &lt;= num; i++) {
+		d[i][2] = d[i - 1][1] + stair[i];
+		d[i][1] = d[i - 2][1] &gt; d[i - 2][2] ? stair[i] + d[i - 2][1] : stair[i] + d[i - 2][2];
+		//d[i][1]은 1번 연속으로 밟는 것이므로 i-2번째를 더한다.
+		//이 과정에서 i-2번째를 더할때 그 계단이 1번연속이든 2번연속이든 상관없으므로
+		//이 중 점수가 큰 값을 더해준다.
+	}
+	result = d[num][1] &gt; d[num][2] ? d[num][1] : d[num][2];
+	printf("%d\n", result);
+}
+</code></pre></div></div>
+
+<ul>
+  <li><strong>혼잣말</strong></li>
+</ul>
+
+<p>풀다가 안돼서 사람들의 코드를 봤다. 보고 어떻게 이런 생각을 했지? 라고 생각한 사람의 코드도 있었고, 엄청 쉽게 짰구나 생각한 사람의 코드도 있었다. 밑 코드는 ‘어떻게 이런생각을 했지?’의 코드이다.</p>
+
 
       </article>
       <hr>
@@ -119,8 +157,8 @@
     </div>
 	<script>
 		var disqus_config = function () {
-			this.page.url = "http://chogyujin.github.io/2015/12/28/empty-template/"; 
-			this.page.identifier = "/2015/12/28/empty-template"; 
+			this.page.url = "http://chogyujin.github.io/2019/02/09/BOJ-2579.-%EA%B3%84%EB%8B%A8-%EC%98%A4%EB%A5%B4%EA%B8%B0(DP)/"; 
+			this.page.identifier = "/2019/02/09/[BOJ] 2579. 계단 오르기(DP)"; 
 		};
 		(function() {
 			var d = document, s = d.createElement('script');
@@ -194,7 +232,7 @@ s.setAttribute('data-timestamp', +new Date());
           </a>
           
           <span class="point"> · </span>
-          <span><a href="https://github.com/chogyujin/chogyujin.github.io/blob/master/_posts/diary/2015-12-28-empty-template.md">View source</a></span>
+          <span><a href="https://github.com/chogyujin/chogyujin.github.io/blob/master/_posts/algorithm/2019-02-09-[BOJ] 2579. 계단 오르기(DP).markdown">View source</a></span>
           <span class="point"> · </span>
           <span><a class="newpost" href="javascript:;">New post</a></span>
 		  <span class="point"> · </span>

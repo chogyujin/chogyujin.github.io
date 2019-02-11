@@ -15,13 +15,6 @@ https://www.acmicpc.net/problem/11005
 저는 vector를 사용해서 나머지를 넣어준 후, 차례대로 빼서 print했습니다.
 
 
-
-
-
-- 혼잣말
-
-...
-
 ~~~
 #include <iostream>
 #include <cstdio>
@@ -45,3 +38,8 @@ int main() {
 	}
 }
 ~~~
+
+- **혼잣말**
+
+...
+

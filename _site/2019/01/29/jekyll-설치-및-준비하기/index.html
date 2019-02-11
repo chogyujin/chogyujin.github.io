@@ -5,11 +5,11 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>jekyll-Github연동 및 테마 적용하기</title>
-	<meta name="description" content="Jekyll Github와 연동하기">
+	<title>jekyll 설치 및 준비하기</title>
+	<meta name="description" content="jekyll">
 	
-	<link rel="canonical" href="/2019/01/29/jekyll-Github%EC%97%B0%EB%8F%99-%EB%B0%8F-%ED%85%8C%EB%A7%88-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/">
-	<link rel="alternate" type="application/rss+xml" title="Gyujin's Personal Website" href="/feed.xml" />
+	<link rel="canonical" href="http://chogyujin.github.io/2019/01/28/jekyll-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%A4%80%EB%B9%84%ED%95%98%EA%B8%B0/">
+	<link rel="alternate" type="application/rss+xml" title="Gyujin's Personal Website" href="http://chogyujin.github.io/feed.xml" />
 	
 	<!-- <link rel="stylesheet" href="/css/main.css"> -->
     
@@ -86,57 +86,75 @@
   <div id="myArticle" class="col-sm-9">
     <div class="post-area post">
       <header>
-        <h1>jekyll-Github연동 및 테마 적용하기</h1>
-        <p>Jan 29, 2019</p>
+        <h1>jekyll 설치 및 준비하기</h1>
+        <p>Jan 28, 2019</p>
       </header>
       <hr>
       <article>
-        <h2 id="jekyll-github와-연동하기">Jekyll Github와 연동하기</h2>
+        <h2 id="jekyll">jekyll</h2>
 
-<hr />
+<p>jekyll은 깃허브와 함께 사용하기에 아주 좋은 툴이다. Markdown 언어를 사용하여 쉽게 글을 작성할 수 있다.</p>
 
-<h3 id="1-github에-repository-생성">1. Github에 Repository 생성</h3>
+<h2 id="설치">설치</h2>
 
-<p>레포 생성 시 Repository name을 <code class="highlighter-rouge">자신의Github아이디.Github.io</code> 로 생성해준다.</p>
+<p>물론 윈도즈에도 설치할 수 있지만 jekyll이 공식적으로 지원하지 않기 때문에 윈도즈에서 할 시, 여러모로 불편한 점이 많다. 때문에 VmWare를 통해 우분투를 할 것을 권장한다.</p>
 
-<h3 id="2-git과-연동하기">2. Git과 연동하기</h3>
+<h3 id="1-지킬이-요구하는-패키지-설치">1. 지킬이 요구하는 패키지 설치</h3>
+<p>RVM(Ruby Cersion Manager)을 위해 curl을 설치한다. 루비를 설치하면 여러 버전의 지킬을 사용할 수 있고, 지킬이 루비를 버리지 않는 한 버전업에 따른 환경 변경의 부담을 덜 수 있다.</p>
 
-<p><code class="highlighter-rouge">$git init</code></p>
+<p><code class="highlighter-rouge">$sudo apt-get install curl</code></p>
 
-<p><code class="highlighter-rouge">$git add .</code></p>
+<p><a href="https://rvm.io/">https://rvm.io/</a> 사이트를 통해 명령 라인을 얻고 입력한다. 그대로 복사하고 붙여넣으면 된다.</p>
 
-<p><code class="highlighter-rouge">$git commit -m "Commit mesaage</code></p>
+<p><code class="highlighter-rouge">$gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB</code></p>
 
-<p><code class="highlighter-rouge">$git remote add origin "자신의 Git URL주소 ex)https://github.com/asdasd/asdasd.github.io.git"</code> (해당 Repositrot에서 Clone or download를 클릭하면 볼 수 있다.)</p>
+<p><code class="highlighter-rouge">$\curl -sSL https://get.rvm.io | bash -s stable</code></p>
 
-<p><code class="highlighter-rouge">$git push origin</code></p>
+<p>다음은 밑의 명령을 통해 터미널을 다시 시작할 시 루비 설치, 지킬 설치와 사용, 루비 버전 확인 등을 다시 해야하는 번거로움을 없애도록한다.</p>
 
-<h3 id="3-확인하기">3. 확인하기</h3>
+<p><code class="highlighter-rouge">$ source /home/vjinn/.rvm/scripts/rvm</code></p>
 
-<ul>
-  <li>http://자신의Github아이디.github.io</li>
-</ul>
+<ol>
+  <li>터미널 메뉴에서 Edit - Profile Preferences - Title and Command - Run Command as a login shell 실행</li>
+  <li>터미널 종료 후 재실행</li>
+</ol>
 
-<p>를 입력하여 잘 되었는지 확인한다.</p>
+<p>이제 루비를 설치한다.</p>
 
-<h2 id="jekyll-테마-적용하기">Jekyll 테마 적용하기</h2>
+<p><code class="highlighter-rouge">$rvm install ruby-2.5.1</code></p>
 
-<hr />
+<p>설치 후 버전을 확인하자.</p>
 
-<h3 id="1-jekyll-테마-다운하기">1. Jekyll 테마 다운하기</h3>
+<p><code class="highlighter-rouge">$ruby -v</code></p>
 
-<p>http://jekyllthems.org/</p>
+<p>이제 지킬에서 필요한 nodejs를 설치한다.</p>
 
-<p>해당 사이트에 접속하여 마음에 드는 테마를 찾는다. (간혹 불량한 테마도 있으니 잘 찾아보아야한다.)
-테마를 찾은 후 download를 클릭하여 테마를 download한다.</p>
+<p><code class="highlighter-rouge">sudo apt-get install nodejs</code></p>
 
-<h3 id="2-다운-받은-테마-적용하기">2. 다운 받은 테마 적용하기</h3>
+<h3 id="2-지킬-설치-및-확인">2. 지킬 설치 및 확인</h3>
 
-<p>다운받은 테마의 압축을 푼 후, 자신의 Jekyll 디렉토리안에 넣어준다.
-넣은 후 위에서 2번을 다시 반복해주면 자신의 테마가 바뀌었음을 확인할 수 있다.
-또는 <code class="highlighter-rouge">jekyll s</code>를 통해 바로 확인할 수 있다. &lt;- 방법은 <a href="https://chogyujin.github.io/2019/01/28/jekyll-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%A4%80%EB%B9%84%ED%95%98%EA%B8%B0/">jekyll 설치 및 준비하기</a>를 참고하면 된다.</p>
+<p>바로 지킬을 설치한다.</p>
 
-<p>이후부턴 <code class="highlighter-rouge">$git init</code>과 <code class="highlighter-rouge">git remote add origin ~~</code>는 생략가능 하다.</p>
+<p><code class="highlighter-rouge">gem install jekyll</code></p>
+
+<p>버전을 확인한다.</p>
+
+<p><code class="highlighter-rouge">jekyll -v</code></p>
+
+<h3 id="3-사이트-생성-변환-테스트">3. 사이트 생성, 변환 테스트</h3>
+
+<p>jekyll을 사용할 디렉토리를 만든 후 해당 디렉토리에서 아래의 사항들을 따라해주면 된다.</p>
+
+<p><code class="highlighter-rouge">jekyll new mysite</code></p>
+
+<p>위 명령을 통해 디렉토리가 새로 생성됨가 동시에 jekyll 사이트가 생성된다. mysite로 들어가서 serve 명령을 실행하여 확인한다.</p>
+
+<p><code class="highlighter-rouge">cd mysite</code></p>
+
+<p><code class="highlighter-rouge">jekyll serve</code> 또는 <code class="highlighter-rouge">jekyll s</code></p>
+
+<p>그러면 <code class="highlighter-rouge">Serve address: https://127.0.0.1:4000/</code>가 밑에 나오는데 해당 링크를 들어가면 바로 현재 사이트의 상태를 확인할 수 있다.</p>
+
 
       </article>
       <hr>
@@ -162,8 +180,8 @@
     </div>
 	<script>
 		var disqus_config = function () {
-			this.page.url = "http://chogyujin.github.io/2019/01/29/jekyll-Github%EC%97%B0%EB%8F%99-%EB%B0%8F-%ED%85%8C%EB%A7%88-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/"; 
-			this.page.identifier = "/2019/01/29/jekyll Github연동 및 테마 적용하기"; 
+			this.page.url = "http://chogyujin.github.io/2019/01/28/jekyll-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%A4%80%EB%B9%84%ED%95%98%EA%B8%B0/"; 
+			this.page.identifier = "/2019/01/28/jekyll 설치 및 준비하기"; 
 		};
 		(function() {
 			var d = document, s = d.createElement('script');
@@ -237,7 +255,7 @@ s.setAttribute('data-timestamp', +new Date());
           </a>
           
           <span class="point"> · </span>
-          <span><a href="https://github.com/chogyujin/chogyujin.github.io/blob/master/_posts/jekyll/2019-01-29-jekyll Github연동 및 테마 적용하기.markdown">View source</a></span>
+          <span><a href="https://github.com/chogyujin/chogyujin.github.io/blob/master/_posts/jekyll/2019-01-28-jekyll 설치 및 준비하기.markdown">View source</a></span>
           <span class="point"> · </span>
           <span><a class="newpost" href="javascript:;">New post</a></span>
 		  <span class="point"> · </span>

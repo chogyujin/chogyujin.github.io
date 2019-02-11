@@ -3,11 +3,577 @@
   <channel>
     <title>Gyujin&#39;s Personal Website</title>
     <description>Gyujin&#39;s Ideas &amp; Alogirhm Blogs</description>
-    <link>/</link>
-    <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 30 Jan 2019 06:16:24 -0800</pubDate>
-    <lastBuildDate>Wed, 30 Jan 2019 06:16:24 -0800</lastBuildDate>
+    <link>http://chogyujin.github.io/</link>
+    <atom:link href="http://chogyujin.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Mon, 11 Feb 2019 13:27:11 +0900</pubDate>
+    <lastBuildDate>Mon, 11 Feb 2019 13:27:11 +0900</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>[BOJ] 1699. 제곱수의 합(DP)*</title>
+        <description>&lt;p&gt;https://www.acmicpc.net/problem/1699&lt;/p&gt;
+
+&lt;p&gt;개인적으로 꽤 난이도가 있는 문제인 것 같습니다.&lt;/p&gt;
+
+&lt;p&gt;d[i] -&amp;gt; i에서의 최소 제곱수 항의 갯수를 나타냅니다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;cstdio&amp;gt;
+using namespace std;
+int d[100001];
+int main() {
+	int n;
+	scanf(&quot;%d&quot;, &amp;amp;n);
+	for (int i = 0; i &amp;lt;= n; i++) {
+		d[i] = i;
+		for (int j = 1; j*j &amp;lt;= i; j++) {
+			if (d[i] &amp;gt; d[i - j * j] + 1) {
+				d[i] = d[i - j * j] + 1;
+			}
+		}
+	}
+	cout &amp;lt;&amp;lt; d[n]&amp;lt;&amp;lt;&#39;\n&#39;;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;혼잣말&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;수학적 지식이 딸린 것 같다….. DP는 진짜 멍청한 나에겐 너무 힘든 문제다..&lt;/p&gt;
+
+&lt;p&gt;이것도 많이 풀면 늘 수 있을까나..ㅋㅋㅋㅋ;;&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 11 Feb 2019 07:05:54 +0900</pubDate>
+        <link>http://chogyujin.github.io/2019/02/11/BOJ-1699.-%EC%A0%9C%EA%B3%B1%EC%88%98%EC%9D%98-%ED%95%A9(DP)/</link>
+        <guid isPermaLink="true">http://chogyujin.github.io/2019/02/11/BOJ-1699.-%EC%A0%9C%EA%B3%B1%EC%88%98%EC%9D%98-%ED%95%A9(DP)/</guid>
+        
+        
+        <category>algorithm</category>
+        
+      </item>
+    
+      <item>
+        <title>[BOJ] 2579. 계단 오르기(DP)</title>
+        <description>&lt;p&gt;https://www.acmicpc.net/problem/2579&lt;/p&gt;
+
+&lt;p&gt;2차원 배열을 구성해서 풀었습니다.&lt;/p&gt;
+
+&lt;p&gt;d[i][j]에서 i는 현재 밟고 있는 계단이고 j는 몇번 연속으로 밟은 상태인지를 나타냅니다.&lt;/p&gt;
+
+&lt;p&gt;예를들어 d[3][2]는 3번째 계단이고 현재 계단 포함하여 2번 연속으로 밟은 상태입니다.&lt;/p&gt;
+
+&lt;h3 id=&quot;top-down&quot;&gt;Top-down&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;cstdio&amp;gt;
+using namespace std;
+
+int stair[301];//계단
+int d[301][2];//d[계단][연속적으로 밟은 수]
+int main() {
+	int num, result;
+	bool check = false;
+	scanf(&quot;%d&quot;, &amp;amp;num);
+	for (int i = 1; i &amp;lt;= num; i++) {
+		scanf(&quot;%d&quot;, &amp;amp;stair[i]);
+	}
+	d[1][1] = stair[1];
+	for (int i = 2; i &amp;lt;= num; i++) {
+		d[i][2] = d[i - 1][1] + stair[i];
+		d[i][1] = d[i - 2][1] &amp;gt; d[i - 2][2] ? stair[i] + d[i - 2][1] : stair[i] + d[i - 2][2];
+		//d[i][1]은 1번 연속으로 밟는 것이므로 i-2번째를 더한다.
+		//이 과정에서 i-2번째를 더할때 그 계단이 1번연속이든 2번연속이든 상관없으므로
+		//이 중 점수가 큰 값을 더해준다.
+	}
+	result = d[num][1] &amp;gt; d[num][2] ? d[num][1] : d[num][2];
+	printf(&quot;%d\n&quot;, result);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;혼잣말&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;풀다가 안돼서 사람들의 코드를 봤다. 보고 어떻게 이런 생각을 했지? 라고 생각한 사람의 코드도 있었고, 엄청 쉽게 짰구나 생각한 사람의 코드도 있었다. 밑 코드는 ‘어떻게 이런생각을 했지?’의 코드이다.&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 10 Feb 2019 06:55:54 +0900</pubDate>
+        <link>http://chogyujin.github.io/2019/02/10/BOJ-2579.-%EA%B3%84%EB%8B%A8-%EC%98%A4%EB%A5%B4%EA%B8%B0(DP)/</link>
+        <guid isPermaLink="true">http://chogyujin.github.io/2019/02/10/BOJ-2579.-%EA%B3%84%EB%8B%A8-%EC%98%A4%EB%A5%B4%EA%B8%B0(DP)/</guid>
+        
+        
+        <category>algorithm</category>
+        
+      </item>
+    
+      <item>
+        <title>[BOJ] 9465. 스티커(DP)</title>
+        <description>&lt;p&gt;https://www.acmicpc.net/problem/9465&lt;/p&gt;
+
+&lt;p&gt;이 문제는 Bottom-up 방식으로 풀었습니다.(밑에서부터 차근차근~)&lt;/p&gt;
+
+&lt;p&gt;2차원 배열을 사용하여 풀었으며, 초기값만 직접 지정한 뒤에 반복문을 사용하여 다음 값들을 계산했습니다.&lt;/p&gt;
+
+&lt;h3 id=&quot;top-down&quot;&gt;Top-down&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#include &amp;lt;iostream&amp;gt;
+using namespace std;
+int card[2][100001];
+int _max[2][100001];
+int main() {
+	int test_case, temp;
+	scanf(&quot;%d&quot;, &amp;amp;test_case);
+	for (int t = 1; t &amp;lt;= test_case; t++) {
+		int n;
+		scanf(&quot;%d&quot;, &amp;amp;n);
+		for (int i = 0; i &amp;lt; 2; i++) {
+			for (int j = 0; j &amp;lt; n; j++) {
+				scanf(&quot;%d&quot;, &amp;amp;card[i][j]);
+				_max[i][j] = 0;
+			}
+		}
+		_max[0][0] = card[0][0];
+		_max[1][0] = card[1][0];
+		_max[0][1] = _max[1][0] + card[0][1];
+		_max[1][1] = _max[0][0] + card[1][1];
+		for (int i = 2; i &amp;lt; n; i++) {//처음에 이부분에서 행과 열을 바꿨었는데 문제를 발견하여 행과 열순서를 바꿨다.
+			for (int j = 0; j &amp;lt; 2; j++) {
+				if (j == 0) {
+					temp = _max[j + 1][i - 1] &amp;gt;= _max[j + 1][i - 2] ? _max[j + 1][i - 1] : _max[j + 1][i - 2];
+					_max[j][i] = temp + card[j][i];
+				}
+				else {
+					temp = _max[j - 1][i - 1] &amp;gt;= _max[j - 1][i - 2] ? _max[j - 1][i - 1] : _max[j - 1][i - 2];
+					_max[j][i] = temp + card[j][i];
+				}
+			}
+		}
+		int result = _max[0][n - 1] &amp;gt;= _max[1][n - 1] ? _max[0][n - 1] : _max[1][n - 1];
+		printf(&quot;%d\n&quot;, result);
+	}
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;혼잣말&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;앞에서 비슷한 문제를 풀고 와서 그런지 별다른 어려움은 없었지만, 역시 생각하는 시간이 오래 걸렸다.&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 09 Feb 2019 00:41:54 +0900</pubDate>
+        <link>http://chogyujin.github.io/2019/02/09/BOJ-9465.-%EC%8A%A4%ED%8B%B0%EC%BB%A4(DP)/</link>
+        <guid isPermaLink="true">http://chogyujin.github.io/2019/02/09/BOJ-9465.-%EC%8A%A4%ED%8B%B0%EC%BB%A4(DP)/</guid>
+        
+        
+        <category>algorithm</category>
+        
+      </item>
+    
+      <item>
+        <title>[BOJ] 10844. 쉬운 계단 수(DP)</title>
+        <description>&lt;p&gt;https://www.acmicpc.net/problem/10844&lt;/p&gt;
+
+&lt;p&gt;이 문제는 Bottom-up 방식으로 풀었습니다.(밑에서부터 차근차근~)&lt;/p&gt;
+
+&lt;p&gt;DP를 2차원 배열로 연습하고 싶으신 분께 좋은 것 같습니다.&lt;/p&gt;
+
+&lt;p&gt;저와 같은 사람들은 변수 선언시 무조건 int로 했었는데 이런 문제에서 long long 타입 선언을 간과하면 안되겠구나.. 하는 것을 깨닫게 해주었습니다.&lt;/p&gt;
+
+&lt;h3 id=&quot;top-down&quot;&gt;Top-down&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;cstdio&amp;gt;
+using namespace std;
+long long d[101][10];
+int main() {
+	int n;
+	long long result = 0;
+	scanf(&quot;%d&quot;, &amp;amp;n);
+	for (int i = 1; i &amp;lt;= 9; i++) {
+		d[1][i] = 1;
+	}
+	for (int i = 2; i &amp;lt;= n; i++) {
+		for (int j = 0; j &amp;lt;= 9; j++) {
+			if (j == 9) {
+				d[i][j] = d[i - 1][j - 1];
+			}
+			else if (j == 0) {
+				d[i][j] = d[i - 1][j + 1];
+			}
+			else {
+				d[i][j] = d[i - 1][j - 1] + d[i - 1][j + 1];
+			}
+            d[i][j] %= 1000000000;
+		}
+	}
+	for (int i = 0; i &amp;lt;= 9; i++) {
+		result += d[n][i];
+	}
+	result %= 1000000000;
+	printf(&quot;%d\n&quot;, result);
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;혼잣말&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;DP는 항상 문제가 짧아서 쉬워보여도 정말 어려운 것같다…&lt;/p&gt;
+
+&lt;p&gt;처음에 2차원배열을 생각 못해서 다른분의 도움을 받았다.&lt;/p&gt;
+
+&lt;p&gt;다음은 long long을 생각 못해서 계속 왜맞틀했다….&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 08 Feb 2019 20:41:54 +0900</pubDate>
+        <link>http://chogyujin.github.io/2019/02/08/BOJ-10844.-%EC%89%AC%EC%9A%B4-%EA%B3%84%EB%8B%A8-%EC%88%98(DP)/</link>
+        <guid isPermaLink="true">http://chogyujin.github.io/2019/02/08/BOJ-10844.-%EC%89%AC%EC%9A%B4-%EA%B3%84%EB%8B%A8-%EC%88%98(DP)/</guid>
+        
+        
+        <category>algorithm</category>
+        
+      </item>
+    
+      <item>
+        <title>[BOJ] 1463. 1로 만들기(DP)</title>
+        <description>&lt;p&gt;https://www.acmicpc.net/problem/1463&lt;/p&gt;
+
+&lt;p&gt;DP의 방식은 Top-down, Bottom-up 2가지입니다.&lt;/p&gt;
+
+&lt;p&gt;말그대로 Top-down은 위에서 아래로 생각하는 것, 즉 해당 값을 구하기 위해 그 전녀석을, 그 전녀석을 구하기위해 그 전전녀석을…… 이런식으로 하는 방식이고,&lt;/p&gt;
+
+&lt;p&gt;Bottom-up은 밑에서 위로 생각하는 것, 즉 해당 값을 구하기 위해 밑에서부터 차근차근 계산해나가면서 구하는 방식입니다.&lt;/p&gt;
+
+&lt;p&gt;Top-down은 특성상 재귀함수를 사용하고,&lt;/p&gt;
+
+&lt;p&gt;Bottom-up은 반복문을 사용합니다.&lt;/p&gt;
+
+&lt;h3 id=&quot;top-down&quot;&gt;Top-down&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;cstdio&amp;gt;
+using namespace std;
+int d[1000001];
+int temp;
+int fun(int x) {
+	if (x == 1) return 0;
+	if (d[x] &amp;gt; 0) return d[x];
+	d[x] = fun(x - 1) + 1;
+	if (x % 3 == 0) {
+		temp = fun(x / 3) + 1;
+		if (d[x] &amp;gt; temp) d[x] = temp;
+	}
+	if (x % 2 == 0) {
+		temp = fun(x / 2) + 1;
+		if (d[x] &amp;gt; temp) d[x] = temp;
+	}
+	return d[x];
+}
+int main() {
+	int x;
+	
+	scanf(&quot;%d&quot;, &amp;amp;x);
+	fun(x);
+	printf(&quot;%d\n&quot;,d[x]);
+	/*
+	cin &amp;gt;&amp;gt; x;
+	cout &amp;lt;&amp;lt; fun(x) &amp;lt;&amp;lt; &#39;\n&#39;;
+    */
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;bottom-up&quot;&gt;Bottom-up&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;cstdio&amp;gt;
+using namespace std;
+int d[1000001];
+int main() {
+	int x,temp;
+	cin &amp;gt;&amp;gt; x;
+	d[1] = 0;
+	for (int i = 2; i &amp;lt;= x; i++) {
+		d[i] = d[i - 1] + 1;
+		if (i % 2 == 0) {
+			temp = d[i / 2] + 1;
+			if (d[i] &amp;gt; temp) d[i] = temp;
+		}
+		if (i % 3 == 0) {
+			temp = d[i / 3] + 1;
+			if (d[i] &amp;gt; temp) d[i] = temp;
+		}
+	}
+	cout &amp;lt;&amp;lt; d[x] &amp;lt;&amp;lt; &#39;\n&#39;;
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;혼잣말&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;역시 dp문제는 생각을 많이하게하는 것 같다. 꽤 많은 시간이 걸렸다. 난 Bottom-up이 편한 것 같다….&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 08 Feb 2019 08:04:54 +0900</pubDate>
+        <link>http://chogyujin.github.io/2019/02/08/BOJ-1463.-1%EB%A1%9C-%EB%A7%8C%EB%93%A4%EA%B8%B0(DP)/</link>
+        <guid isPermaLink="true">http://chogyujin.github.io/2019/02/08/BOJ-1463.-1%EB%A1%9C-%EB%A7%8C%EB%93%A4%EA%B8%B0(DP)/</guid>
+        
+        
+        <category>algorithm</category>
+        
+      </item>
+    
+      <item>
+        <title>[BOJ] 10828.스택 (STL안쓰고구현하기)</title>
+        <description>&lt;p&gt;https://www.acmicpc.net/problem/10828&lt;/p&gt;
+
+&lt;p&gt;STL을 사용해서 구현하는 것도 방법이지만 STL을 안쓰고 구현해보는 것도 좋은 것 같습니다. 삼성같은 경우 STL을 허용하지만 STL을 허용하지 않는 기업도 있기 때문에 한번 코딩해보는 것도 나쁘지 않은 것 같습니다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// AlgorithmTest.cpp : 이 파일에는 &#39;main&#39; 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
+//
+
+#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;string&amp;gt;
+using namespace std;
+
+int d[1000] = {-1,};
+int main()
+{
+	int cnt,input;
+	int size = 0;
+	string str;
+	cin &amp;gt;&amp;gt; cnt;
+	while (cnt) {
+		cnt--;
+		cin &amp;gt;&amp;gt; str;
+		if (str == &quot;push&quot;) {
+			cin &amp;gt;&amp;gt; input;
+			size++;
+			d[size] = input;
+		}
+		else if (str == &quot;pop&quot;) {
+			if (size != 0) {
+				printf(&quot;%d\n&quot;, d[size]);
+				d[size] = -1;
+				size--;
+			}
+			else printf(&quot;-1\n&quot;);
+		}
+		else if (str == &quot;size&quot;) {
+			printf(&quot;%d\n&quot;, size);
+		}
+		else if (str == &quot;empty&quot;) {
+			if (size == 0) printf(&quot;1\n&quot;);
+			else printf(&quot;0\n&quot;);
+		}
+		else if (str == &quot;top&quot;) {
+			printf(&quot;%d\n&quot;, d[size]);
+		}
+
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Fri, 08 Feb 2019 03:48:54 +0900</pubDate>
+        <link>http://chogyujin.github.io/2019/02/08/BOJ-10828.%EC%8A%A4%ED%83%9D-(STL%EC%95%88%EC%93%B0%EA%B3%A0%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0)/</link>
+        <guid isPermaLink="true">http://chogyujin.github.io/2019/02/08/BOJ-10828.%EC%8A%A4%ED%83%9D-(STL%EC%95%88%EC%93%B0%EA%B3%A0%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0)/</guid>
+        
+        
+        <category>algorithm</category>
+        
+      </item>
+    
+      <item>
+        <title>[SWEA] 2383 (모의 SW 역량테스트) 점심 식사시간</title>
+        <description>&lt;p&gt;https://www.swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5-BEE6AK0DFAVl#;return%20false;&lt;/p&gt;
+
+&lt;p&gt;개인적으로 모의고사 중 top3안에 드는 문제인 것 같다.. 후.. 시간은 이미 3시간을 지난지오래고 계속 도전해서 겨우 풀었다..
+시간계산하는게 너무 어려웠다. 계단에 들어가서 1분 뒤 내려가는 것까지는 괜찮았는데 이후에 계단이 3명이 꽉 차서 대기하는 사람이 있을 때, 어떤 사람이 계단 내려가기를 완료한 시점에서 바로 대기탄 사람이 내려가야하는데 1분뒤에 내려가는 부분을 잘 처리하지 못해서 시간을 잡아먹은 것 같다. 이걸 그냥 체크할 수 없어서 프린트로 출력시키고 주어진 예제와 계속 비교하고…. 진짜 이런 문제 시험에 나오면….. 맨붕……&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;풀이
+dfs를 활용하여 어떤 계단을 이용할지 완탐하였습니다.
+    &lt;ol&gt;
+      &lt;li&gt;입력 받을 때, 사람의 위치와 사람수를 저장, 계단의 위치와 소요시간을 저장한다.&lt;/li&gt;
+      &lt;li&gt;dfs를 통해 각 사람마다 가고자하는 계단을 체크해논다 (코드에선 ch배열 사용)&lt;/li&gt;
+      &lt;li&gt;ch배열에서 true로 체크된 사람들과 false로 체크된 사람들을 나눈 후 계단에 각각 넣는다.&lt;/li&gt;
+      &lt;li&gt;배열을 통해 사람들마다 계단까지 걸리는 시간을 저장해논다(코드에선 ptime배열)&lt;/li&gt;
+      &lt;li&gt;while문을 통해 한번 반복할때마다 시간이 +1되게 해준다.&lt;/li&gt;
+      &lt;li&gt;각 시간마다 for문을통해 모든 사람들의 시간이 -1되게 해준다.&lt;/li&gt;
+      &lt;li&gt;시간이 0분이 되면 계단을 내려가게한다.&lt;/li&gt;
+      &lt;li&gt;★★★ 계단 인원이 3인데, 대기자가 있을 경우 기존 시간에 -1을 해주어 시작한다
+ 사람이 빠져나가면 바로 내려가야하는데 본 코드에선 1분 후에 내려가므로 -1해주고 시작.&lt;/li&gt;
+      &lt;li&gt;이제 큐를 이용해서 계단 내부를 코딩한다. 큐에 있는 data를 하나씩 빼서 -1해주고(코드에선temp변수)
+  만약 시간이 -1이 되었다면 사람이 빠져나간 것이므로 빠져나간 사람수를 +1해준다(코드에선exit변수)
+  (계단 내부 반복문에선 값을 받자마자 -1해주므로 0이아닌 -1일때 사람이 나간다고 체크했습니다.)&lt;/li&gt;
+      &lt;li&gt;이렇게 반복하다가 사람수와 빠져나간 사람 수가 같을 경우 종료한다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#include&amp;lt;iostream&amp;gt;
+#include&amp;lt;cstdio&amp;gt;
+#include&amp;lt;algorithm&amp;gt;
+#include&amp;lt;queue&amp;gt;
+#include&amp;lt;cstring&amp;gt;
+using namespace std;
+int result, pcnt;
+int map[11][11];
+bool ch[11];//사람마다 가야할 계단 체크
+bool quick[11];//계단에 대기 타고 있는사람
+int ptime[2][11];//사람마다 걸리는시간(people time)
+queue &amp;lt;int&amp;gt; q[2];
+struct position {
+	int r, c, stair;
+};
+position p[11];
+position s[2];//false계단,true계단
+int abs(int x) {
+	return x &amp;lt; 0 ? -x : x;
+}
+void go() {
+	for (int i = 0; i &amp;lt; pcnt; i++) {//fasle계단은 0번, true계단은 1번
+		int temp;
+		if (ch[i] == 0) {
+			temp = abs(p[i].r - s[0].r) + abs(p[i].c - s[0].c);
+			ptime[0][i] = temp + 1;//각각 소요시간 저장
+		}
+		else {
+			temp = abs(p[i].r - s[1].r) + abs(p[i].c - s[1].c);
+			ptime[1][i] = temp + 1;
+		}
+	}
+	int time = 0;
+	int exit = 0;
+	while (1) {//1분 흐를때마다 체크
+		time++;//시간
+		for (int i = 0; i &amp;lt; pcnt; i++) {
+			if (ptime[0][i] &amp;gt;= 0) {//0번계단
+				ptime[0][i]--;//위에 있는 사람들 소요시간을 -1씩
+				if (ptime[0][i] == 0) {//0이라는건 계단에 도착했다는 뜻이므로
+					if (q[0].size() &amp;lt; 3) {//큐,즉 계단 안사람들이 3미만인 경우만
+						if (quick[i] == true) {//★★★quick배열을 통해 대기했던 사람은 -1해서 시작
+							q[0].push(s[0].stair - 1);
+						}
+						else q[0].push(s[0].stair);//대기 안했던 사람은 그냥 들어감
+					}
+					else {//★★★계단에 공간생기자마자 바로들어가야되는데 1분뒤에들어가므로
+						ptime[0][i]++;//이건 그냥 위에서 다시0으로만들어줘야하므로
+						quick[i] = true;//여기서 대기인사람을 true로 표시해논다
+					}
+				}
+			}
+			else if (ptime[1][i] &amp;gt;= 0) {//1
+				ptime[1][i]--;
+				if (ptime[1][i] == 0) {
+					if (q[1].size() &amp;lt; 3) {
+						if (quick[i] == true) {
+							q[1].push(s[1].stair - 1);
+						}
+						else q[1].push(s[1].stair);
+					}
+					else {
+						ptime[1][i]++;
+						quick[i] = true;
+					}
+				}
+			}
+		}
+
+		//계단내부
+		int _size0 = q[0].size();
+		for (int j = 0; j &amp;lt; _size0; j++) {//큐 사이즈만큼 반복
+			int temp = q[0].front();
+			q[0].pop();
+			temp--;//큐에서 나온애를 -1해준다.(시간)
+			if (temp == -1) {//temp가 0미만으로 줄었으면 나갔다는 것이므로
+				exit++;//exit는 나간 인원
+				continue;
+			}
+			else q[0].push(temp);//아직 계단에 있는 경우
+		}
+		int _size1 = q[1].size();//1
+		for (int j = 0; j &amp;lt; _size1; j++) {
+			int temp = q[1].front();
+			q[1].pop();
+			temp--;
+			if (temp == -1) {
+				exit++;
+				continue;
+			}
+			else q[1].push(temp);
+		}
+		
+		if (exit == pcnt) {//나간인원과 처음 사람 숫자가 같을 시
+			result = result &amp;gt; time ? time : result;//갱신
+			break;
+		}
+		
+	}
+}
+void dfs(int idx, int cnt) {//dfs를 통한 완탐
+	memset(ptime, -1, sizeof(ptime));
+	memset(quick, false, sizeof(quick));
+	go();
+	for (int i = idx; i &amp;lt; pcnt; i++) {
+		if (ch[i] == false) {//true계단과 false계단으로 나눔
+			ch[i] = true;
+			dfs(i, cnt + 1);
+			ch[i] = false;
+		}
+	}
+}
+int main() {
+	int t;
+	scanf(&quot;%d&quot;, &amp;amp;t);
+	for (int test_case = 1; test_case &amp;lt;= t; test_case++) {
+		int n;
+		result = 2e9;
+		pcnt = 0;
+		int scnt = 0;
+		memset(p, 0, sizeof(p));
+		memset(s, 0, sizeof(s));
+		scanf(&quot;%d&quot;, &amp;amp;n);
+		for (int i = 0; i &amp;lt; n; i++) {
+			for (int j = 0; j &amp;lt; n; j++) {
+				scanf(&quot;%d&quot;, &amp;amp;map[i][j]);
+				if (map[i][j] == 1) {//사람 위치 저장
+					p[pcnt].r = i;
+					p[pcnt].c = j;
+					pcnt++;//사람숫자
+				}
+				else if (map[i][j] &amp;gt;= 2) {//계단 위치 저장
+					s[scnt].r = i;
+					s[scnt].c = j;
+					s[scnt].stair = map[i][j];//계단 소요시간 저장
+					scnt++;
+				}
+			}
+		}
+		dfs(0, 0);
+		printf(&quot;#%d %d\n&quot;, test_case, result);
+	}
+}
+
+
+//실수목록...
+//계단 용량을 &amp;gt;=3으로해서 싸이즈 4까지 가능하게 했다...ㅡㅡ
+//용량이 다찼을때 계단 내려가는 부분을 잘 처리하지 못해서 여태 오류...
+//이런 시간 계산하는거에 너무 약한 거같다.
+//계단에 대기타고있는사람은 바로보내줘야하므로 -1해서 시작
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Thu, 07 Feb 2019 04:14:54 +0900</pubDate>
+        <link>http://chogyujin.github.io/2019/02/07/SWEA-2383.-(%EB%AA%A8%EC%9D%98-SW-%EC%97%AD%EB%9F%89%ED%85%8C%EC%8A%A4%ED%8A%B8)-%EC%A0%90%EC%8B%AC-%EC%8B%9D%EC%82%AC%EC%8B%9C%EA%B0%84/</link>
+        <guid isPermaLink="true">http://chogyujin.github.io/2019/02/07/SWEA-2383.-(%EB%AA%A8%EC%9D%98-SW-%EC%97%AD%EB%9F%89%ED%85%8C%EC%8A%A4%ED%8A%B8)-%EC%A0%90%EC%8B%AC-%EC%8B%9D%EC%82%AC%EC%8B%9C%EA%B0%84/</guid>
+        
+        
+        <category>algorithm</category>
+        
+      </item>
     
       <item>
         <title>jekyll-Github연동 및 테마 적용하기</title>
@@ -58,9 +624,9 @@
 
 &lt;p&gt;이후부턴 &lt;code class=&quot;highlighter-rouge&quot;&gt;$git init&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;git remote add origin ~~&lt;/code&gt;는 생략가능 하다.&lt;/p&gt;
 </description>
-        <pubDate>Tue, 29 Jan 2019 13:14:54 -0800</pubDate>
-        <link>/2019/01/29/jekyll-Github%EC%97%B0%EB%8F%99-%EB%B0%8F-%ED%85%8C%EB%A7%88-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/</link>
-        <guid isPermaLink="true">/2019/01/29/jekyll-Github%EC%97%B0%EB%8F%99-%EB%B0%8F-%ED%85%8C%EB%A7%88-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/</guid>
+        <pubDate>Wed, 30 Jan 2019 06:14:54 +0900</pubDate>
+        <link>http://chogyujin.github.io/2019/01/30/jekyll-Github%EC%97%B0%EB%8F%99-%EB%B0%8F-%ED%85%8C%EB%A7%88-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/</link>
+        <guid isPermaLink="true">http://chogyujin.github.io/2019/01/30/jekyll-Github%EC%97%B0%EB%8F%99-%EB%B0%8F-%ED%85%8C%EB%A7%88-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/</guid>
         
         
         <category>jekyll</category>
@@ -134,9 +700,9 @@
 &lt;p&gt;그러면 &lt;code class=&quot;highlighter-rouge&quot;&gt;Serve address: https://127.0.0.1:4000/&lt;/code&gt;가 밑에 나오는데 해당 링크를 들어가면 바로 현재 사이트의 상태를 확인할 수 있다.&lt;/p&gt;
 
 </description>
-        <pubDate>Mon, 28 Jan 2019 09:14:54 -0800</pubDate>
-        <link>/2019/01/28/jekyll-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%A4%80%EB%B9%84%ED%95%98%EA%B8%B0/</link>
-        <guid isPermaLink="true">/2019/01/28/jekyll-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%A4%80%EB%B9%84%ED%95%98%EA%B8%B0/</guid>
+        <pubDate>Tue, 29 Jan 2019 02:14:54 +0900</pubDate>
+        <link>http://chogyujin.github.io/2019/01/29/jekyll-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%A4%80%EB%B9%84%ED%95%98%EA%B8%B0/</link>
+        <guid isPermaLink="true">http://chogyujin.github.io/2019/01/29/jekyll-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%A4%80%EB%B9%84%ED%95%98%EA%B8%B0/</guid>
         
         
         <category>jekyll</category>
@@ -149,9 +715,9 @@
 
 &lt;p&gt;Empty post template&lt;/p&gt;
 </description>
-        <pubDate>Mon, 28 Dec 2015 00:00:00 -0800</pubDate>
-        <link>/2015/12/28/empty-template/</link>
-        <guid isPermaLink="true">/2015/12/28/empty-template/</guid>
+        <pubDate>Mon, 28 Dec 2015 00:00:00 +0900</pubDate>
+        <link>http://chogyujin.github.io/2015/12/28/empty-template/</link>
+        <guid isPermaLink="true">http://chogyujin.github.io/2015/12/28/empty-template/</guid>
         
         
         <category>diary</category>

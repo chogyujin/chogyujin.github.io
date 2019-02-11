@@ -5,10 +5,10 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Empty Template</title>
-	<meta name="description" content="Empty diary template">
+	<title>jekyll-Github연동 및 테마 적용하기</title>
+	<meta name="description" content="Jekyll Github와 연동하기">
 	
-	<link rel="canonical" href="http://chogyujin.github.io/2015/12/28/empty-template/">
+	<link rel="canonical" href="http://chogyujin.github.io/2019/01/29/jekyll-Github%EC%97%B0%EB%8F%99-%EB%B0%8F-%ED%85%8C%EB%A7%88-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/">
 	<link rel="alternate" type="application/rss+xml" title="Gyujin's Personal Website" href="http://chogyujin.github.io/feed.xml" />
 	
 	<!-- <link rel="stylesheet" href="/css/main.css"> -->
@@ -86,14 +86,57 @@
   <div id="myArticle" class="col-sm-9">
     <div class="post-area post">
       <header>
-        <h1>Empty Template</h1>
-        <p>Dec 28, 2015</p>
+        <h1>jekyll-Github연동 및 테마 적용하기</h1>
+        <p>Jan 29, 2019</p>
       </header>
       <hr>
       <article>
-        <h2 id="empty-diary-template">Empty diary template</h2>
+        <h2 id="jekyll-github와-연동하기">Jekyll Github와 연동하기</h2>
 
-<p>Empty post template</p>
+<hr />
+
+<h3 id="1-github에-repository-생성">1. Github에 Repository 생성</h3>
+
+<p>레포 생성 시 Repository name을 <code class="highlighter-rouge">자신의Github아이디.Github.io</code> 로 생성해준다.</p>
+
+<h3 id="2-git과-연동하기">2. Git과 연동하기</h3>
+
+<p><code class="highlighter-rouge">$git init</code></p>
+
+<p><code class="highlighter-rouge">$git add .</code></p>
+
+<p><code class="highlighter-rouge">$git commit -m "Commit mesaage</code></p>
+
+<p><code class="highlighter-rouge">$git remote add origin "자신의 Git URL주소 ex)https://github.com/asdasd/asdasd.github.io.git"</code> (해당 Repositrot에서 Clone or download를 클릭하면 볼 수 있다.)</p>
+
+<p><code class="highlighter-rouge">$git push origin</code></p>
+
+<h3 id="3-확인하기">3. 확인하기</h3>
+
+<ul>
+  <li>http://자신의Github아이디.github.io</li>
+</ul>
+
+<p>를 입력하여 잘 되었는지 확인한다.</p>
+
+<h2 id="jekyll-테마-적용하기">Jekyll 테마 적용하기</h2>
+
+<hr />
+
+<h3 id="1-jekyll-테마-다운하기">1. Jekyll 테마 다운하기</h3>
+
+<p>http://jekyllthems.org/</p>
+
+<p>해당 사이트에 접속하여 마음에 드는 테마를 찾는다. (간혹 불량한 테마도 있으니 잘 찾아보아야한다.)
+테마를 찾은 후 download를 클릭하여 테마를 download한다.</p>
+
+<h3 id="2-다운-받은-테마-적용하기">2. 다운 받은 테마 적용하기</h3>
+
+<p>다운받은 테마의 압축을 푼 후, 자신의 Jekyll 디렉토리안에 넣어준다.
+넣은 후 위에서 2번을 다시 반복해주면 자신의 테마가 바뀌었음을 확인할 수 있다.
+또는 <code class="highlighter-rouge">jekyll s</code>를 통해 바로 확인할 수 있다. &lt;- 방법은 <a href="https://chogyujin.github.io/2019/01/28/jekyll-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%A4%80%EB%B9%84%ED%95%98%EA%B8%B0/">jekyll 설치 및 준비하기</a>를 참고하면 된다.</p>
+
+<p>이후부턴 <code class="highlighter-rouge">$git init</code>과 <code class="highlighter-rouge">git remote add origin ~~</code>는 생략가능 하다.</p>
 
       </article>
       <hr>
@@ -119,8 +162,8 @@
     </div>
 	<script>
 		var disqus_config = function () {
-			this.page.url = "http://chogyujin.github.io/2015/12/28/empty-template/"; 
-			this.page.identifier = "/2015/12/28/empty-template"; 
+			this.page.url = "http://chogyujin.github.io/2019/01/29/jekyll-Github%EC%97%B0%EB%8F%99-%EB%B0%8F-%ED%85%8C%EB%A7%88-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/"; 
+			this.page.identifier = "/2019/01/29/jekyll Github연동 및 테마 적용하기"; 
 		};
 		(function() {
 			var d = document, s = d.createElement('script');
@@ -194,7 +237,7 @@ s.setAttribute('data-timestamp', +new Date());
           </a>
           
           <span class="point"> · </span>
-          <span><a href="https://github.com/chogyujin/chogyujin.github.io/blob/master/_posts/diary/2015-12-28-empty-template.md">View source</a></span>
+          <span><a href="https://github.com/chogyujin/chogyujin.github.io/blob/master/_posts/jekyll/2019-01-29-jekyll Github연동 및 테마 적용하기.markdown">View source</a></span>
           <span class="point"> · </span>
           <span><a class="newpost" href="javascript:;">New post</a></span>
 		  <span class="point"> · </span>

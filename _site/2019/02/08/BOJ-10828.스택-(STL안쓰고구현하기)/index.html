@@ -5,10 +5,10 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Empty Template</title>
-	<meta name="description" content="Empty diary template">
+	<title>[BOJ] 10828.스택 (STL안쓰고구현하기)</title>
+	<meta name="description" content="https://www.acmicpc.net/problem/10828">
 	
-	<link rel="canonical" href="http://chogyujin.github.io/2015/12/28/empty-template/">
+	<link rel="canonical" href="http://chogyujin.github.io/2019/02/07/BOJ-10828.%EC%8A%A4%ED%83%9D-(STL%EC%95%88%EC%93%B0%EA%B3%A0%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0)/">
 	<link rel="alternate" type="application/rss+xml" title="Gyujin's Personal Website" href="http://chogyujin.github.io/feed.xml" />
 	
 	<!-- <link rel="stylesheet" href="/css/main.css"> -->
@@ -86,14 +86,59 @@
   <div id="myArticle" class="col-sm-9">
     <div class="post-area post">
       <header>
-        <h1>Empty Template</h1>
-        <p>Dec 28, 2015</p>
+        <h1>[BOJ] 10828.스택 (STL안쓰고구현하기)</h1>
+        <p>Feb 7, 2019</p>
       </header>
       <hr>
       <article>
-        <h2 id="empty-diary-template">Empty diary template</h2>
+        <p>https://www.acmicpc.net/problem/10828</p>
 
-<p>Empty post template</p>
+<p>STL을 사용해서 구현하는 것도 방법이지만 STL을 안쓰고 구현해보는 것도 좋은 것 같습니다. 삼성같은 경우 STL을 허용하지만 STL을 허용하지 않는 기업도 있기 때문에 한번 코딩해보는 것도 나쁘지 않은 것 같습니다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// AlgorithmTest.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
+//
+
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int d[1000] = {-1,};
+int main()
+{
+	int cnt,input;
+	int size = 0;
+	string str;
+	cin &gt;&gt; cnt;
+	while (cnt) {
+		cnt--;
+		cin &gt;&gt; str;
+		if (str == "push") {
+			cin &gt;&gt; input;
+			size++;
+			d[size] = input;
+		}
+		else if (str == "pop") {
+			if (size != 0) {
+				printf("%d\n", d[size]);
+				d[size] = -1;
+				size--;
+			}
+			else printf("-1\n");
+		}
+		else if (str == "size") {
+			printf("%d\n", size);
+		}
+		else if (str == "empty") {
+			if (size == 0) printf("1\n");
+			else printf("0\n");
+		}
+		else if (str == "top") {
+			printf("%d\n", d[size]);
+		}
+
+	}
+}
+</code></pre></div></div>
 
       </article>
       <hr>
@@ -119,8 +164,8 @@
     </div>
 	<script>
 		var disqus_config = function () {
-			this.page.url = "http://chogyujin.github.io/2015/12/28/empty-template/"; 
-			this.page.identifier = "/2015/12/28/empty-template"; 
+			this.page.url = "http://chogyujin.github.io/2019/02/07/BOJ-10828.%EC%8A%A4%ED%83%9D-(STL%EC%95%88%EC%93%B0%EA%B3%A0%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0)/"; 
+			this.page.identifier = "/2019/02/07/[BOJ] 10828.스택 (STL안쓰고구현하기)"; 
 		};
 		(function() {
 			var d = document, s = d.createElement('script');
@@ -194,7 +239,7 @@ s.setAttribute('data-timestamp', +new Date());
           </a>
           
           <span class="point"> · </span>
-          <span><a href="https://github.com/chogyujin/chogyujin.github.io/blob/master/_posts/diary/2015-12-28-empty-template.md">View source</a></span>
+          <span><a href="https://github.com/chogyujin/chogyujin.github.io/blob/master/_posts/algorithm/2019-02-06-[BOJ] 10828.스택 (STL안쓰고구현하기).markdown">View source</a></span>
           <span class="point"> · </span>
           <span><a class="newpost" href="javascript:;">New post</a></span>
 		  <span class="point"> · </span>
