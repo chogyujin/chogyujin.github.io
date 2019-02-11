@@ -1,0 +1,47 @@
+---
+layout: post
+title:  "[BOJ] 11005. 진법 변환2(수학)"
+date:   2019-02-11 12:52:54
+categories: algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/11005
+
+10진법을 n진법으로 변환하는 문제이므로,
+
+주어진 n을 b(진법)으로 나눈 나머지를 출력, 몫이 0이될때까지 반복하면 됩니다.
+
+저는 vector를 사용해서 나머지를 넣어준 후, 차례대로 빼서 print했습니다.
+
+
+
+
+
+- 혼잣말
+
+...
+
+~~~
+#include <iostream>
+#include <cstdio>
+#include <vector>
+using namespace std;
+vector <int> v;
+int main() {
+	int n, b, temp;
+	scanf("%d %d", &n, &b);
+	while (n / b != 0) {
+		v.push_back(n%b);
+		n /= b;
+	}v.push_back(n%b);
+	while (!v.empty()) {
+		temp = v.back();
+		if (temp >= 10) {
+			printf("%c", temp + 55);
+		}
+		else printf("%d", temp);
+		v.pop_back();
+	}
+}
+~~~
