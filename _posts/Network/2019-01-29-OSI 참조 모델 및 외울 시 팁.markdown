@@ -63,5 +63,6 @@ ex)라우터 스위치, 컴퓨터의 전원 플러그
 
 
 -**외울 시 팁**
+
 펭귄은 아무도 펩시를 마시지 않는다고 말했다(A-Penguin-Said-That-Nobody-Drinks-Pepsi)
 
