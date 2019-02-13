@@ -1,0 +1,60 @@
+---
+layout: post
+title:  "[BOJ] 10451. 순열 사이클"
+date:   2019-02-13 11:40:54
+categories: algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/10451
+
+배열을 하나 만들어서 들어오는 순서대로 배열에 넣어줬습니다.
+
+ex)3,2,7,8 순으로 들어오면 arr[1]=3, arr[2]=2, arr[3]=7, arr[4]=8
+
+
+
+~~~
+#include "pch.h"
+#include <iostream>
+#include <cstring>
+using namespace std;
+int arr[1001];
+bool ch[1001];
+int n,cnt,start;
+void dfs(int node) {
+	if (node == start && ch[node] == true) {
+		//node가 처음 출발한 수와 같을 때 return
+		cnt++;
+		return;
+	}
+	if (ch[node] == false) {
+		ch[node] = true;
+		dfs(arr[node]);
+	}
+}
+int main() {
+	int test_case;
+	scanf("%d", &test_case);
+	for (int t = 0; t < test_case; t++) {
+		scanf("%d", &n);
+		cnt = 0;
+		for (int i = 1; i <= n; i++) {
+			scanf("%d", &arr[i]);
+			ch[i] = false;
+		}
+		for (int i = 1; i <= n; i++) {
+			if (ch[i] == false) {
+				start = i;
+				dfs(i);
+			}
+		}
+		printf("%d\n", cnt);
+	}
+}
+~~~
+
+- **혼잣말**
+
+...
+
