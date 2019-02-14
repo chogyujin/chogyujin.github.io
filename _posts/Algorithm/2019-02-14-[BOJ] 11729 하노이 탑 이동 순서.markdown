@@ -1,0 +1,63 @@
+---
+layout: post
+title:  "[BOJ] 11729 하노이 탑 이동 순서"
+date:   2019-02-14 18:05:54
+categories: algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/11729
+
+재귀를 사용해서 풀었습니다.  
+개인적으로 높은 난이도의 문제인 것 같습니다.  
+hanoi(a,b,num)  
+에서 a를 현재 위치, b를 목표 위치로 두고, num을 현재 보고 있는 원판으로 잡았습니다.  
+c는 나머지 한 탑의 위치입니다.  
+
+
+~~~
+#include "pch.h"
+#include <iostream>
+#include <cstring>
+using namespace std;
+int arr[1001];
+bool ch[1001];
+int n,cnt,start;
+void dfs(int node) {
+	if (node == start && ch[node] == true) {
+		//node가 처음 출발한 수와 같을 때 return
+		cnt++;
+		return;
+	}
+	if (ch[node] == false) {
+		ch[node] = true;
+		dfs(arr[node]);
+	}
+}
+int main() {
+	int test_case;
+	scanf("%d", &test_case);
+	for (int t = 0; t < test_case; t++) {
+		scanf("%d", &n);
+		cnt = 0;
+		for (int i = 1; i <= n; i++) {
+			scanf("%d", &arr[i]);
+			ch[i] = false;
+		}
+		for (int i = 1; i <= n; i++) {
+			if (ch[i] == false) {
+				start = i;
+				dfs(i);
+			}
+		}
+		printf("%d\n", cnt);
+	}
+}
+~~~
+
+- **혼잣말**
+
+굉장히 어려웠던 문제였다. 문제를 푸는 건 둘쩨치고 접근하기도 힘들었다.  
+생각하다가 바로 다른 사람의 코드를 봤지만...  
+다른 사람의 코드를 봐도 이해하는데 한참 걸렸다.  
+재귀를 이해하는데 도움(?)이 된 것 같다.  
