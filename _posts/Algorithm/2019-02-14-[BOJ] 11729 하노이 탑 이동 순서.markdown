@@ -16,42 +16,30 @@ c는 나머지 한 탑의 위치입니다.
 
 
 ~~~
-#include "pch.h"
-#include <iostream>
-#include <cstring>
+#include<iostream>
 using namespace std;
-int arr[1001];
-bool ch[1001];
-int n,cnt,start;
-void dfs(int node) {
-	if (node == start && ch[node] == true) {
-		//node가 처음 출발한 수와 같을 때 return
-		cnt++;
+int n;
+void hanoi(int a, int b, int num) {
+	int c = 6 - a - b;
+	if (num == 1) {
+		cout << a << ' ' << b << '\n';
+		//이해하기 힘드신 분은 아래처럼 num도 출력해보세요.
+		//cout << a << ' ' << b << ' ' << num << '\n';
 		return;
 	}
-	if (ch[node] == false) {
-		ch[node] = true;
-		dfs(arr[node]);
+	else {
+		hanoi(a, c, num - 1);
+		cout << a << ' ' << b <<'\n';
+		//cout << a << ' ' << b << ' ' << num << '\n';
+		hanoi(c, b, num - 1);
 	}
 }
 int main() {
-	int test_case;
-	scanf("%d", &test_case);
-	for (int t = 0; t < test_case; t++) {
-		scanf("%d", &n);
-		cnt = 0;
-		for (int i = 1; i <= n; i++) {
-			scanf("%d", &arr[i]);
-			ch[i] = false;
-		}
-		for (int i = 1; i <= n; i++) {
-			if (ch[i] == false) {
-				start = i;
-				dfs(i);
-			}
-		}
-		printf("%d\n", cnt);
-	}
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	cin >> n;
+	cout << (1 << n) - 1 << '\n';
+	hanoi(1,3,n);
 }
 ~~~
 
