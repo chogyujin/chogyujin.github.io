@@ -1,0 +1,30 @@
+---
+layout: post
+title:  "코테 준비 하기"
+date:   2019-02-15 22:57:54
+categories: AlgorithmTip
+comments: true
+---
+~~~
+#include<iostream>
+using namespace std;
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+}
+~~~
+
+`ios::sync_with_stdio(0)` 은 C++ stream과 C stream 사이의 sync를 끄는 명령입니다.  
+cout과 printf를 혼용해서 사용할 경우 sync를 유지하여 순서대로 나오도록 합니다.  
+하지만 cout만 사용할 경우 sync를 유지하는 건 시간낭비입니다.  
+따라서 이 명령을 통해 sync를 끕니다.  
+당연히 이 명령을 쓰면 `printf를 사용해선 안됩니다.(순서가 뒤죽박죽~)`  
+
+
+---
+
+
+`cin.tie(0)는 cin`은 cin과 cout이 번갈아 나올 때마다 flush를 하지 않도록 하는 명령입니다.  
+flush가 되지 않으면 코솔에 출력이 되지 않기 때문에 프로그램의 프름과 콘솔에 보이는 결과가 다를 수 있지만,  
+채점 환경에서는 input buffer와 out buffer가 분리되어 있기 때문에 flush를 해줄 필요가 없습니다.  
+`endl`은 줄을 바꾸고 flush를 하라는 명령이므로 `endl대신 '\n'을 사용해야합니다.`
