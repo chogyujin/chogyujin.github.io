@@ -2,7 +2,7 @@
 layout: post
 title:  "[SWEA] 2383 (모의 SW 역량테스트) 점심 식사시간"
 date:   2019-02-06 19:14:54
-categories: algorithm
+categories: Algorithm
 comments: true
 ---
 

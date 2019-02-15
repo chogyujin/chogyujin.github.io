@@ -2,7 +2,7 @@
 layout: post
 title:  "[BOJ] 10844. 쉬운 계단 수(DP)"
 date:   2019-02-08 11:41:54
-categories: algorithm
+categories: Algorithm
 comments: true
 ---
 

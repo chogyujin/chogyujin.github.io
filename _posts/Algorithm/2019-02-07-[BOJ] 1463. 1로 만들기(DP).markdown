@@ -2,7 +2,7 @@
 layout: post
 title:  "[BOJ] 1463. 1로 만들기(DP)"
 date:   2019-02-07 23:04:54
-categories: algorithm
+categories: Algorithm
 comments: true
 ---
 

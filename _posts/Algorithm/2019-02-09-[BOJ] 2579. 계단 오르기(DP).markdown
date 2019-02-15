@@ -2,7 +2,7 @@
 layout: post
 title:  "[BOJ] 2579. 계단 오르기(DP)"
 date:   2019-02-09 21:55:54
-categories: algorithm
+categories: Algorithm
 comments: true
 ---
 
