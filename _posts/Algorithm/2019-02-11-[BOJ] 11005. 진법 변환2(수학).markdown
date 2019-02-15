@@ -2,7 +2,7 @@
 layout: post
 title:  "[BOJ] 11005. 진법 변환2(수학)"
 date:   2019-02-11 12:52:54
-categories: algorithm
+categories: Algorithm
 comments: true
 ---
 

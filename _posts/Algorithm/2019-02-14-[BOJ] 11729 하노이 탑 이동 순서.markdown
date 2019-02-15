@@ -2,7 +2,7 @@
 layout: post
 title:  "[BOJ] 11729 하노이 탑 이동 순서"
 date:   2019-02-14 18:05:54
-categories: algorithm
+categories: Algorithm
 comments: true
 ---
 

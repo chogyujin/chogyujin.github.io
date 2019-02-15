@@ -2,7 +2,7 @@
 layout: post
 title:  "[BOJ] 10451. 순열 사이클"
 date:   2019-02-13 11:40:54
-categories: algorithm
+categories: Algorithm
 comments: true
 ---
 

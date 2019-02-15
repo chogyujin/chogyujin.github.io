@@ -2,7 +2,7 @@
 layout: post
 title:  "[BOJ] 11724. 연결 요소의 개수(그래프)"
 date:   2019-02-12 13:44:54
-categories: algorithm
+categories: Algorithm
 comments: true
 ---
 
