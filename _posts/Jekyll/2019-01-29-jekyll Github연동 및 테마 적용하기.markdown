@@ -2,7 +2,7 @@
 layout: post
 title:  "jekyll-Github연동 및 테마 적용하기"
 date:   2019-01-29 21:14:54
-categories: jekyll
+categories: Jekyll
 comments: true
 ---
 
