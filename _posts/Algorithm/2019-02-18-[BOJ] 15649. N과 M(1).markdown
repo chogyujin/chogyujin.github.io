@@ -1,0 +1,55 @@
+---
+layout: post
+title:  "[BOJ] 15649. N과 M(1)"
+date:   2019-02-18 11:00:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/15649  
+
+백트래킹의 대표적인 예입니다.  
+
+vector에 데이터를 집어 넣은 후 m의 갯수가 되면 출력하는 방법을 사요했습니다.  
+
+ch배열을 사용해서 data사용 시 true를 줌으로써 해당 data를 사용 못하게 했습니다.  
+
+cnt 변수를 통해 m을 체크하여 출력하도록 했습니다.  
+
+
+~~~
+#include <iostream>
+#include <vector>
+using namespace std;
+int n, m;
+int ch[9];
+vector <int> v;
+void backTracking(int num, int cnt) {
+	if (cnt > m) {//cnt가 m이랑 같으면 출력
+		for (int i = 0; i < m; i++) cout << v[i]<<' ';
+		cout << '\n';
+		return;
+	}
+	for (int i = 1; i <= n; i++) {
+		if (ch[i] == false) {
+			ch[i] = true;//여기서 check
+			v.push_back(i);//여기서 data를 넣는다
+			backTracking(i, cnt+1);
+			ch[i] = false;//여기서 다시 false
+			v.pop_back();//여기서 data를 뺀다
+		}
+	}
+}
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	cin >> n >> m;
+	backTracking(1, 1);
+	return 0;
+}
+~~~
+
+- **혼잣말**
+
+...
+
