@@ -1,0 +1,69 @@
+---
+layout: post
+title:  "[BOJ] 9663. N-Queen"
+date:   2019-02-18 14:43:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/9663  
+
+백트래킹의 대표적인 예입니다.  
+
+처음하시는 분이라면 좀 헤매실 수도 있습니다.  
+
+저 같은 경우 ch배열에 퀸의 위치를 체크해 놓고,  
+
+다음 줄에 퀸의 위치를 선정할 때, 위의 퀸들의 범위만 고려하여 코딩했습니다.  
+
+예를들어 3번째 줄의 퀸의 위치를 선정할때, 1번째와 2번째의 /,\,| 3방향을 고려했습니다.  
+
+
+
+~~~
+#include <iostream>
+using namespace std;
+int n, result;
+int ch[16][16];
+bool noQueen(int raw, int col) {//퀸의 범위안에 드는지 판단
+	int j = 0;
+	for (int i = raw - 1; i >= 0; i--) {
+		j++;
+		if (ch[i][col] == true) return false;//같은 행인지
+		if (ch[i][col - j] == true && col >= j) return false;//왼쪽위대각선
+		if (ch[i][col + j] == true && col + j < n) return false;//오른쪽위대각선
+	}
+	return true;
+}
+void bt(int raw) {
+	if (raw == n) {//raw가 n-1까지 다 채워졌을 때 result++
+		result += 1;
+		return;
+	}
+	for (int i = 0; i < n; i++) {
+		if (noQueen(raw, i)) {
+			ch[raw][i] = true;//퀸자리 체크
+			bt(raw + 1);
+			ch[raw][i] = false;
+		}
+	}
+}
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	cin >> n;
+	for (int i = 0; i < n; i++) {//첫줄은 main에서 반복문을 돌린다.
+		ch[0][i] = true;
+		bt(1);
+		ch[0][i] = false;
+	}
+	cout << result;
+	return 0;
+}
+~~~
+
+- **혼잣말**
+
+저번에 한번 풀었었는데 또 헤맸다....  
+계속 사소한 것에서 실수를 한다.  
+정신을 바짝 못차린건가.... 분발하자!!!!
