@@ -1,0 +1,53 @@
+---
+layout: post
+title:  "[BOJ] 1182. 부분집합의 합"
+date:   2019-02-18 11:00:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/1182  
+
+
+물론 dfs를 이용한 방법도 있지만 2진수를 이용한 풀이로 도전했습니다.  
+
+정수가 n개일 경우 2의 n제곱까지 2진수로 나타내면  
+
+001,010,011,100,101,110,111 로 나타내지므로 여기서 1인 부분만 연산해주면 모든 경우의 수를 연산할 수 있습니다.  
+
+
+~~~
+#include <iostream>
+#include <algorithm>
+using namespace std;
+int arr[21];
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	int n, s, result = 0,cnt = 0;
+	cin >> n >> s;
+	for (int i = 0; i < n; i++) {
+		cin >> arr[i];
+	}
+	for (int i = 1; i < 1 << n;i++) {//1부터 2의 n제곱까지(공집합제외)
+		int tmp = i;
+		for (int j = 0; j < n; j++) {//2진수를 구하기위해 n번의 연산
+			if (tmp % 2 == 1) result += arr[j];//나머지가 1인경우 더해준다
+			tmp /= 2;
+			if (tmp == 0) break;
+		}
+		if (result == s) {
+			cnt++;
+		}
+		result = 0;
+	}
+	cout << cnt << '\n';
+}
+~~~
+
+- **혼잣말**
+
+덕분에 dfs가아닌 2진수로 완탐하는 법을 배웠다.  
+2진수로 완탐하는게 dfs로 완탐하는 거보다 시간은 더 걸리므로  
+이런 것도 있구나 식으로 알아 두는 게 좋은 것 같다.  
+
