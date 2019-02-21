@@ -1,0 +1,102 @@
+---
+layout: post
+title:  "[SWEA] 1949. [모의 SW 역량테스트] 등산로 조성"
+date:   2019-02-21 14:04:54
+categories: Algorithm
+comments: true
+---
+
+https://www.swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5PoOKKAPIDFAUq  
+
+
+
+DFS를 사용하여 풀었습니다.  
+
+먼저 입력받을 때 봉우리의 높이를 저장하고  
+
+반복문을 통해 봉우리만 선택하여 출발하게 했습니다.  
+
+DFS할때 현위치보다 높을경우(k이하로) 현위치에서 -1만 깎아줌으로써 다음 선택지를 최대화했습니다.  
+
+한번 깎고 나면 cut을 true로하여 두번이상 깎는 것을 제안했고,  
+
+lastch를 이용해서 길의 마지막인지 체크했습니다.  
+
+
+
+~~~
+#include <iostream>
+using namespace std;
+int n, k, result;
+bool cut;//깎은 유무 체크
+int map[9][9];
+bool ch[9][9];
+int dx[] = { -1,0,1,0 };
+int dy[] = { 0,1,0,-1 };
+void dfs(int x, int y, int cnt) {
+	bool lastch = true;//4방향 모두 막혔을 때 return하기위해
+	for (int i = 0; i < 4; i++) {
+		int nx = x + dx[i];
+		int ny = y + dy[i];
+		if (nx >= 0 && ny >= 0 && nx < n&&ny < n&&ch[nx][ny] == false) {
+			if (map[nx][ny] < map[x][y]) {//갈 곳이 더 낮을경우
+				lastch = false;
+				ch[nx][ny] = true;
+				dfs(nx, ny, cnt + 1);
+				ch[nx][ny] = false;
+			}
+			else if (map[nx][ny] - map[x][y] < k&&cut == false && map[nx][ny] - map[x][y] >= 0) {
+				//갈 곳이 더 높을 경우
+				lastch = false;
+				cut = true;
+				int temp = map[nx][ny];//깎기전에 temp에 저장
+				map[nx][ny] = map[x][y] - 1;//1만 깎는다(다음갈 곳을 최대한 많이 잡기위해)
+				ch[nx][ny] = true;
+				dfs(nx, ny, cnt + 1);
+				ch[nx][ny] = false;
+				map[nx][ny] = temp;
+				cut = false;
+			}
+		}
+		if (i == 3 && lastch == true) {//마지막, result 체크
+			//i가 3인데 lastch가 한번도 true되지 못한건 마지막이란 뜻이므로
+			result = result > cnt ? result : cnt;
+			return;
+		}
+	}
+}
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	int test_case;
+	cin >> test_case;
+	for (int t = 1; t <= test_case; t++) {//Start test
+		cin >> n >> k;
+		int max = 0;
+		result = 0;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				cin >> map[i][j];
+				max = max > map[i][j] ? max : map[i][j];//봉우리체크
+				ch[i][j] = false;//ch배열 초기화
+			}
+		}
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				if (max == map[i][j]) {
+					ch[i][j] = true;//봉우리를 찾고 난후 dfs시작
+					dfs(i, j, 1);
+					ch[i][j] = false;
+				}
+			}
+		}
+		cout << '#' << t << ' ' << result << '\n';
+	}
+}
+~~~
+
+- **혼잣말**
+
+처음에 cut와 lastch를 사용하는 데 실수해서 좀 헤맸다.  
+좀 쉬운(?)난이도인 것 같다.  
+코테에도 이렇게만 나와줬으면.....ㅠ  

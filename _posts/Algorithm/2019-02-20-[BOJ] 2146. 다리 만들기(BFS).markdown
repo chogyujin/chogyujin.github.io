@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "[BOJ] 2146. 다리 만들기"
-date:   2019-02-18 11:00:54
+date:   2019-02-20 12:30:54
 categories: Algorithm
 comments: true
 ---
