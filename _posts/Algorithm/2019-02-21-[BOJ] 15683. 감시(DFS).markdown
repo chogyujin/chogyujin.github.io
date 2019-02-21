@@ -1,0 +1,159 @@
+---
+layout: post
+title:  "[BOJ] 15683. 감시"
+date:   2019-02-21 14:04:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/15683  
+
+
+
+DFS를 사용해서 풀었습니다.  
+
+먼저 입력을 받을 때 map배열로 받아줌은 물론,  
+
+구조체를 사용해서 카메라 방향,좌표(x,y)를 한거번에 받아줬습니다.  
+
+이후 시간을 줄이기위해 5번카메라는 고정으로 해줬습니다.  
+
+see함수와 unsee함수를 통해서 카메라 보고있는방향은 +1로,  
+
+다시 안보게 되면 -1을 줘서 보는 수만큼 카운트를 해줬습니다.  
+
+이렇게하면 편한게 모든카메라가 안보면 자연히 0이되어 더 빠르게 계산할 수 있습니다.  
+
+나머지는 코드를 참고하시면 될 것 같습니다.
+
+
+
+~~~
+#include "pch.h"
+#include <iostream>
+using namespace std;
+int n, m, num, result = 2000000000;
+int map[9][9];
+int ch[9][9];
+int dx[] = { 0,-1,0,1 };//좌,상,우,하
+int dy[] = { -1,0,1,0 };
+struct Camera {
+	int dir;
+	int x;
+	int y;
+}camera[9];
+void see(int dir, int x, int y) {//CCTV가 보는 방향
+	while (1) {//좌,상,우,하
+		x += dx[dir];
+		y += dy[dir];
+		if (x >= 0 && y >= 0 && x < n&&y < m&&map[x][y] != 6) {
+			ch[x][y] += 1;
+		}
+		else break;
+	}
+}
+void unsee(int dir, int x, int y) {//dfs해제 이후 CCTV가 다시 안볼때
+	while (1) {//0,1,2,3
+		x += dx[dir];
+		y += dy[dir];
+		if (x >= 0 && y >= 0 && x < n&&y < m&&map[x][y] != 6) {
+			ch[x][y] -= 1;
+		}
+		else break;
+	}
+}
+void dfs(int dir, int x, int y, int cnt) {
+	if (cnt == num) {
+		int blind = 0;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				if (ch[i][j] == 0) blind++;//사각지대 카운트
+			}
+		}
+		result = result < blind ? result : blind;
+		return;
+	}
+	if (dir == 1) {//1방향 카메라
+		for (int i = 0; i < 4; i++) {
+			see(i, x, y);
+			dfs(camera[cnt + 1].dir, camera[cnt + 1].x, camera[cnt + 1].y, cnt + 1);
+			unsee(i, x, y);
+		}
+	}
+	else if (dir == 2) {//2방향 카메라
+		for (int i = 0; i < 2; i++) {
+			see(i, x, y);
+			see(i + 2, x, y);
+			dfs(camera[cnt + 1].dir, camera[cnt + 1].x, camera[cnt + 1].y, cnt + 1);
+			unsee(i, x, y);
+			unsee(i + 2, x, y);
+		}
+	}
+	else if (dir == 3) {//3방향 카메라
+		for (int i = 0; i < 4; i++) {
+			see(i, x, y);
+			see((i + 1) % 4, x, y);
+			dfs(camera[cnt + 1].dir, camera[cnt + 1].x, camera[cnt + 1].y, cnt + 1);
+			unsee(i, x, y);
+			unsee((i + 1) % 4, x, y);
+		}
+	}
+	else if (dir == 4) {//4방향 카메라
+		for (int i = 0; i < 4; i++) {
+			see(i, x, y);
+			see((i + 1) % 4, x, y);
+			see((i + 2) % 4, x, y);
+			dfs(camera[cnt + 1].dir, camera[cnt + 1].x, camera[cnt + 1].y, cnt + 1);
+			unsee(i, x, y);
+			unsee((i + 1) % 4, x, y);
+			unsee((i + 2) % 4, x, y);
+		}
+	}
+}
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	cin >> n >> m;
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			cin >> map[i][j];
+			if (map[i][j] != 0) {
+				ch[i][j] = map[i][j];
+			}
+			if (map[i][j] >= 1 && map[i][j] < 5) {
+				camera[num].dir = map[i][j];
+				camera[num].x = i;
+				camera[num].y = j;
+				num++;
+			}
+			//else if (map[i][j] == 5) {//이부분은 제 혼잣말이니 그냥 넘어가세요 ㅎㅎ;;
+			//	see(0, i, j);//진짜 이부분때문에 엄청나게 고생했다 하루종일!!!! 
+			//	see(1, i, j);//톡방분들덕분에 해결!! 해당 반례는
+			//	see(2, i, j);// 3 3
+			//	see(3, i, j);// 5 6 0
+			//}                 6 0 0
+		}					//  0 0 0   <-난 이걸 감지 못함 입력 다 받기 전에 처리해버려서
+	}
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			if (map[i][j] == 5) {//5는 방향 상관없으니까 그냥 고정
+			see(0, i, j);
+			see(1, i, j);
+			see(2, i, j);
+			see(3, i, j);
+			}
+		}
+	}
+	dfs(camera[0].dir, camera[0].x, camera[0].y, 0);
+	cout << result << '\n';
+}
+~~~
+
+- **혼잣말**
+
+
+와.. 진짜 고생엄청 했다... 저 주석처리한 부분이 대체 왜 틀린지 전혀 찾지 못했다..  
+질문게시판 반례를 모두 해봤지만 모두 맞았고...  
+갓분의 도움으로 해결했다..  
+진짜 저리 간단한걸 왜 못 찾았을까.. 넘나허무한것...  
+다음부턴 반복문도중에 저런 처리는 하지말아야겠따..ㅠㅠㅠ  
