@@ -35,7 +35,6 @@ for문을 두번만 돌려줬습니다.
 
 
 ~~~
-#include "pch.h"
 #include <iostream>
 using namespace std;
 //14:45
