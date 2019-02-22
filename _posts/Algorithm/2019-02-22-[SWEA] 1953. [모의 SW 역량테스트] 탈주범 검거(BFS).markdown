@@ -1,0 +1,125 @@
+---
+layout: post
+title:  "[SWEA] 1953. [모의 SW 역량테스트] 탈주범 검거"
+date:   2019-02-22 12:19:54
+categories: Algorithm
+comments: true
+---
+
+https://www.swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5PpLlKAQ4DFAUq&  
+
+
+
+BFS를 사용해서 풀었습니다.  
+
+저는 BFS를 돌릴 때, 현위치의 파이프 종류에 따라 다음위치를 정했습니다.  
+
+예를들어 2번파이프인경우 우,좌는 가지못하도록 반복문안에서 continue작업을 했습니다.
+
+다음으로 다음위치의 파이프종류를 필터링했습니다.  
+
+에를들어 i=0(현위치에서 '상'방향으로 올라올경우 1,2,5,6파이프만 받을 수 있도록 했습니다.  
+
+BFS가 아직 익숙하지 않은 분들한텐 어려울 수 있지만 BFS의 기초적 문제인 것 같습니다.  
+
+
+
+~~~
+#include <iostream>
+#include <queue>
+using namespace std;
+int n, m, r, c, l, result;
+int map[51][51];
+bool ch[51][51];
+int dx[] = { -1,0,1,0 };//상,우,하,좌
+int dy[] = { 0,1,0,-1 };//0,1,2,3
+queue <pair<int, int>> q;
+void bfs() {
+	q.push(make_pair(r, c));
+	ch[r][c] = true;
+	int time = 0;
+	while (1) {
+		time++;
+		int size = q.size();
+		if (time == l) {//시간이 l이 되면 출력
+			for (int i = 0; i < n; i++) {
+				for (int j = 0; j < m; j++) {
+					if (ch[i][j] == true) result++;
+				}
+			}
+			while (!q.empty()) q.pop();//큐 초기화
+			break;
+		}
+		for (int s = 0; s < size; s++) {
+			int x = q.front().first;
+			int y = q.front().second;
+			q.pop();
+			int pipeNum = map[x][y];//현재지점의 파이프 종류
+			for (int i = 0; i < 4; i++) {//0:상, 1:우, 2:하, 3:좌
+				if (pipeNum == 2 && (i == 1 || i == 3)) continue;
+				else if (pipeNum == 3 && (i == 0 || i == 2)) continue;
+				else if (pipeNum == 4 && (i == 2 || i == 3))continue;
+				else if (pipeNum == 5 && (i == 0 || i == 3))continue;
+				else if (pipeNum == 6 && (i == 0 || i == 1))continue;
+				else if (pipeNum == 7 && (i == 1 || i == 2)) continue;
+				int nx = x + dx[i];
+				int ny = y + dy[i];
+				int nextPipeNum = map[nx][ny];//다음지점의 파이프종류
+				if (nx >= 0 && ny >= 0 && nx < n&&ny < m && ch[nx][ny] == false && nextPipeNum != 0) {
+					if (i == 0) {
+						if (nextPipeNum == 1 || nextPipeNum == 2 || nextPipeNum == 5 || nextPipeNum == 6) {
+							ch[nx][ny] = true;
+							q.push(make_pair(nx, ny));
+						}
+					}
+					else if (i == 1) {
+						if (nextPipeNum == 1 || nextPipeNum == 3 || nextPipeNum == 6 || nextPipeNum == 7) {
+							ch[nx][ny] = true;
+							q.push(make_pair(nx, ny));
+						}
+					}
+					else if (i == 2) {
+						if (nextPipeNum == 1 || nextPipeNum == 2 || nextPipeNum == 4 || nextPipeNum == 7) {
+							ch[nx][ny] = true;
+							q.push(make_pair(nx, ny));
+						}
+					}
+					else if (i == 3) {
+						if (nextPipeNum == 1 || nextPipeNum == 3 || nextPipeNum == 4 || nextPipeNum == 5) {
+							ch[nx][ny] = true;
+							q.push(make_pair(nx, ny));
+						}
+					}
+				}
+			}
+		}
+	}
+}
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	int test_case;
+	cin >> test_case;
+	for (int t = 1; t <= test_case; t++) {
+		//start
+		result = 0;
+		cin >> n >> m >> r >> c >> l;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				cin >> map[i][j];
+				ch[i][j] = false;//ch 초기화
+			}
+		}
+		bfs();
+		cout << '#' << t << ' ' << result << '\n';
+	}
+}
+~~~
+
+- **혼잣말**
+
+파이프종류에따라 처리하는게 좀 까다로워서  
+빡! 집중하면서 풀었다.  
+또! 시간계산할때 반복문안에 바로 i<q.size()를 했었는데,  
+반복문을돌면서 q가 push되는걸 생각하지 못했따..ㅠㅠ  
+다음에 이렇게 BFS 시간문제나오면 해당사항을 잘 고려해야지  
