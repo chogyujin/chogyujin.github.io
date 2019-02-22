@@ -1,0 +1,104 @@
+---
+layout: post
+title:  "[SWEA] 2105. [모의 SW 역량테스트] 디저트 카페"
+date:   2019-02-22 15:58:54
+categories: Algorithm
+comments: true
+---
+
+https://www.swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5VwAr6APYDFAWu  
+
+
+
+DFS를 사용해서 풀었습니다.  
+
+우선 시간을 줄이기 위해 노력했습니다.  
+
+행은 1번째는 필요없으니 1부터 n-2까지만 돌면되고,  
+
+열은 0부터 n-2까지만 확인하면 됩니다.  
+
+또한 반대방향과 정방향 모두 같은 것이기 때문에 한 방향으로만 돌면되므로,  
+
+저는 시계방향순으로 돌렸습니다.  
+
+먼저 처음 시작한 위치를 sx,sy변수를 사용해서 기억하게하고 시작위치에 도착하면  
+
+return을 해주었습니다.  
+
+또한 방향은 계속 나아가는 방향과 90도 회전방향 2개밖에없기 때문에,  
+
+for문을 두번만 돌려줬습니다.  
+
+끝~
+
+
+
+~~~
+#include "pch.h"
+#include <iostream>
+using namespace std;
+//14:45
+int n, result;
+int map[21][21];
+bool rch[21][21];//road check
+bool dch[101];//desert check
+int sx, sy;//출발위치
+int dx[] = { 1,1,-1,-1 };// 하우,하좌,상좌,상우
+int dy[] = { 1,-1,-1,1 };
+void dfs(int x, int y, int dir, int cnt) {
+	if (x == sx && y == sy && cnt>1) {//result 출력
+		result = result > cnt ? result : cnt;
+		return;
+	}
+	for (int i = 0; i < 2; i++) {//방향은 2가지만 가면 된다
+		int nx = x + dx[dir + i];
+		int ny = y + dy[dir + i];
+		if (nx >= 0 && ny >= 0 && nx < n&&ny < n && rch[nx][ny] == false && dch[map[nx][ny]] == false) {
+			rch[nx][ny] = true;
+			dch[map[nx][ny]] = true;
+			dfs(nx, ny, dir + i, cnt + 1);
+			rch[nx][ny] = false;
+			dch[map[nx][ny]] = false;
+		}
+		else if (nx == sx && ny == sy) {
+			dfs(nx, ny, dir + i, cnt + 1);
+		}
+	}
+}
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	int test_case;
+	cin >> test_case;
+	for (int t = 1; t <= test_case; t++) {
+		//start
+		result = -1;
+		cin >> n;
+		memset(dch, false, sizeof(dch));//dch초기화
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				cin >> map[i][j];
+				rch[i][j] = false;//rch 초기화
+			}
+		}
+		for (int i = 0; i < n - 1; i++) {
+			for (int j = 1; j < n - 1; j++) {
+				sx = i;
+				sy = j;
+				dch[map[i][j]] = true;
+				dfs(i, j, 0, 0);
+				dch[map[i][j]] = false;
+			}
+		}
+		cout << '#' << t << ' ' << result << '\n';
+	}
+}
+~~~
+
+- **혼잣말**
+
+나름 쉬웠던 문제였던 거 같다.  
+이 문제에서 중요한건 시간단축(?) 물론 어느정도 많이 걸려도 상관없지만  
+어떻게 하느냐에따라 걸리는 시간이 천차만별이다.
+
