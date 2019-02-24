@@ -1,0 +1,59 @@
+---
+layout: post
+title:  "[BOJ] 15666. N과M(12)"
+date:   2019-02-24 14:17:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/15666  
+
+
+
+재귀를 사용해서 풀었습니다.  
+
+vector를 사용해서 넣어주고 빼주고 했습니다~  
+
+그냥 `N과 M(9)`에서 중복을 체크안하면되므로 ch만 없애주고,  
+
+재귀함수안의 반복문에서 for(int i = x;...)로 바꾸면 끝  
+
+~~~
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int n, m;
+int arr[9];
+int temp;
+vector <int> v;
+void go(int x, int cnt) {
+	if (cnt == m) {
+		for (int i = 0; i < m; i++) {
+			cout << v[i] << ' ';
+		}cout<<'\n';
+		return;
+	}
+	int temp=false;
+	for (int i = x; i <= n; i++) {
+		if (temp!=arr[i]) {
+			v.push_back(arr[i]);
+			temp = arr[i];//같은 depth안에 더이상 arr[i]와 같은 수가 나오지 않도록 설정
+			go(i, cnt + 1);
+			v.pop_back();
+		}
+	}
+}
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	cin >> n >> m;
+	for (int i = 1; i <= n; i++) cin >> arr[i];
+	sort(arr, arr + n + 1);
+	go(0, 0);
+}
+~~~
+
+- **혼잣말**
+
+...
