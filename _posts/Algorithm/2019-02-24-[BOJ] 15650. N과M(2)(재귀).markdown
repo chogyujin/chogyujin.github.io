@@ -1,0 +1,58 @@
+---
+layout: post
+title:  "[BOJ] 15650. N과M(2)"
+date:   2019-02-24 10:41:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/15650  
+
+
+
+재귀를 사용해서 풀었습니다.  
+
+vector를 사용해서 넣어주고 빼주고 했습니다~  
+
+
+~~~
+#include <iostream>
+#include <vector>
+using namespace std;
+int n, m;
+int ch[9];
+vector <int> v;
+void go(int x,int cnt) {
+	if (cnt == m) {
+		for (int i = 0; i < m; i++) {
+			cout << v[i]<< ' ';
+		}cout << '\n';
+		return;
+	}
+	for (int i = x+1; i <= n; i++) {
+		if (ch[i] == false) {
+			ch[i] = true;
+			v.push_back(i);
+			go(i, cnt + 1);
+			ch[i] = false;
+			v.pop_back();
+		}
+	}
+}
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	cin >> n >> m;
+	for (int i = 1; i <= n; i++) {
+		ch[i] = true;
+		v.push_back(i);
+		go(i,1);
+		ch[i] = false;
+		v.pop_back();
+	}
+}
+~~~
+
+- **혼잣말**
+
+...
