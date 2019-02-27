@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "지극히 저만의 메모입니다."
+title:  "저의 주관적인 메모입니다."
 date:   2019-02-18 11:00:54
 categories: Memo
 comments: true
