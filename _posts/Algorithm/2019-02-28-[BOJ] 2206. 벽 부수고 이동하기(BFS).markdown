@@ -1,0 +1,104 @@
+---
+layout: post
+title:  "[BOJ] 2206. 벽 부수고 이동하기(BFS)"
+date:   2019-02-28 23:05:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/2206  
+
+좀 까다로운 문제였습니다.  
+
+일단 BFS를 사용해서 풀었습니다.  
+
+이 문제가 다른 BFS문제와 다른 점은 벽을 한번 부숴야한다는 점.... 저는 3차원 배열을 사용해서 문제를 해결했습니다.  
+
+벽을 부술경우 큐와 Check 둘 다 고려해 줘야합니다.  
+
+저 같은 경우  
+
+4 4  
+0101  
+0101  
+0001  
+1110  
+
+해당 반례를 못 했더라고요  
+
+다른 분들도 한번 해보세요ㅎㅎ  
+
+~~~
+#include <iostream>
+#include <queue>
+using namespace std;
+int n, m, cnt;
+bool map[1001][1001];
+bool ch[2][1001][1001];//부쉈을때check와 안부쉈을때check를 따로
+bool broken;
+int dx[] = { 0,1,0,-1 };
+int dy[] = { 1,0,-1,0 };
+struct check {
+	int x;
+	int y;
+	bool broken;//한 번 부쉈다면 true
+};
+queue <check> q;//구조체를 Queue로
+void bfs() {
+	while (!q.empty()) {//queue가 empty인데도 답이 안나오면 -1출력
+		int size = q.size();
+		cnt++;
+		for (int s = 0; s < size; s++) {//큐사이즈만큼 돌려서 cnt계산
+			int x = q.front().x;
+			int y = q.front().y;
+			bool broken = q.front().broken;
+			q.pop();
+			if (x == n && y == m) {
+				cout << cnt;
+				return;
+			}
+			for (int i = 0; i < 4; i++) {
+				int nx = x + dx[i];
+				int ny = y + dy[i];
+				if (nx >= 1 && ny >= 1 && nx <= n && ny <= m && ch[broken][nx][ny] == false) {
+					ch[broken][nx][ny] = true;
+					if (broken == false) {//부순적이 없다면
+						if (map[nx][ny] == true) q.push({ nx,ny,true });//부술경우 큐 broken자리에 true를 넣어준다
+						else q.push({ nx,ny,false });//안부술경우 broken자리에 false
+					}
+					else if (broken == true) {//부순적이 있다면
+						if (map[nx][ny] == false) q.push({ nx,ny,true });//무조건 broken자리에 true
+					}
+				}
+			}
+		}
+	}
+	cout << "-1\n";
+}
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	cin >> n >> m;
+	char temp;
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= m; j++) {
+			cin >> temp;
+			map[i][j] = temp - '0';
+		}
+	}
+	q.push({ 1, 1, 0 });
+	ch[0][1][1] = true;
+	bfs();
+}
+
+~~~
+
+
+
+
+- **혼잣말**
+
+큐까진 고려했었는데  
+check까지 고려하는 걸 못했다....  
+후... 반례를 못찾았으면 계속 헤맸을뻔...  
+다음부터 벽부수기같은 문제면 ch배열도 꼭 고려해야지...ㅠㅠ
