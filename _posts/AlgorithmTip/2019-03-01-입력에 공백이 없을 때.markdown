@@ -1,0 +1,49 @@
+---
+layout: post
+title:  "코테 보기 전에 준비하기!"
+date:   2019-02-15 22:57:54
+categories: AlgorithmTip
+comments: true
+---
+
+입력이 10 1 0 01 으로 공백이 있는 경우가 아닌  
+
+`0100`처럼 공백이 없을 경우  
+
+많은 방법이 있지만  
+
+아래의 방법이 좋은 것 같습니다.  
+
+### 1. scanf("%1d",&var);
+
+~~~
+int main() {
+//	ios::sync_with_stdio(0); 이 두라인을 쓸 수 없는 게 단점.
+//	cin.tie(0); 이 두라인을 쓰면 cin, cout이 빨라지는 대신 printf와 scanf를 쓸 수 없기 때문
+	cin >> n >> m;
+	char temp;
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= m; j++) {
+			scanf("%1d", &map[i][j]);
+		}
+	}
+}
+~~~
+
+### 2. char로 받은 변수에 -'0'한 후 넣기
+
+~~~
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	cin >> n >> m;
+	char temp;
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= m; j++) {
+			cin >> temp;
+			map[i][j] = temp - '0';
+		}
+	}
+}
+~~~
+
