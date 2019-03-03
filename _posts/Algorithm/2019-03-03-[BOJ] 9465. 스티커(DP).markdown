@@ -1,0 +1,66 @@
+---
+layout: post
+title:  "[BOJ] 9465. 스티커(DP)"
+date:   2019-03-03 21:11:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/9465  
+
+처음 DP를 접하는 사람에게 좋은 문제인 것 같습니다.  
+
+저는 2차원 배열을 사용하여 DP를 풀었습니다.  
+
+dp[a][b]는 해당 위치의 최댓값입니다.  
+
+
+~~~
+#include <iostream>
+using namespace std;
+int n;
+int card[2][100001];
+int dp[2][100001];
+int max(int x, int y) {
+	return x > y ? x : y;
+}
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	int test_case;
+	cin >> test_case;
+	for (int t = 1; t <= test_case; t++) {
+		cin >> n;
+		for (int i = 0; i < 2; i++) {
+			for (int j = 0; j < n; j++)cin >> card[i][j];
+		}
+		dp[0][0] = card[0][0];
+		dp[1][0] = card[1][0];
+		dp[0][1] = card[0][1] + dp[1][0];
+		dp[1][1] = card[1][1] + dp[0][0];
+		for (int j = 2; j < n; j++) {
+			for (int i = 0; i < 2; i++) {
+				dp[i][j] = card[i][j] + max(dp[(i + 1) % 2][j - 1], dp[(i + 1) % 2][j - 2]);
+			}
+		}
+		cout << max(dp[0][n-1],dp[1][n-1]) << '\n';
+		for (int i = 0; i < 2; i++) {//다시 초기화
+			for (int j = 0; j < n; j++) {
+				dp[i][j] = 0;
+				card[i][j] = 0;
+			}
+		}
+
+	}
+}
+~~~
+
+
+
+
+- **혼잣말**
+
+전에 한번 풀어봐서 그런지 금방 풀었다..  
+
+실력이 올라간건지 기억력이 오래가는건지 잘 모르겠다..  
+
