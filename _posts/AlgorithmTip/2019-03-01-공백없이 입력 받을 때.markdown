@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "코테 보기 전에 준비하기!"
+title:  "공백없이 입력 받을 때"
 date:   2019-02-15 22:57:54
 categories: AlgorithmTip
 comments: true
