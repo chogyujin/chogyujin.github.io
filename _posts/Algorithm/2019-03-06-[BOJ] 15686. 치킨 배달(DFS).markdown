@@ -1,0 +1,99 @@
+---
+layout: post
+title:  "[BOJ] 15686. 치킨 배달(DFS)"
+date:   2019-03-06 23:01:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/15686  
+
+DFS로 완탐을 해야했기 때문에 연산 수를 줄이기 위해  
+
+먼저 모든 집과 치킨집과의 치킨거리를 계산한 후, DFS를 돌려습니다.  
+
+DFS에선 코드를 보면 아시겠지만 살아남은 치킨집들로 모든 집들과 치킨거리를 구한 후,  
+
+치킨거리가 제일 짧은 것만 축출한 후 도시치킨거리에 더해줬습니다.  
+
+
+~~~
+#include <iostream>
+using namespace std;
+int n, m, result = 2e9;
+int chickenCnt = 1;
+int homeCnt = 1;
+int map[51][51];
+int dist[102][14];//집,치킨집 거리
+bool liveChicken[14];//살아남은 치킨집
+struct location {
+	int x;
+	int y;
+};
+int abs(int x) {//절댓값
+	return x >= 0 ? x : -x;
+}
+void dfs(int start, int cnt) {
+	if (cnt == m) {
+		int chickenDistance = 0;
+		int cityDistance = 0;
+		for (int i = 1; i < homeCnt; i++) {
+			//모든 집과 살아남은 치킨집과의 치킨거리를 구한다
+			chickenDistance = 2e9;
+			for (int j = 1; j < chickenCnt; j++) {
+				if (liveChicken[j] == true) {
+					//치킨거리가 가장 짧은 치킨집을 선택
+					chickenDistance = chickenDistance > dist[i][j] ? dist[i][j] : chickenDistance;
+				}
+			}
+			cityDistance += chickenDistance;//도시치킨거리
+		}
+		result = result < cityDistance ? result : cityDistance;
+		return;
+	}
+	for (int i = start; i < chickenCnt; i++) {
+		if (liveChicken[i] == false) {
+			liveChicken[i] = true;
+			dfs(i, cnt + 1);
+			liveChicken[i] = false;
+		}
+	}
+}
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	location home[102];//집과 치킨집 좌표
+	location chicken[14];
+	cin >> n >> m;
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= n; j++) {
+			cin >> map[i][j];
+			if (map[i][j] == 2) {
+				chicken[chickenCnt].x = i;
+				chicken[chickenCnt].y = j;
+				chickenCnt++;
+			}
+			else if (map[i][j] == 1) {
+				home[homeCnt].x = i;
+				home[homeCnt].y = j;
+				homeCnt++;
+			}
+		}
+	}
+	for (int i = 1; i < homeCnt; i++) {//각각 치킨거리 미리 계산
+		for (int j = 1; j < chickenCnt; j++) {
+			dist[i][j] = abs(home[i].x - chicken[j].x) + abs(home[i].y - chicken[j].y);
+		}
+	}
+	dfs(1, 0);
+	cout << result;
+}
+~~~
+
+
+
+
+- **혼잣말**
+
+DFS하면서 i와 j를 좀 햇갈렸다... 후..
+
