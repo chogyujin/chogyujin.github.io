@@ -1,0 +1,114 @@
+---
+layout: post
+title:  "[SWEA] 5653. [모의 SW 역량테스트] 줄기세포배양"
+date:   2019-03-07 18:06:54
+categories: Algorithm
+comments: true
+---
+
+https://www.swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AWXRJ8EKe48DFAUo&&  
+
+BFS로 풀었습니다. 이 문제는 동시에 같은 자리를 차지할 때 우선순위를 고려해야하기 때문에,  
+
+좀 까다로운 문제였습니다.  저는 BFS 시작전 queue에 생명력이 높은 순서대로 넣어줌으로써  
+
+이후에 있을 자리싸움(?)을 고려하지 않도록 했습니다.  
+
+또한 map[450][450][x]에서 x를 2로 주고 0은 생명력, 1은 생명력을 카운트하기 위한 배열로 만들었습니다.  
+
+크기는 k가 300이라 가정해도 150+150+50(n,m의최댓값)=350이기 때문에 그냥 넉넉잡아 450을 줬습니다^^;;  
+
+나머진 코드의 주석을 보시면 될 것 같습니다.  
+
+
+~~~
+#include <iostream>
+#include <queue>
+#include <algorithm>
+using namespace std;
+int n, m, k, result;
+int map[450][450][2];//0은 생명력 1은 생명력 카운트하기 위해 설정
+bool ch[450][450];//k가 300일때 150+50+150=350 밖에 안되므로 충분
+int dx[] = { -1,1,0,0 };
+int dy[] = { 0,0,-1,1 };
+queue <pair<int, int>> q;
+void bfs() {
+	int time = k;//제한 시간
+	while (time--) {
+		int size = q.size();//큐에 들어있는 세포를 퍼뜨리면 시간 +1
+		while (size--) {
+			int x = q.front().first;
+			int y = q.front().second;
+			q.pop();
+			map[x][y][1] -= 1;//생명력 감소
+			if (map[x][y][1] == map[x][y][0] - 1) {//생명력Count가 주어진 생명력보다 낮아지면 활성상태
+				for (int i = 0; i < 4; i++) {
+					int nx = x + dx[i];
+					int ny = y + dy[i];
+					if (ch[nx][ny] == false) {
+						map[nx][ny][0] = map[x][y][0];
+						map[nx][ny][1] = map[x][y][0] * 2;//주어진 생명력에 *2를 해줌
+						q.push(make_pair(nx, ny));
+						ch[nx][ny] = true;
+					}
+				}
+			}
+			if (map[x][y][1] > 0) {//죽을때까지 push(0이면 죽음을 나타냄)
+				q.push(make_pair(x, y));
+			}
+		}
+	}
+	result = 0;
+	while (!q.empty()) q.pop();//초기화 및 결과 출력
+	for (int i = 200 - (k / 2) - 1; i < 250 + (k / 2) + 1; i++) {
+		for (int j = 200 - (k / 2) - 1; j < 250 + (k / 2) + 1; j++) {
+			if (map[i][j][1] != 0) result += 1;
+			map[i][j][0] = 0;
+			map[i][j][1] = 0;
+			ch[i][j] = false;
+		}
+	}
+}
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	int test_case;
+	cin >> test_case;
+	for (int t = 1; t <= test_case; t++) {
+		//start
+		cin >> n >> m >> k;
+		int temp;
+		int max = 0;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				cin >> temp;
+				if (temp) {
+					map[200 + i][200 + j][0] = temp;//생명력
+					map[200 + i][200 + j][1] = temp * 2;//생명력 count
+					max = max > map[200 + i][200 + j][0] ? max : map[200 + i][200 + j][0];//생명력 가장 높은 세포 탐색
+					ch[200 + i][200 + j] = true;//BFS를 위해 true 체크
+				}
+			}
+		}
+		for (; max > 0; max--) {//높은 순서대로 q에 push 이 문제는 우선순위가 필요하기 때문
+			for (int i = 200; i < 200 + n; i++) {//생명력 높은 순서로 queue에 담음
+				for (int j = 200; j < 200 + m; j++) {
+					if (max == map[i][j][0])q.push(make_pair(i, j));
+				}
+			}
+		}
+		bfs();
+		cout << '#' << t << ' ' << result << '\n';
+	}
+}
+~~~
+
+
+
+
+- **혼잣말**
+
+자리싸움때문에 시간을 너무 뺏겼다..  
+처음에 생명력높은 순서대로 넣는 것이아닌  
+다른 방법을 생각하다가 도저히 안돼서  
+포.기.. ㅠㅠ
