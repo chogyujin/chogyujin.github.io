@@ -1,0 +1,86 @@
+---
+layout: post
+title:  "[SWEA] 5658. [모의 SW 역량테스트] 보물상자 비밀번호"
+date:   2019-03-07 22:25:54
+categories: Algorithm
+comments: true
+---
+
+https://www.swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AWXRUN9KfZ8DFAUo  
+
+시뮬레이션 문제였습니다.  
+
+자세한건 코드에 주석으로 설명했습니다.  
+
+
+~~~
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int n, k, result;
+string s;
+vector <int> v;
+int exponential(int x) {//16제곱수
+	int num = 1;
+	for (int i = 0; i < x; i++) num *= 16;
+	return num;
+}
+bool cmp(int a, int b) {//내림차순
+	return a > b;
+}
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	int test_case;
+	cin >> test_case;
+	for (int t = 1; t <= test_case; t++) {
+		//start
+		cin >> n >> k >> s;
+		v.clear();//초기화
+		for (int rotate = 0; rotate < n / 4; rotate++) {//n/4 - 1번 회전(무회전도 있기 때문)
+			int sum = 0;
+			int num = 0;
+			int exp = n / 4;
+			for (int i = 0; i < n; i++) {//각 변마다 수들의 합
+				exp--;
+				if (s[i] <= '9') {//0~9
+					num = (s[i] - '0') * exponential(exp);
+				}
+				else {//A~F
+					num = (s[i] - 55) * exponential(exp);
+				}
+				sum += num;//한변의 수들의 총합
+				if (exp == 0) {//다른변으로 가기위한 준비
+					v.push_back(sum);
+					sum = 0;
+					exp = n / 4;
+				}
+			}
+			int temp = s[n - 1];//회전
+			for (int i = n - 1; i > 0; i--) {
+				s[i] = s[i - 1];
+			}s[0] = temp;
+		}
+		sort(v.begin(), v.end(), cmp);//내림차순 정렬
+		int cnt = 0;
+		int temp = 0;
+		for (int i = 0; i < v.size(); i++) {
+			if (temp == v[i]) continue;//중복제거
+			cnt++;
+			if (cnt == k) result = v[i];//k번째 축출
+			temp = v[i];//중복체크하기위해
+		}
+		cout << '#' << t << ' ' << result << '\n';
+	}
+}
+
+~~~
+
+
+
+
+- **혼잣말**
+
+역시 시뮬... 집중력 조금이라도 떨어지면 망할거같아서 빡 집중했다.
