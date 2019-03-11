@@ -1,0 +1,154 @@
+---
+layout: post
+title:  "[SWEA] 5656. [모의 SW 역량테스트] 벽돌 깨기"
+date:   2019-03-11 14:11:54
+categories: Algorithm
+comments: true
+---
+
+https://www.swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AWXRQm6qfL0DFAUo  
+
+많은 것을 고려해야하는 문제였습니다.  
+
+저 같은 경우,  
+
+DFS를 사용했으며, bomb()함수를 통해  
+
+터뜨리기-중력법칙 적용시키기-남아있는 block 갯수 세기  
+
+순으로 진행했습니다.  
+
+코딩하실 때 유의할 점은 폭발범위가 2이상인 폭탄을 잘 생각하셔야할 것 같습니다.  
+
+저 같은 경우 willBomb배열을 짜느라 고생 좀 했습니다.  
+
+
+~~~
+#include <iostream>
+#include <queue>
+using namespace std;
+int n, w, h, result;
+int start[4];//스타트 위치
+int map[16][13];
+int calMap[16][13];//계산 위한 Map
+bool willBomb[16][13];//곧 터질 폭탄
+int dx[] = { -1,1,0,0 };
+int dy[] = { 0,0,-1,1 };
+queue <pair<int, int>> q;
+void bomb() {
+	for (int ballCnt = 0; ballCnt < n; ballCnt++) {
+		for (int i = 0; i < h; i++) {
+			for (int j = 0; j < w; j++) {
+				willBomb[i][j] = false;//ball을 새로 내릴때마다 초기화
+			}
+		}
+		int dropW = start[ballCnt];
+		for (int dropH = 0; dropH < h; dropH++) {//터뜨리기
+			if (calMap[dropH][dropW]) {
+				if (calMap[dropH][dropW] == 1) {
+					calMap[dropH][dropW] = 0;//0으로바꾸고 break
+					break;
+				}
+				else {
+					q.push(make_pair(dropH, dropW));
+					willBomb[dropH][dropW] = true;//터질 애
+					while (!q.empty()) {
+						int x = q.front().first;
+						int y = q.front().second;
+						int scope = calMap[x][y];//폭발 범위
+						calMap[x][y] = 0;
+						q.pop();
+						for (int i = 0; i < 4; i++) {//4방향
+							int nx = x;
+							int ny = y;
+							for (int j = 1; j < scope; j++) {//범위만큼 반복
+								nx += dx[i];
+								ny += dy[i];
+								if (nx >= 0 && ny >= 0 && nx < h&&ny < w) {
+									if (calMap[nx][ny] == 1) calMap[nx][ny] = 0;
+									else if (calMap[nx][ny] > 1 && willBomb[nx][ny] == false) {
+										q.push(make_pair(nx, ny));
+										willBomb[nx][ny] = true;
+									}
+								}
+								else break;
+							}
+						}
+					}
+				}
+				break;
+			}
+		}
+		//내리깔기
+		for (int i = 0; i < w; i++) {
+			for (int j = h - 1; j >= 0; j--) {
+				if (calMap[j][i] == 0) {
+					for (int k = j - 1; k >= 0; k--) {
+						if (calMap[k][i] != 0) {
+							calMap[j][i] = calMap[k][i];
+							calMap[k][i] = 0;
+							break;
+						}
+					}
+				}
+			}
+		}
+	}
+	int cnt = 0;
+	for (int i = 0; i < h; i++) {//살아남은 갯수 세기
+		for (int j = 0; j < w; j++) {
+			if (calMap[i][j] != 0) cnt++;
+			if (cnt >= result) return;
+		}
+	}
+	result = result < cnt ? result : cnt;
+}
+void dfs(int cnt) {
+	if (cnt == n) {
+		//초기화
+		for (int i = 0; i < h; i++) {
+			for (int j = 0; j < w; j++) {
+				calMap[i][j] = map[i][j];
+			}
+		}
+		bomb();
+		return;
+	}
+	for (int i = 0; i < w; i++) {//dfs과정
+		start[cnt] = i;
+		dfs(cnt + 1);
+	}
+}
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	int test_case;
+	cin >> test_case;
+	for (int t = 1; t <= test_case; t++) {
+		//start
+		cin >> n >> w >> h;
+		for (int i = 0; i < n; i++)
+			start[i] = false;//초기화
+		result = 2e9;
+		for (int i = 0; i < h; i++) {
+			for (int j = 0; j < w; j++) {
+				cin >> map[i][j];
+			}
+		}
+		dfs(0);
+		//end
+		cout << '#' << t << ' ' << result << '\n';
+	}
+}
+
+~~~
+
+
+
+
+- **혼잣말**
+
+willBomb... 이 배열을 잘 못해서 너무 헤맸다...  
+공을 떨어질 때마다 초기화 했어야했는데  
+새로 판짤때 초기화.... 앞으로 이런문제는  
+초기화를 고민하고 또 고민해야겠다.. ㅠㅠ  
