@@ -1,0 +1,24 @@
+---
+layout: post
+title:  "공백없이 입력 받을 때"
+date:   2019-02-15 22:57:54
+categories: AlgorithmTip
+comments: true
+---
+
+cin을 사용하면 공백 포함 문자열을 처리할 수 없는 단점이 있습니다.  
+
+이 문제는 `getline(cin,s)`를 사용하여 쉽게 해결할 수 있습니다.  
+
+~~~
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+	string s;
+	getline(cin,s);
+	cin >> s;
+	cout << s << '\n';
+}
+~~~
