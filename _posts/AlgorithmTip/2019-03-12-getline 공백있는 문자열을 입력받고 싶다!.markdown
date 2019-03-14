@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "공백없이 입력 받을 때"
-date:   2019-02-15 22:57:54
+title:  "getline 공백있는 문자열을 입력받고 싶다!"
+date:   2019-03-12 11:20:54
 categories: AlgorithmTip
 comments: true
 ---
