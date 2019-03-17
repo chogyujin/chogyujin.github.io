@@ -6,6 +6,7 @@ categories: OS
 comments: true
 ---
 
+-> [목차](https://chogyujin.github.io/2019/03/17/%EB%AA%A9%EC%B0%A8/)
 
 # 1.1 운영 체제의 정의
 
