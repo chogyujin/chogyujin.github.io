@@ -2,7 +2,7 @@
 layout: post
 title:  "운영 체제의 정의"
 date:   2019-03-17 12:03:54
-categories: 운영 체제
+categories: OS
 comments: true
 ---
 
