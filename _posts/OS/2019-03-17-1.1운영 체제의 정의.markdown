@@ -11,7 +11,7 @@ comments: true
 
 - 운영 체제(Operating System)이란 컴퓨터 하드웨어 바로 윗단에 설치되는 소프트웨어를 말한다. 운영 체제는 사용자 및 다른 모든 소프트웨어와 하드웨어를 연결하는 소프트웨어 계층이다.  
 
-https://user-images.githubusercontent.com/33562226/54484449-8edd0380-48aa-11e9-8e8f-5076061a55a0.PNG
+<img src="https://user-images.githubusercontent.com/33562226/54484449-8edd0380-48aa-11e9-8e8f-5076061a55a0.PNG">
 
 - 사용자가 손쉽게 사용할 수 있는 상태가 되도록 한다. 각종 소프트웨어들은 그림과 같이 하드웨어와 운영 체제가 한 몸으로 존재하는 컴퓨터 시스템 위에서 수행된다.
 
