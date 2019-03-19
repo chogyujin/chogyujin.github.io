@@ -6,9 +6,8 @@ categories: OS
 comments: true
 ---
 
--> [목차](https://chogyujin.github.io/2019/03/17/%EB%AA%A9%EC%B0%A8/)
+-> [목차](https://chogyujin.github.io/2019/03/17/%EB%AA%A9%EC%B0%A8/)  
 
-# 1.2 운영 체제의 기능
 
 - 운영 체제의 기능은 크게 3가지로 볼 수 있다.  
 
@@ -24,6 +23,10 @@ comments: true
      - 악의성 프로그램이 있을 경우 치명적일 수 있기 때문에 필요하다.
 
 
----
+---  
+
+---  
+
+
 해당 글은 `운영 체제와 정보 기술의 원리 -반효경`책을 정리하기 위해 쓴 글입니다.  
 https://book.naver.com/bookdb/book_detail.nhn?bid=4392911

@@ -1,0 +1,25 @@
+---
+layout: post
+title:  "2.1 컴퓨터 시스템의 구조"
+date:   2019-03-19 22:00:54
+categories: OS
+comments: true
+---
+
+-> [목차](https://chogyujin.github.io/2019/03/17/%EB%AA%A9%EC%B0%A8/)  
+
+
+컴퓨터 시스템의 구조는 컴퓨터 내부장치인 CPU 메모리와  
+
+컴퓨터 외부 장치인 디스크, 키보드, 마우스, 모니터, 네트워크 장치 등이 있다.
+
+
+
+---  
+
+---  
+
+  
+
+위 글은 `운영 체제와 정보 기술의 원리 -반효경`책을 정리하기 위해 쓴 글입니다.  
+https://book.naver.com/bookdb/book_detail.nhn?bid=4392911

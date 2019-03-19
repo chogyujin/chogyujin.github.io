@@ -6,9 +6,8 @@ categories: OS
 comments: true
 ---
 
--> [목차](https://chogyujin.github.io/2019/03/17/%EB%AA%A9%EC%B0%A8/)
+-> [목차](https://chogyujin.github.io/2019/03/17/%EB%AA%A9%EC%B0%A8/)  
 
-# 1.1 운영 체제의 정의
 
 - 운영 체제(Operating System)이란 컴퓨터 하드웨어 바로 윗단에 설치되는 소프트웨어를 말한다. 운영 체제는 사용자 및 다른 모든 소프트웨어와 하드웨어를 연결하는 소프트웨어 계층이다.  
 
@@ -20,6 +19,10 @@ comments: true
 
 
 
----
+---  
+
+---  
+
+
 해당 글은 `운영 체제와 정보 기술의 원리 -반효경`책을 정리하기 위해 쓴 글입니다.  
 https://book.naver.com/bookdb/book_detail.nhn?bid=4392911
