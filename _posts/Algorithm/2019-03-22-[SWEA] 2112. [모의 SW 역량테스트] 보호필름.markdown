@@ -1,0 +1,142 @@
+---
+layout: post
+title:  "[SWEA] 2112. [모의 SW 역량테스트] 보호필름"
+date:   2019-03-22 17:50:54
+categories: Algorithm
+comments: true
+---
+
+https://www.swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5V1SYKAaUDFAWu&  
+
+시약을 투입할 자리를 정하는데 재귀를 사용했고,  
+
+어떤 특성을 넣어야할지 결정하는 함수를 DFS로 정했습니다.  
+
+먼저 시약을 투입할 자리를 정하는데,  
+
+카운트가 1일때를 먼저 찾고, 그다음은 2, 그다음 3... 순으로 찾으면서  
+
+찾게되면 해당 카운트를 바로 리턴하여 결과값으로 나타냈습니다.  
+
+돌리면서 어떤 특성의 시약을 넣을지 dfs로 계속 넣어줬습니다.  
+
+시간은 2300ms정도 나왔습니다.  
+
+
+~~~
+#include <iostream>
+#include <queue>
+using namespace std;
+int result, d, w, k;
+int film[14][21];//연산할 배열
+int recoverFilm[14][21];//다시 복귀시킬 배열
+int insertCnt = 0;//바꾼 횟수
+int checkD[14];//depth 체크
+int ch[14];
+bool restart = true;
+void reset() {
+	for (int i = 0; i < d; i++) {
+		for (int j = 0; j < w; j++) {
+			film[i][j] = recoverFilm[i][j];
+		}
+	}
+}
+bool pass() {//통과되는지 확인
+	for (int i = 0; i < w; i++) {
+		int cnt = 1;
+		int preM = 2;
+		for (int j = 0; j < d; j++) {
+			if (preM == film[j][i])cnt += 1;//바로 위녀석과 비교
+			else cnt = 1;
+			preM = film[j][i];
+			if (cnt == k) break;
+		}
+		if (cnt < k) return false;
+	}
+	return true;
+}
+void insertDfs(int cnt, int pos) {//a를넣을지 b를 넣을지
+	if (cnt == insertCnt) {
+		bool forNext[14] = { false, };
+		for (int i = 0; i < insertCnt; i++) {
+			for (int j = 0; j < d; j++) {//차례대로 바꿀위치에 시약을 넣는다
+				if (checkD[j] == true && forNext[j] == false) {
+					forNext[j] = true;
+					for (int k = 0; k < w; k++) {
+						film[j][k] = ch[i];
+					}
+					break;
+				}
+			}
+		}
+		if (pass()) {
+			result = insertCnt;
+			return;
+		}
+		return;
+	}
+	for (int i = pos + 1; i < insertCnt; i++) {
+		for (int j = 0; j < 2; j++) {
+			ch[i] = j;//ch배열에 a를 넣을지 b를 넣을지 정한다
+			insertDfs(cnt + 1, i);
+		}
+	}
+}
+void decideDepth(int depth, int cnt) {//시약을 투입할 depth를 판단하는 함수
+	if (result != 0) return;//result를 구했으면 바로 리턴
+	if (insertCnt == cnt) {
+		insertDfs(0, -1);//시약을 투입할 함수
+		reset();//원상복귀
+		if (restart) {//예를들어 1 Count에 못찾아서 2Count에서 찾아야할 때 다시 처음부터
+			restart = false;
+			insertCnt += 1;//횟수 1증가
+			for (int i = 0; i < d; i++) checkD[i] = false;//체크배열 원상복구
+			for (int i = 0; i < d - insertCnt + 1; i++) {//전 까지
+				if (checkD[i] == false) {
+					checkD[i] = true;
+					if (i == d - insertCnt) restart = true;//해당 카운트에서 끝까지 체크했는데 pass못했으면
+					decideDepth(i, 1);
+					checkD[i] = false;
+				}
+			}
+		}
+		return;
+	}
+	for (int i = depth + 1; i < d; i++) {
+		if (checkD[i] == false) {
+			checkD[i] = true;
+			decideDepth(i, cnt + 1);
+			checkD[i] = false;
+		}
+	}
+}
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	int test_case;
+	cin >> test_case;
+	for (int t = 1; t <= test_case; t++) {
+		//start
+		insertCnt = 0;
+		result = 0;
+		cin >> d >> w >> k;
+		for (int i = 0; i < d; i++) {
+			for (int j = 0; j < w; j++) {
+				cin >> film[i][j];
+				recoverFilm[i][j] = film[i][j];
+			}
+		}
+		if (pass() == false) decideDepth(-1, 0);//아무것도 안바꿨을 때 pass가 안되면 연산 ㄱㄱ
+		cout << '#' << t << ' ' << result << '\n';
+	}
+}
+
+~~~
+
+
+
+
+- **혼잣말**
+
+처음에 설계를 잘못해서 좀 헤맸다.... ㅠㅠ  
+
