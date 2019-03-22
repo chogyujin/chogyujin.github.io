@@ -25,7 +25,7 @@ https://book.naver.com/bookdb/book_detail.nhn?bid=4392911
 - [2.2 CPU와 I/O 연산](https://chogyujin.github.io/2019/03/19/2.2-CPU%EC%99%80-IO-%EC%97%B0%EC%82%B0/)
 - [2.3 인터럽트의 일반적 기능](https://chogyujin.github.io/2019/03/19/2.3-%EC%9D%B8%ED%84%B0%EB%9F%BD%ED%8A%B8%EC%9D%98-%EC%9D%BC%EB%B0%98%EC%A0%81-%EA%B8%B0%EB%8A%A5/)
 - [2.4 인터럽트 핸들링](https://chogyujin.github.io/2019/03/19/2.4-%EC%9D%B8%ED%84%B0%EB%9F%BD%ED%8A%B8-%ED%95%B8%EB%93%A4%EB%A7%81/)
-- 2.5 입출력 구조
+- [2.5 입출력 구조](https://chogyujin.github.io/2019/03/22/2.5-%EC%9E%85%EC%B6%9C%EB%A0%A5-%EA%B5%AC%EC%A1%B0/)
 - 2.6 DMA(Direct Memory Access)
 - 2.7 저장 장치의 구조
 - 2.8 저장 장치의 계층 구조
