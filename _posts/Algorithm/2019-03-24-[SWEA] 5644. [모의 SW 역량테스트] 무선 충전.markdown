@@ -1,0 +1,161 @@
+---
+layout: post
+title:  "[SWEA] 5644. [모의 SW 역량테스트] 무선 충전"
+date:   2019-03-24 21:21:54
+categories: Algorithm
+comments: true
+---
+
+https://www.swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AWXRDL1aeugDFAUo&  
+
+bfs를 통해 각각 ap들의 충전범위를 모두 입력해놓고 사람을 출발시켰습니다.  
+
+go함수를 통해 사람을 출발시켰으며 출발할때마다 모든 ap와 비교하여 범위안에 있는지 확인했습니다.  
+
+이 때, temp0과 temp1의 배열을 통해 0사람과 1사람이 있는 위치에 범위가 닿는 ap의 p를 모두 저장해놓고,  
+
+p가 가장 큰 값을 max0, max1을 통해 저장, 이 때 ap를 maxk0,maxk1(p는 같은데 다른 종류의 ap를 걸러내기위해)에 저장했습니다.  
+
+이제 이렇게 모은 정보를 통해
+
+1. 두 사람에게 닿는 ap가 같은 종류인지  
+1-1. 둘 다 범위에 닿는 ap가 2개 이상인지  
+1-2. 한사람만 범위 닿는 ap가 2개 이상인지  
+  
+2. 두 사람에게 닿는 ap가 다른 종류인지  
+
+
+이렇게 나눠 판별하여 result에 값을 갱신했습니다.  
+
+~~~
+#include <iostream>
+#include <queue>
+#include <algorithm>
+using namespace std;
+int result;
+int step[2][101];//이동경로
+int dx[] = { 0,-1,0,1,0 };
+int dy[] = { 0,0,1,0,-1 };
+int ap[9][11][11];//ap의 정보들
+queue <pair<int, int>> q;
+void go(int m, int a) {
+	int man0[] = { 1,1 };//출발 좌표
+	int man1[] = { 10,10 };
+	for (int i = 0; i <= m; i++) {
+		man0[0] += dx[step[0][i]];//y
+		man0[1] += dy[step[0][i]];//x
+		man1[0] += dx[step[1][i]];//y
+		man1[1] += dy[step[1][i]];//x
+		int cnt0 = 0;
+		int cnt1 = 0;
+		int max0 = 0;
+		int max1 = 0;
+		int maxk0 = 0;//p가 제일쎈 ap
+		int maxk1 = 0;
+		int temp0[9] = { 0, };//충전범위에 닿는 ap들의 p를 다 넣는다.
+		int temp1[9] = { 0, };
+		for (int k = 0; k < a; k++) {
+			if (ap[k][man0[0]][man0[1]] != 0) {
+				temp0[cnt0] = ap[k][man0[0]][man0[1]];//temp0배열에 k번째 ap의 p 입력
+				cnt0++;
+				if (max0 < ap[k][man0[0]][man0[1]]) {
+					max0 = ap[k][man0[0]][man0[1]];//가장큰 ap의 p
+					maxk0 = k;//가장큰 ap 종류
+				}
+			}
+			if (ap[k][man1[0]][man1[1]] != 0) {
+				temp1[cnt1] = ap[k][man1[0]][man1[1]];
+				cnt1++;
+				if (max1 < ap[k][man1[0]][man1[1]]) {
+					max1 = ap[k][man1[0]][man1[1]];
+					maxk1 = k;
+				}
+			}
+		}
+		if (max0 == max1&&maxk0==maxk1) {//두 max가 같은 ap종류이면
+			result += max0;//일단 p하나 입력
+			if (cnt0 > 1 && cnt1 > 1) {//둘 다 범위 안에 있는 ap가 두개 이상이면
+				sort(temp0, temp0 + cnt0, greater<int>());//내림차순 정렬 후
+				sort(temp1, temp1 + cnt1, greater<int>());
+				int temp = temp0[1] > temp1[1] ? temp0[1] : temp1[1];//두번째가 더큰 ap를 result에 더해준다
+				result += temp;
+			}
+			else {
+				if (cnt0 > 1) {//0번 사람이 범위 안에 있는 ap가 두개이상이면
+					sort(temp0, temp0 + cnt0, greater<int>());//내림차순 정렬 후
+					result += temp0[1];//두번째 녀석을 ap에 더해준다
+				}
+				if (cnt1 > 1) {
+					sort(temp1, temp1 + cnt1, greater<int>());
+					result += temp1[1];
+				}
+			}
+		}
+		else result = result + max0 + max1;//두 max가 다른 종류면 둘다result에 더해준다
+	}
+}
+void bfs(int num, int c, int p) {//각각 ap마다 정보들 입력
+	while (c--) {//c범위만큼 p퍼트린다
+		int size = q.size();
+		for (int i = 0; i < size; i++) {
+			int x = q.front().first;
+			int y = q.front().second;
+			q.pop();
+			for (int j = 1; j < 5; j++) {
+				int nx = x + dx[j];
+				int ny = y + dy[j];
+				if (nx >= 1 && ny >= 1 && nx < 11 && ny < 11 && ap[num][nx][ny] == 0) {
+					ap[num][nx][ny] = p;
+					q.push(make_pair(nx, ny));
+				}
+			}
+		}
+	}
+	while (!q.empty()) q.pop();//큐초기화
+}
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	int test_case;
+	cin >> test_case;
+	for (int t = 1; t <= test_case; t++) {
+		//start
+		int m, a;
+		int x, y, c, p;
+		result = 0;
+		cin >> m >> a;
+		for (int i = 0; i < 2; i++) {
+			for (int j = 1; j <= m; j++) {
+				cin >> step[i][j];
+			}
+		}
+		for (int i = 0; i < a; i++) {
+			for (int j = 1; j < 11; j++) {
+				for (int k = 1; k < 11; k++) {
+					ap[i][j][k] = 0;//초기화
+				}
+			}
+			cin >> x >> y >> c >> p;
+			q.push(make_pair(y, x));
+			ap[i][y][x] = p;//bfs시작지점 미리 p로 입력
+			bfs(i, c, p);
+		}
+		go(m, a);
+		//end
+		cout << '#' << t << ' ' << result << '\n';
+	}
+}
+~~~
+
+
+
+
+- **혼잣말**
+
+하... 이게 좌표를 하는데 헷갈려서 시간을 많이 날렸다..  
+평소에 x를 y축으로, y를 x축으로하여 코딩을했었는데 여기선 x축과 y축도 나오니까 좀 헷갈려부렀다..  
+겨우 좌표문제는 해결했는데  
+ap들 조건에따라 다르게 계산하는 과정에서 많은 조건을 생각해야했기때문에  
+또 많은 시간이 걸렸다.. 이런게 나한텐 좀 약한거같다  
+생각할게 너무 많아서 헷갈려부러...후  
+
