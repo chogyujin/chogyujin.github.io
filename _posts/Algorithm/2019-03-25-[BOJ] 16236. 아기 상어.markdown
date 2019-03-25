@@ -1,0 +1,141 @@
+---
+layout: post
+title:  "[BOJ] 16236. 아기 상어"
+date:   2019-03-25 17:51:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/16236  
+
+여기서 제일 중요한건 BFS를 어떻게 돌리느냐인 것 같습니다.  
+
+처음엔 단순히 상우좌하 순서로 돌리면 되겠지 하다가 헤매고말았습니다.  
+
+여기선 같은 범위 내에 BFS를 모두 돌려서 먹이를 모두 체크한 다음,  
+
+그때서야 상어를 이동시켜야합니다.  
+
+나머지는 일반적인 BFS문제랑 비슷하므로 어려움 없이 해결하실 수 있을겁니다.  
+
+
+~~~
+#include <iostream>
+#include <queue>
+using namespace std;
+int n;
+int map[21][21];
+int sharkSize = 2;
+int resultTime;//최종 걸린 시간
+int eatCnt = 0;//먹은횟수(성장하면 다시0으로초기화)
+int sx, sy;//시작좌표
+int dx[] = { -1,0,0,1 };//***이건 상관없다!!!
+int dy[] = { 0,-1,1,0 };
+queue <pair<int, int>> q;
+bool ch[21][21];
+bool bfs() {
+	bool eat = false;
+	int time = 0;//먹으러갈때 걸린 시간
+	int gox = 0, goy = 0;//최종적으로 갈 좌표
+	q.push(make_pair(sx, sy));
+	ch[sx][sy] = true;
+	while (!q.empty()) {
+		time++;
+		int size = q.size();
+		while (size--) {
+			int x = q.front().first;
+			int y = q.front().second;
+			q.pop();
+			for (int i = 0; i < 4; i++) {
+				int nx = x + dx[i];
+				int ny = y + dy[i];
+				if (nx >= 0 && ny >= 0 && nx < n&&ny < n
+					&&ch[nx][ny] == false && map[nx][ny] <= sharkSize) {
+					ch[nx][ny] = true;
+					if (map[nx][ny] == sharkSize || map[nx][ny] == 0) {//그냥 지나가고
+						q.push(make_pair(nx, ny));
+					}
+					else {//작은 애들은 먹는다
+						if (eat == false) {//처음먹는거면 일단 좌표 저장
+							gox = nx;
+							goy = ny;
+						}
+						else {//두번째 발견한 녀석이면 비교 후 더 가까운 녀석으로
+							if (nx < gox) {//제일 윗 녀석
+								gox = nx;
+								goy = ny;
+							}
+							else if (nx == gox && ny < goy) {//같은 위이면 제일 왼쪽 녀석
+								gox = nx;
+								goy = ny;
+							}
+						}
+						eat = true;
+					}
+				}
+			}
+		}
+		if (eat) {//같은 범위 내 먹이를 모두 확인했으면
+			eatCnt += 1;
+			map[gox][goy] = 9;//상어 이동
+			map[sx][sy] = 0;
+			sx = gox;
+			sy = goy;
+			resultTime += time;
+			if (eatCnt == sharkSize) {//크기가 같아졌으면 성장
+				eatCnt = 0;
+				sharkSize += 1;
+			}
+			//--초기화
+			while (!q.empty())q.pop();
+			for (int cleari = 0; cleari < n; cleari++) {
+				for (int clearj = 0; clearj < n; clearj++) {
+					ch[cleari][clearj] = false;
+				}
+			}
+			return true;
+		}
+	}
+	return false;
+}
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	cin >> n;
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			cin >> map[i][j];
+			if (map[i][j] == 9) {
+				sx = i;//시작좌표 저장
+				sy = j;
+			}
+		}
+	}
+	while (1) {
+		if (!bfs()) {//못먹었으면 엄마불러야지
+			cout << resultTime << '\n';
+			break;
+		}
+	}
+	return 0;
+}
+~~~
+
+
+
+
+- **나 혼자 말하고 나 혼자 듣는 말**
+
+하.. 처음에 진짜 얼탱이 없는걸로 헤매서 개빡..  
+ch[nx][ny] = true; 라했어야했는데  
+ch[nx][ny] == true; 로하고 한참을찾았다... ㅋㅋㅋ;;; 넘나한심...  
+겨우 해결했더니  
+테케 4에서걸리고... 테케 4를통해 단순히 상좌우북으로 BFS돌렸던걸 고쳤다  
+어쩐지 너무 쉽다했어... 후..  
+이거 고치고나니 해겨어어얼~~~~  
+평소에 x를 y축으로, y를 x축으로하여 코딩을했었는데 여기선 x축과 y축도 나오니까 좀 헷갈려부렀다..  
+겨우 좌표문제는 해결했는데  
+ap들 조건에따라 다르게 계산하는 과정에서 많은 조건을 생각해야했기때문에  
+또 많은 시간이 걸렸다.. 이런게 나한텐 좀 약한거같다  
+생각할게 너무 많아서 헷갈려부러...후  
+
