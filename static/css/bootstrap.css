@@ -8,6 +8,7 @@ html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
+  tab-size : 4;
 }
 body {
   margin: 0;
@@ -108,6 +109,7 @@ pre,
 samp {
   font-family: monospace, monospace;
   font-size: 1em;
+  tab-size : 4;
 }
 button,
 input,
@@ -2548,6 +2550,7 @@ output {
   font-size: 14px;
   line-height: 1.42857143;
   color: #555;
+  tab-size : 4;
 }
 .form-control {
   display: block;
