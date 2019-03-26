@@ -1,0 +1,140 @@
+---
+layout: post
+title:  "[BOJ] 16235. 나무 재테크"
+date:   2019-03-25 17:51:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/16235  
+
+
+시뮬레이션이기 때문에 요구대로 코딩하시면 됩니다.  
+
+우선 저가 처음 문제이해를 잘못한 부분을 말씀드리자면  
+
+무조건 봄부터 시작하는 것이고, x,y는 r,c와 마찬가지로 x번째줄, y번째를 의미합니다.  
+(쎈쓰있는 사람은 바로 아셨겠지만 전 쎈쓰가 없어서 명시해주지않으면 ㅎㅎ;;)
+
+전 다른 계절은 구현이 쉽지만, 봄을 살짝 고민해야 됐습니다.  
+
+전 우선순위큐를 사용하여 봄을 해결했습니다.  
+
+어린 나무를 먼저 먹여야했기때문에 정렬이 필요했고,  
+
+꺼내고 판단 후 다시 집어넣는 큐의 역할이 필요했기 때문에 우선순위큐가 제격이었습니다.  
+
+한가지 단점은 `봄`에서 우선순위큐를 꺼내고 바로 다시 집어 넣었다간  
+
+큐에서 정렬이되어 k가 많은 애는 절대 꺼내질 수없기 때문에  
+
+다 꺼낸 녀석을 다른 큐에 넣고 다시 한꺼번에 집어넣어야하는 번거로움이 있었습니다.  
+
+이것을 해결하니 나머지는 알아서 척!척!척! 해결됐습니다.  
+
+
+~~~
+#include<iostream>
+#include <queue>
+using namespace std;
+int n, m, k;
+int a[11][11];
+int map[11][11];
+struct TreeInfo {
+	int x;
+	int y;
+	int z;
+};
+priority_queue <TreeInfo> tree;
+queue <TreeInfo> dieTree;
+queue <TreeInfo> breedTree;
+bool operator<(TreeInfo a, TreeInfo b) {//z에 따른 정렬위해(z 작은놈부터나온다)
+	return a.z > b.z;
+}
+void winter() {
+	for (int i = 1; i <= n; i++)
+		for (int j = 1; j <= n; j++)
+			map[i][j] += a[i][j];
+}
+void fall() {
+	int dx[] = { -1,-1,-1,0,0,1,1,1 };
+	int dy[] = { -1,0,1,-1,1,-1,0,1 };
+	while (!breedTree.empty()) {
+		int x = breedTree.front().x;
+		int y = breedTree.front().y;
+		breedTree.pop();
+		for (int i = 0; i < 8; i++) {
+			int nx = x + dx[i];
+			int ny = y + dy[i];
+			if (nx >= 1 && ny >= 1 && nx <= n && ny <= n) {
+				tree.push({ nx,ny,1 });
+			}
+		}
+	}
+}
+void summer() {
+	while (!dieTree.empty()) {
+		int x = dieTree.front().x;
+		int y = dieTree.front().y;
+		int z = dieTree.front().z;
+		dieTree.pop();
+		map[x][y] += z / 2;
+	}
+}
+void spring() {
+	queue <TreeInfo> q;//q에 잠시 넣었다가 tree우선순위큐에 넣기위해
+	//(우선순위큐라 아래 반복문을 하면 계속 z가낮은 애만 가져오게 됨
+	while (!tree.empty()) {
+		int x = tree.top().x;
+		int y = tree.top().y;
+		int z = tree.top().z;
+		tree.pop();
+		if (map[x][y] >= z) {//먹을 수 있다면
+			map[x][y] -= z;
+			z += 1;
+			q.push({ x,y,z });
+			if (z % 5 == 0) breedTree.push({ x,y,z });//5의 배수라면
+		}
+		else dieTree.push({ x,y,z });//못 먹어서 죽는다면
+	}
+	while (!q.empty()) {//다시 우선순위 큐에 고고
+		int x = q.front().x;
+		int y = q.front().y;
+		int z = q.front().z;
+		q.pop();
+		tree.push({ x,y,z });
+	}
+}
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	cin >> n >> m >> k;
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= n; j++) {
+			cin >> a[i][j];
+			map[i][j] = 5;
+		}
+	}
+	for (int i = 0; i < m; i++) {
+		int tx, ty, tz;
+		cin >> tx >> ty >> tz;
+		tree.push({ tx,ty,tz });//우선순위 큐에 나무 정보 입력
+	}
+	for (int i = 0; i < k; i++) {
+		spring();
+		summer();
+		fall();
+		winter();
+	}
+	cout << tree.size();
+	return 0;
+}
+~~~
+
+
+
+
+- **나 혼자 말하고 나 혼자 듣는 말**
+
+우선순위큐 처음 사용했는데 이렇게 좋은걸 이번 기회에 알게돼서 너무 기쁘다.  
+확실히 익혀서 다음에 또 써야지  
