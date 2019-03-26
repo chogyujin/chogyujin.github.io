@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "2.6 DMA(Direct Memory Access)"
-date:   2019-03-22 11:52:54
+date:   2019-03-26 19:52:54
 categories: OS
 comments: true
 ---
