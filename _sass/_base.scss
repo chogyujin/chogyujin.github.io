@@ -1,204 +1,99 @@
 /**
- * Reset some basic elements
+ * Syntax highlighting styles
  */
-body, h1, h2, h3, h4, h5, h6,
-p, blockquote, pre, hr,
-dl, dd, ol, ul, figure {
-    margin: 0;
-    padding: 0;
-}
-
-
-
-/**
- * Basic styling
- */
-body {
-    font-family: $base-font-family;
-    font-size: $base-font-size;
-    line-height: $base-line-height;
-    font-weight: 300;
-    color: $text-color;
-    background-color: $background-color;
-    -webkit-text-size-adjust: 100%;
-}
-
-
-
-/**
- * Set `margin-bottom` to maintain vertical rhythm
- */
-h1, h2, h3, h4, h5, h6,
-p, blockquote, pre,
-ul, ol, dl, figure,
-%vertical-rhythm {
-    margin-bottom: $spacing-unit / 2;
-}
-
-
-
-/**
- * Images
- */
-img {
-    max-width: 100%;
-    vertical-align: middle;
-}
-
-
-
-/**
- * Figures
- */
-figure > img {
-    display: block;
-}
-
-figcaption {
-    font-size: $small-font-size;
-}
-
-
-
-/**
- * Lists
- */
-ul, ol {
-    margin-left: $spacing-unit;
-}
-
-li {
-    > ul,
-    > ol {
-         margin-bottom: 0;
-    }
-}
-
-
-
-/**
- * Headings
- */
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 300;
-}
-
-
-
-/**
- * Links
- */
-a {
-    color: $brand-color;
-    text-decoration: none;
-
-    &:visited {
-        color: darken($brand-color, 15%);
-    }
-
-    &:hover {
-        color: $text-color;
-        text-decoration: underline;
-    }
-}
-
-
-
-/**
- * Blockquotes
- */
-blockquote {
-    color: $grey-color;
-    border-left: 4px solid $grey-color-light;
-    padding-left: $spacing-unit / 2;
-    font-size: 18px;
-    letter-spacing: -1px;
-    font-style: italic;
-
-    > :last-child {
-        margin-bottom: 0;
-    }
-}
-
-
-
-/**
- * Code formatting
- */
-pre,
-code {
-    font-size: 15px;
-    border: 1px solid $grey-color-light;
+code{
+    padding: 1px 4px;
+    margin: 0 2px;
+    font-size: 90%;
     border-radius: 3px;
-    background-color: #eef;
-}
-
-code {
-    padding: 1px 5px;
+    color: #000;
+    background-color: rgba(0, 0, 0, 0.06);
+    border: 1px solid #d7d0d2;
+    font-family: Monaco,Menlo,"Microsoft YaHei Mono",Consolas,"Courier New",monospace,sans-serif;
 }
 
 pre {
-    padding: 8px 12px;
-    overflow-x: scroll;
-
-    > code {
-        border: 0;
-        padding-right: 0;
-        padding-left: 0;
-    }
+    margin: 12px 0;
+     padding: 8px 12px;
+    //  overflow-x: auto;
+     word-wrap: break-word;      /* IE 5.5-7 */
+     white-space: -moz-pre-wrap; /* Firefox 1.0-2.0 */
+     white-space: pre-wrap;      /* current browsers */
+     > code {
+         margin: 0;
+         padding: 0;
+        font-size: 13px;
+        color:#d1d1c9;
+        border: none;
+        background-color: #272822
+     }
 }
 
+.highlight {
+    border-radius: 3px;
 
-
-/**
- * Wrapper
- */
-.wrapper {
-    max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
-    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
-    margin-right: auto;
-    margin-left: auto;
-    padding-right: $spacing-unit;
-    padding-left: $spacing-unit;
-    @extend %clearfix;
-
-    @include media-query($on-laptop) {
-        max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
-        max-width:         calc(#{$content-width} - (#{$spacing-unit}));
-        padding-right: $spacing-unit / 2;
-        padding-left: $spacing-unit / 2;
-    }
-}
-
-
-
-/**
- * Clearfix
- */
-%clearfix {
-
-    &:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-}
-
-
-
-/**
- * Icons
- */
-.icon {
-
-    > svg {
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        vertical-align: middle;
-
-        path {
-            fill: $grey-color;
-        }
-    }
+    background: #272822;
+    .hll { background-color: #272822; }
+    .c { color: #75715e } /* Comment */
+    .err { color: #960050; background-color: #1e0010 } /* Error */
+    .k { color: #66d9ef } /* Keyword */
+    .l { color: #ae81ff } /* Literal */
+    .n { color: #f8f8f2 } /* Name */
+    .o { color: #f92672 } /* Operator */
+    .p { color: #f8f8f2 } /* Punctuation */
+    .cm { color: #75715e } /* Comment.Multiline */
+    .cp { color: #75715e } /* Comment.Preproc */
+    .c1 { color: #75715e } /* Comment.Single */
+    .cs { color: #75715e } /* Comment.Special */
+    .ge { font-style: italic } /* Generic.Emph */
+    .gs { font-weight: bold } /* Generic.Strong */
+    .kc { color: #66d9ef } /* Keyword.Constant */
+    .kd { color: #66d9ef } /* Keyword.Declaration */
+    .kn { color: #f92672 } /* Keyword.Namespace */
+    .kp { color: #66d9ef } /* Keyword.Pseudo */
+    .kr { color: #66d9ef } /* Keyword.Reserved */
+    .kt { color: #66d9ef } /* Keyword.Type */
+    .ld { color: #e6db74 } /* Literal.Date */
+    .m { color: #ae81ff } /* Literal.Number */
+    .s { color: #e6db74 } /* Literal.String */
+    .na { color: #a6e22e } /* Name.Attribute */
+    .nb { color: #f8f8f2 } /* Name.Builtin */
+    .nc { color: #a6e22e } /* Name.Class */
+    .no { color: #66d9ef } /* Name.Constant */
+    .nd { color: #a6e22e } /* Name.Decorator */
+    .ni { color: #f8f8f2 } /* Name.Entity */
+    .ne { color: #a6e22e } /* Name.Exception */
+    .nf { color: #a6e22e } /* Name.Function */
+    .nl { color: #f8f8f2 } /* Name.Label */
+    .nn { color: #f8f8f2 } /* Name.Namespace */
+    .nx { color: #a6e22e } /* Name.Other */
+    .py { color: #f8f8f2 } /* Name.Property */
+    .nt { color: #f92672 } /* Name.Tag */
+    .nv { color: #f8f8f2 } /* Name.Variable */
+    .ow { color: #f92672 } /* Operator.Word */
+    .w { color: #f8f8f2 } /* Text.Whitespace */
+    .mf { color: #ae81ff } /* Literal.Number.Float */
+    .mh { color: #ae81ff } /* Literal.Number.Hex */
+    .mi { color: #ae81ff } /* Literal.Number.Integer */
+    .mo { color: #ae81ff } /* Literal.Number.Oct */
+    .sb { color: #e6db74 } /* Literal.String.Backtick */
+    .sc { color: #e6db74 } /* Literal.String.Char */
+    .sd { color: #e6db74 } /* Literal.String.Doc */
+    .s2 { color: #e6db74 } /* Literal.String.Double */
+    .se { color: #ae81ff } /* Literal.String.Escape */
+    .sh { color: #e6db74 } /* Literal.String.Heredoc */
+    .si { color: #e6db74 } /* Literal.String.Interpol */
+    .sx { color: #e6db74 } /* Literal.String.Other */
+    .sr { color: #e6db74 } /* Literal.String.Regex */
+    .s1 { color: #e6db74 } /* Literal.String.Single */
+    .ss { color: #e6db74 } /* Literal.String.Symbol */
+    .bp { color: #f8f8f2 } /* Name.Builtin.Pseudo */
+    .vc { color: #f8f8f2 } /* Name.Variable.Class */
+    .vg { color: #f8f8f2 } /* Name.Variable.Global */
+    .vi { color: #f8f8f2 } /* Name.Variable.Instance */
+    .il { color: #ae81ff } /* Literal.Number.Integer.Long */
+    .gh { } /* Generic Heading & Diff Header */
+    .gu { color: #75715e; } /* Generic.Subheading & Diff Unified/Comment? */
+    .gd { color: #f92672; } /* Generic.Deleted & Diff Deleted */
+    .gi { color: #a6e22e; } /* Generic.Inserted & Diff Inserted */
 }
