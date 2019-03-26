@@ -5,7 +5,6 @@ date:   2019-02-07 18:48:54
 categories: Algorithm
 comments: true
 ---
-
 https://www.acmicpc.net/problem/10828
 
 STL을 사용해서 구현하는 것도 방법이지만 STL을 안쓰고 구현해보는 것도 좋은 것 같습니다. 삼성같은 경우 STL을 허용하지만 STL을 허용하지 않는 기업도 있기 때문에 한번 코딩해보는 것도 나쁘지 않은 것 같습니다.

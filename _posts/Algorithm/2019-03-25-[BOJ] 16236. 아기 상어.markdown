@@ -116,7 +116,7 @@ int main() {
 			cout << resultTime << '\n';
 			break;
 		}
-	}
+	} 
 	return 0;
 }
 ~~~
