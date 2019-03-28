@@ -26,11 +26,11 @@ https://book.naver.com/bookdb/book_detail.nhn?bid=4392911
 - [2.3 인터럽트의 일반적 기능](https://chogyujin.github.io/2019/03/19/2.3-%EC%9D%B8%ED%84%B0%EB%9F%BD%ED%8A%B8%EC%9D%98-%EC%9D%BC%EB%B0%98%EC%A0%81-%EA%B8%B0%EB%8A%A5/)
 - [2.4 인터럽트 핸들링](https://chogyujin.github.io/2019/03/19/2.4-%EC%9D%B8%ED%84%B0%EB%9F%BD%ED%8A%B8-%ED%95%B8%EB%93%A4%EB%A7%81/)
 - [2.5 입출력 구조](https://chogyujin.github.io/2019/03/22/2.5-%EC%9E%85%EC%B6%9C%EB%A0%A5-%EA%B5%AC%EC%A1%B0/)
-- 2.6 DMA(Direct Memory Access)
-- 2.7 저장 장치의 구조
-- 2.8 저장 장치의 계층 구조
-- 2.9 하드웨어의 보안
-- 2.10 메모리 보안
+- [2.6 DMA(Direct Memory Access)](https://chogyujin.github.io/2019/03/26/2.6-DMA(Direct-Memory-Access)/)
+- [2.7 저장 장치의 구조](https://chogyujin.github.io/2019/03/26/2.7-%EC%A0%80%EC%9E%A5-%EC%9E%A5%EC%B9%98%EC%9D%98-%EA%B5%AC%EC%A1%B0/)
+- [2.8 저장 장치의 계층 구조](https://chogyujin.github.io/2019/03/26/2.8-%EC%A0%80%EC%9E%A5-%EC%9E%A5%EC%B9%98%EC%9D%98-%EA%B3%84%EC%B8%B5-%EA%B5%AC%EC%A1%B0/)
+- [2.9 하드웨어의 보안](https://chogyujin.github.io/2019/03/26/2.9-%ED%95%98%EB%93%9C%EC%9B%A8%EC%96%B4%EC%9D%98-%EB%B3%B4%EC%95%88/)
+- [2.10 메모리 보안](https://chogyujin.github.io/2019/03/26/2.10-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%B3%B4%EC%95%88/)
 - 2.11 CPU 보호
 - 2.12 시스템 콜을 이용한 입출력 수행
 
