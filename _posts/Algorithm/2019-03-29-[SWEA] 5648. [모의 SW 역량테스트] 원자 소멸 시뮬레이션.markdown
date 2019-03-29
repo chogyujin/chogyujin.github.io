@@ -18,7 +18,9 @@ https://www.swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId
 
 저 같은 경우 1.반대방향에서 충돌 시, 2. 다른 방향에서 충돌 시 이렇게 2가지 충돌을 나눠서 풀었습니다.  
 
-1. 반대방향에서 충돌 시(x.5초 후 충돌)  
+---
+
+**1.반대방향에서 충돌 시(x.5초 후 충돌)**  
 
 매순간 모든 원자들이 한칸씩 이동하는데 이동하는 자리에 원자가 있을 경우, 이 원자가 방향이 반대 방향이면 x.5초 충돌로 판단했습니다.  
 
@@ -26,7 +28,7 @@ https://www.swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId
 
 먼저 반대방향 충돌을 판단 후 그다음 나머지 방향에서 충돌을 판단했습니다.  
 
-2. 다른 방향에서 충돌 시  
+**2.다른 방향에서 충돌 시**  
 
 따로 nmap(next map)이라는 배열을 만들어 이동 후 좌표를 임시로 nmap에 넣어 줬습니다.  
 
@@ -56,8 +58,8 @@ int nmap[2002][2002];
 int dx[] = { 0,0,-1,1 };
 int dy[] = { 1,-1,0,0 };
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
+    ios::sync_with_stdio(0);
+    cin.tie(0);
 	int test_case;
 	cin >> test_case;
 	for (int t = 1; t <= test_case; t++) {
