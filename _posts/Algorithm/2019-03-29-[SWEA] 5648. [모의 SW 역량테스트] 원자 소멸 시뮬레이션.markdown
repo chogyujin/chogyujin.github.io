@@ -44,7 +44,7 @@ https://www.swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId
 
 결과값을 도출했습니다.  
 
-~~~
+~~~cpp
 #include <iostream>
 using namespace std;
 struct atomInfo {
@@ -58,8 +58,8 @@ int nmap[2002][2002];
 int dx[] = { 0,0,-1,1 };
 int dy[] = { 1,-1,0,0 };
 int main() {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
+	ios::sync_with_stdio(0);
+	cin.tie(0);
 	int test_case;
 	cin >> test_case;
 	for (int t = 1; t <= test_case; t++) {
