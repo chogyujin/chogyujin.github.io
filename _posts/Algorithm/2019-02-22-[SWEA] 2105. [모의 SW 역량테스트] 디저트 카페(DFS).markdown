@@ -46,52 +46,52 @@ int sx, sy;//출발위치
 int dx[] = { 1,1,-1,-1 };// 하우,하좌,상좌,상우
 int dy[] = { 1,-1,-1,1 };
 void dfs(int x, int y, int dir, int cnt) {
-	if (x == sx && y == sy && cnt>1) {//result 출력
-		result = result > cnt ? result : cnt;
-		return;
-	}
-	for (int i = 0; i < 2; i++) {//방향은 2가지만 가면 된다
-		int nx = x + dx[dir + i];
-		int ny = y + dy[dir + i];
-		if (nx >= 0 && ny >= 0 && nx < n&&ny < n && rch[nx][ny] == false && dch[map[nx][ny]] == false) {
-			rch[nx][ny] = true;
-			dch[map[nx][ny]] = true;
-			dfs(nx, ny, dir + i, cnt + 1);
-			rch[nx][ny] = false;
-			dch[map[nx][ny]] = false;
-		}
-		else if (nx == sx && ny == sy) {
-			dfs(nx, ny, dir + i, cnt + 1);
-		}
-	}
+    if (x == sx && y == sy && cnt>1) {//result 출력
+        result = result > cnt ? result : cnt;
+        return;
+    }
+    for (int i = 0; i < 2; i++) {//방향은 2가지만 가면 된다
+        int nx = x + dx[dir + i];
+        int ny = y + dy[dir + i];
+        if (nx >= 0 && ny >= 0 && nx < n&&ny < n && rch[nx][ny] == false && dch[map[nx][ny]] == false) {
+            rch[nx][ny] = true;
+            dch[map[nx][ny]] = true;
+            dfs(nx, ny, dir + i, cnt + 1);
+            rch[nx][ny] = false;
+            dch[map[nx][ny]] = false;
+        }
+        else if (nx == sx && ny == sy) {
+            dfs(nx, ny, dir + i, cnt + 1);
+        }
+    }
 }
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-	int test_case;
-	cin >> test_case;
-	for (int t = 1; t <= test_case; t++) {
-		//start
-		result = -1;
-		cin >> n;
-		memset(dch, false, sizeof(dch));//dch초기화
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				cin >> map[i][j];
-				rch[i][j] = false;//rch 초기화
-			}
-		}
-		for (int i = 0; i < n - 1; i++) {
-			for (int j = 1; j < n - 1; j++) {
-				sx = i;
-				sy = j;
-				dch[map[i][j]] = true;
-				dfs(i, j, 0, 0);
-				dch[map[i][j]] = false;
-			}
-		}
-		cout << '#' << t << ' ' << result << '\n';
-	}
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    int test_case;
+    cin >> test_case;
+    for (int t = 1; t <= test_case; t++) {
+        //start
+        result = -1;
+        cin >> n;
+        memset(dch, false, sizeof(dch));//dch초기화
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                cin >> map[i][j];
+                rch[i][j] = false;//rch 초기화
+            }
+        }
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 1; j < n - 1; j++) {
+                sx = i;
+                sy = j;
+                dch[map[i][j]] = true;
+                dfs(i, j, 0, 0);
+                dch[map[i][j]] = false;
+            }
+        }
+        cout << '#' << t << ' ' << result << '\n';
+    }
 }
 ~~~
 
