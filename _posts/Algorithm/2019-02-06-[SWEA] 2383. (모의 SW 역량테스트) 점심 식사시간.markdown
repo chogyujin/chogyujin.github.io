@@ -47,130 +47,128 @@ struct position {
 position p[11];
 position s[2];//false계단,true계단
 int abs(int x) {
-	return x < 0 ? -x : x;
+    return x < 0 ? -x : x;
 }
 void go() {
-	for (int i = 0; i < pcnt; i++) {//fasle계단은 0번, true계단은 1번
-		int temp;
-		if (ch[i] == 0) {
-			temp = abs(p[i].r - s[0].r) + abs(p[i].c - s[0].c);
-			ptime[0][i] = temp + 1;//각각 소요시간 저장
-		}
-		else {
-			temp = abs(p[i].r - s[1].r) + abs(p[i].c - s[1].c);
-			ptime[1][i] = temp + 1;
-		}
-	}
-	int time = 0;
-	int exit = 0;
-	while (1) {//1분 흐를때마다 체크
-		time++;//시간
-		for (int i = 0; i < pcnt; i++) {
-			if (ptime[0][i] >= 0) {//0번계단
-				ptime[0][i]--;//위에 있는 사람들 소요시간을 -1씩
-				if (ptime[0][i] == 0) {//0이라는건 계단에 도착했다는 뜻이므로
-					if (q[0].size() < 3) {//큐,즉 계단 안사람들이 3미만인 경우만
-						if (quick[i] == true) {//★★★quick배열을 통해 대기했던 사람은 -1해서 시작
-							q[0].push(s[0].stair - 1);
-						}
-						else q[0].push(s[0].stair);//대기 안했던 사람은 그냥 들어감
-					}
-					else {//★★★계단에 공간생기자마자 바로들어가야되는데 1분뒤에들어가므로
-						ptime[0][i]++;//이건 그냥 위에서 다시0으로만들어줘야하므로
-						quick[i] = true;//여기서 대기인사람을 true로 표시해논다
-					}
-				}
-			}
-			else if (ptime[1][i] >= 0) {//1
-				ptime[1][i]--;
-				if (ptime[1][i] == 0) {
-					if (q[1].size() < 3) {
-						if (quick[i] == true) {
-							q[1].push(s[1].stair - 1);
-						}
-						else q[1].push(s[1].stair);
-					}
-					else {
-						ptime[1][i]++;
-						quick[i] = true;
-					}
-				}
-			}
-		}
+    for (int i = 0; i < pcnt; i++) {//fasle계단은 0번, true계단은 1번
+        int temp;
+        if (ch[i] == 0) {
+            temp = abs(p[i].r - s[0].r) + abs(p[i].c - s[0].c);
+            ptime[0][i] = temp + 1;//각각 소요시간 저장
+        }
+        else {
+            temp = abs(p[i].r - s[1].r) + abs(p[i].c - s[1].c);
+            ptime[1][i] = temp + 1;
+        }
+    }
+    int time = 0;
+    int exit = 0;
+    while (1) {//1분 흐를때마다 체크
+        time++;//시간
+        for (int i = 0; i < pcnt; i++) {
+            if (ptime[0][i] >= 0) {//0번계단
+                ptime[0][i]--;//위에 있는 사람들 소요시간을 -1씩
+                if (ptime[0][i] == 0) {//0이라는건 계단에 도착했다는 뜻이므로
+                    if (q[0].size() < 3) {//큐,즉 계단 안사람들이 3미만인 경우만
+                        if (quick[i] == true) {//★★★quick배열을 통해 대기했던 사람은 -1해서 시작
+                            q[0].push(s[0].stair - 1);
+                        }
+                        else q[0].push(s[0].stair);//대기 안했던 사람은 그냥 들어감
+                    }
+                    else {//★★★계단에 공간생기자마자 바로들어가야되는데 1분뒤에들어가므로
+                        ptime[0][i]++;//이건 그냥 위에서 다시0으로만들어줘야하므로
+                        quick[i] = true;//여기서 대기인사람을 true로 표시해논다
+                    }
+                }
+            }
+            else if (ptime[1][i] >= 0) {//1
+                ptime[1][i]--;
+                if (ptime[1][i] == 0) {
+                    if (q[1].size() < 3) {
+                        if (quick[i] == true) {
+                            q[1].push(s[1].stair - 1);
+                        }
+                        else q[1].push(s[1].stair);
+                    }
+                    else {
+                        ptime[1][i]++;
+                        quick[i] = true;
+                    }
+                }
+            }
+        }
 
-		//계단내부
-		int _size0 = q[0].size();
-		for (int j = 0; j < _size0; j++) {//큐 사이즈만큼 반복
-			int temp = q[0].front();
-			q[0].pop();
-			temp--;//큐에서 나온애를 -1해준다.(시간)
-			if (temp == -1) {//temp가 0미만으로 줄었으면 나갔다는 것이므로
-				exit++;//exit는 나간 인원
-				continue;
-			}
-			else q[0].push(temp);//아직 계단에 있는 경우
-		}
-		int _size1 = q[1].size();//1
-		for (int j = 0; j < _size1; j++) {
-			int temp = q[1].front();
-			q[1].pop();
-			temp--;
-			if (temp == -1) {
-				exit++;
-				continue;
-			}
-			else q[1].push(temp);
-		}
-		
-		if (exit == pcnt) {//나간인원과 처음 사람 숫자가 같을 시
-			result = result > time ? time : result;//갱신
-			break;
-		}
-		
-	}
+        //계단내부
+        int _size0 = q[0].size();
+        for (int j = 0; j < _size0; j++) {//큐 사이즈만큼 반복
+            int temp = q[0].front();
+            q[0].pop();
+            temp--;//큐에서 나온애를 -1해준다.(시간)
+            if (temp == -1) {//temp가 0미만으로 줄었으면 나갔다는 것이므로
+                exit++;//exit는 나간 인원
+                continue;
+            }
+            else q[0].push(temp);//아직 계단에 있는 경우
+        }
+        int _size1 = q[1].size();//1
+        for (int j = 0; j < _size1; j++) {
+            int temp = q[1].front();
+            q[1].pop();
+            temp--;
+            if (temp == -1) {
+                exit++;
+                continue;
+            }
+            else q[1].push(temp);
+        }		
+        if (exit == pcnt) {//나간인원과 처음 사람 숫자가 같을 시
+            result = result > time ? time : result;//갱신
+            break;
+        }	
+    }
 }
 void dfs(int idx, int cnt) {//dfs를 통한 완탐
-	memset(ptime, -1, sizeof(ptime));
-	memset(quick, false, sizeof(quick));
-	go();
-	for (int i = idx; i < pcnt; i++) {
-		if (ch[i] == false) {//true계단과 false계단으로 나눔
-			ch[i] = true;
-			dfs(i, cnt + 1);
-			ch[i] = false;
-		}
-	}
+    memset(ptime, -1, sizeof(ptime));
+    memset(quick, false, sizeof(quick));
+    go();
+    for (int i = idx; i < pcnt; i++) {
+        if (ch[i] == false) {//true계단과 false계단으로 나눔
+            ch[i] = true;
+            dfs(i, cnt + 1);
+            ch[i] = false;
+        }
+    }
 }
 int main() {
-	int t;
-	scanf("%d", &t);
-	for (int test_case = 1; test_case <= t; test_case++) {
-		int n;
-		result = 2e9;
-		pcnt = 0;
-		int scnt = 0;
-		memset(p, 0, sizeof(p));
-		memset(s, 0, sizeof(s));
-		scanf("%d", &n);
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				scanf("%d", &map[i][j]);
-				if (map[i][j] == 1) {//사람 위치 저장
-					p[pcnt].r = i;
-					p[pcnt].c = j;
-					pcnt++;//사람숫자
-				}
-				else if (map[i][j] >= 2) {//계단 위치 저장
-					s[scnt].r = i;
-					s[scnt].c = j;
-					s[scnt].stair = map[i][j];//계단 소요시간 저장
-					scnt++;
-				}
-			}
-		}
-		dfs(0, 0);
-		printf("#%d %d\n", test_case, result);
-	}
+    int t;
+    scanf("%d", &t);
+    for (int test_case = 1; test_case <= t; test_case++) {
+        int n;
+        result = 2e9;
+        pcnt = 0;
+        int scnt = 0;
+        memset(p, 0, sizeof(p));
+        memset(s, 0, sizeof(s));
+        scanf("%d", &n);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                scanf("%d", &map[i][j]);
+                if (map[i][j] == 1) {//사람 위치 저장
+                    p[pcnt].r = i;
+                    p[pcnt].c = j;
+                    pcnt++;//사람숫자
+                }
+                else if (map[i][j] >= 2) {//계단 위치 저장
+                    s[scnt].r = i;
+                    s[scnt].c = j;
+                    s[scnt].stair = map[i][j];//계단 소요시간 저장
+                    scnt++;
+                }
+            }
+        }
+        dfs(0, 0);
+        printf("#%d %d\n", test_case, result);
+    }
 }
 
 
