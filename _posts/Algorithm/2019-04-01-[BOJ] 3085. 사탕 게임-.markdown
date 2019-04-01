@@ -1,0 +1,112 @@
+---
+layout: post
+title:  "[BOJ] 3085. 사탕 게임"
+date:   2019-04-01 15:47:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/3085  
+
+
+먼저 교환하기 전에 가장 긴 연속 부분을 미리 구해놓고 시작합니다.  
+(모두 교환해봐도 교환하기 전이 제일 길 수 있기 때문)  
+
+그 다음 교환를 할때 전 편의상 세로와 가로를 따로 나눠서 교환했습니다.  
+
+교환할때는 해당 좌표에서 반복문을 통해 같은 색의 위, 아래를 같이 카운트하고  
+
+좌,우를 같이 카운트하여 결과값을 도출 했습니다.  
+
+~~~
+#include <iostream>
+using namespace std;
+int n,result;
+char map[51][51];
+int dx[] = { -1,1,0,0};//상,하,좌,우
+int dy[] = { 0,0,-1,1 };
+void count(int x,int y) {
+    char word = map[x][y];
+    int cnt = 1;
+    for (int dir = 0; dir < 4; dir++) {
+        if (dir == 2) {//상,하 비교가 끝나면 result 갱신
+            //및 cnt초기화, 이제 좌우 시작
+            result = result >= cnt ? result : cnt;
+            cnt = 1;
+        }
+        int nx = x;
+        int ny = y;
+        while (1) {
+            nx += dx[dir];
+            ny += dy[dir];
+            if (nx >= 0 && ny >= 0 && nx < n&&ny < n
+                && map[nx][ny] == word) {
+                cnt += 1;
+            }
+            else break;
+        }
+    }
+    //좌우까지 모두 비교 했으면 다시한번 result 갱신
+    result = result >= cnt ? result : cnt;
+}
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n;
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            cin >> map[i][j];
+    //교환하기 전 제일 긴 연속 부분을 구해논다
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            count(i, j);
+        }
+    }
+    //세로교환
+    for (int i = 0; i < n-1; i++) {
+        for (int j = 0; j < n; j++) {
+            char first = map[i][j];
+            char second = map[i + 1][j];
+            if (first != second) {
+                map[i][j] = second;
+                map[i + 1][j] = first;
+                
+                count(i,j);
+                count(i+1,j);
+
+                map[i][j] = first;
+                map[i + 1][j] = second;
+            }
+        }
+    }
+    //가로 교환
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n-1; j++) {
+            char first = map[i][j];
+            char second = map[i][j+1];
+            if (first != second) {
+                map[i][j] = second;
+                map[i][j+1] = first;
+
+                count(i, j);
+                count(i, j + 1);
+
+                map[i][j] = first;
+                map[i][j+1] = second;
+            }
+        }
+    }
+    cout << result;
+    return 0;
+}
+~~~
+
+
+
+
+- **나 혼자 말하고 나 혼자 듣는 말**
+
+정답률 보고 겁먹어서 DFS나 BFS로 풀어야 되는 줄 알았는데  
+방법이 간단해서 당황했다....  
+1시간 반... 이런 문제에도 많은 시간을 투자한 자신을 반성..  
+
