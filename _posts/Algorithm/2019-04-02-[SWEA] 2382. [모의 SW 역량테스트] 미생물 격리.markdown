@@ -8,6 +8,9 @@ comments: true
 
 https://www.swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV597vbqAH0DFAVl&  
 
+
+약친 곳이나 미생물의 이동은 코드를 참고하시면 되겠습니다.  
+
 미생물 격리에서 유의할 점은 서로 겹칠 때를 판단하는 것 입니다.  
 
 저는 두가지 방법으로 문제를 풀었습니다.  
@@ -24,9 +27,7 @@ https://www.swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId
 
 단점은 머리를 좀 굴려야해서 실수가 발생할 수 있다는 점...ㅎㅎ;;  
 
----
 
-겹치는 건 이렇게 판단하시면 되고, 나머지 약친 곳이나 미생물의 이동은 코드를 참고하시면 되겠습니다.  
 
 #### 1.sort를 하여 우선순위를 정한 후 판단  
 
@@ -214,5 +215,5 @@ int main() {
 
 - **나 혼자 말하고 나 혼자 듣는 말**
 
-쉬웠는데... 실수를 많이해서 1시간 걸렸다...ㅠㅠㅠ  
+....
 
