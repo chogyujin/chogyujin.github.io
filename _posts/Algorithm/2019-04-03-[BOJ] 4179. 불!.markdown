@@ -1,0 +1,103 @@
+---
+layout: post
+title:  "[BOJ] 4179. 불!"
+date:   2019-04-03 17:30:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/4179  
+
+
+지훈이의 BFS와 불의 BFS 총 2번 돌려서 문제를 해결했습니다.  
+
+여기서 중요한 건 같은 depth일 때 그 중 불을 먼저 BFS 돌려야한다는 것입니다.  
+
+지훈이가 불을 만남을 판단할 때 불이 먼저 퍼져야 그 자리를 같은 depth에 안가기 때문입니다.  
+
+이것만 유의하시고 지훈이가 외곽에 도착 시 depth를 결과로 출력하면 끝~~  
+(전 depth를 time 변수에 저장했습니다.)  
+
+~~~
+#include <iostream>
+#include <queue>
+using namespace std;
+int r, c;
+char map[1001][1001];
+struct Info {
+    int x;
+    int y;
+};
+queue <Info> jihun;
+queue <Info> fire;
+int dx[] = { -1,1,0,0 };
+int dy[] = { 0,0,-1,1 };
+void bfs() {
+    int time = 0;
+    int maxSize = r > c ? r : c;
+    while (1) {
+        time++;
+        int fSize = fire.size();
+        int jSize = jihun.size();
+        //불
+        for (int i = 0; i < fSize; i++) {
+            int x = fire.front().x;
+            int y = fire.front().y;
+            fire.pop();
+            for (int j = 0; j < 4; j++) {
+                int nx = x + dx[j];
+                int ny = y + dy[j];
+                if (nx >= 0 && ny >= 0 && nx < r&&ny < c
+                    &&map[nx][ny] == '.') {
+                    map[nx][ny] = 'F';
+                    fire.push({ nx,ny });
+                }
+            }
+        }
+        //지훈
+        for (int i = 0; i < jSize; i++) {
+            int x = jihun.front().x;
+            int y = jihun.front().y;
+            if (x == 0 || y == 0 || x == r - 1 || y == c - 1) {
+                cout << time;
+                return;
+            }
+            jihun.pop();
+            for (int j = 0; j < 4; j++) {
+                int nx = x + dx[j];
+                int ny = y + dy[j];
+                if (map[nx][ny] == '.') {
+                    map[nx][ny] = 'J';
+                    jihun.push({ nx,ny });
+                }
+            }
+        }
+        if (jihun.empty()) {//지훈의 큐가 비어있으면
+            cout << "IMPOSSIBLE";
+            return;
+        }
+    }
+}
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    char ch;
+    cin >> r >> c;
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            cin >> map[i][j];
+            if (map[i][j] == 'J') jihun.push({ i,j });
+            else if (map[i][j] == 'F')fire.push({ i,j });
+        }
+    }
+    bfs();
+}
+~~~
+
+
+
+
+- **나 혼자 말하고 나 혼자 듣는 말**
+
+처음에 외곽에서 출발하는 테케를 고려하지 않아 애먹었따...ㅠㅠ  
+
