@@ -36,7 +36,7 @@ dfs를 활용하여 어떤 계단을 이용할지 완탐하였습니다.
 10. 이렇게 반복하다가 사람수와 빠져나간 사람 수가 같을 경우 종료한다.  
 
 
-~~~
+~~~cpp
 #include<iostream>
 #include<cstdio>
 #include<algorithm>
