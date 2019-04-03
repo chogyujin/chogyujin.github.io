@@ -26,39 +26,39 @@ using namespace std;
 int n, result;
 int ch[16][16];
 bool noQueen(int raw, int col) {//퀸의 범위안에 드는지 판단
-	int j = 0;
-	for (int i = raw - 1; i >= 0; i--) {
-		j++;
-		if (ch[i][col] == true) return false;//같은 행인지
-		if (ch[i][col - j] == true && col >= j) return false;//왼쪽위대각선
-		if (ch[i][col + j] == true && col + j < n) return false;//오른쪽위대각선
-	}
-	return true;
+    int j = 0;
+    for (int i = raw - 1; i >= 0; i--) {
+        j++;
+        if (ch[i][col] == true) return false;//같은 행인지
+        if (ch[i][col - j] == true && col >= j) return false;//왼쪽위대각선
+        if (ch[i][col + j] == true && col + j < n) return false;//오른쪽위대각선
+    }
+    return true;
 }
 void bt(int raw) {
-	if (raw == n) {//raw가 n-1까지 다 채워졌을 때 result++
-		result += 1;
-		return;
-	}
-	for (int i = 0; i < n; i++) {
-		if (noQueen(raw, i)) {
-			ch[raw][i] = true;//퀸자리 체크
-			bt(raw + 1);
-			ch[raw][i] = false;
-		}
-	}
+    if (raw == n) {//raw가 n-1까지 다 채워졌을 때 result++
+        result += 1;
+        return;
+    }
+    for (int i = 0; i < n; i++) {
+        if (noQueen(raw, i)) {
+            ch[raw][i] = true;//퀸자리 체크
+            bt(raw + 1);
+            ch[raw][i] = false;
+        }
+    }
 }
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-	cin >> n;
-	for (int i = 0; i < n; i++) {//첫줄은 main에서 반복문을 돌린다.
-		ch[0][i] = true;
-		bt(1);
-		ch[0][i] = false;
-	}
-	cout << result;
-	return 0;
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n;
+    for (int i = 0; i < n; i++) {//첫줄은 main에서 반복문을 돌린다.
+        ch[0][i] = true;
+        bt(1);
+        ch[0][i] = false;
+    }
+    cout << result;
+    return 0;
 }
 ~~~
 

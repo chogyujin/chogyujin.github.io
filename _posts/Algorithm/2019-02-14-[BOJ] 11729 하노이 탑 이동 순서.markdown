@@ -6,7 +6,7 @@ categories: Algorithm
 comments: true
 ---
 
-https://www.acmicpc.net/problem/11729
+https://www.acmicpc.net/problem/11729  
 
 재귀를 사용해서 풀었습니다.  
 개인적으로 높은 난이도의 문제인 것 같습니다.  
@@ -20,26 +20,26 @@ c는 나머지 한 탑의 위치입니다.
 using namespace std;
 int n;
 void hanoi(int a, int b, int num) {
-	int c = 6 - a - b;
-	if (num == 1) {
-		cout << a << ' ' << b << '\n';
-		//이해하기 힘드신 분은 아래처럼 num도 출력해보세요.
-		//cout << a << ' ' << b << ' ' << num << '\n';
-		return;
-	}
-	else {
-		hanoi(a, c, num - 1);
-		cout << a << ' ' << b <<'\n';
-		//cout << a << ' ' << b << ' ' << num << '\n';
-		hanoi(c, b, num - 1);
-	}
+    int c = 6 - a - b;
+    if (num == 1) {
+        cout << a << ' ' << b << '\n';
+        //이해하기 힘드신 분은 아래처럼 num도 출력해보세요.
+        //cout << a << ' ' << b << ' ' << num << '\n';
+        return;
+    }
+    else {
+        hanoi(a, c, num - 1);
+        cout << a << ' ' << b <<'\n';
+        //cout << a << ' ' << b << ' ' << num << '\n';
+        hanoi(c, b, num - 1);
+    }
 }
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-	cin >> n;
-	cout << (1 << n) - 1 << '\n';
-	hanoi(1,3,n);
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n;
+    cout << (1 << n) - 1 << '\n';
+    hanoi(1,3,n);
 }
 ~~~
 
