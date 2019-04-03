@@ -1,0 +1,191 @@
+---
+layout: post
+title:  "[SWEA] 4014. [모의 SW 역량테스트] 활주로 건설"
+date:   2019-04-03 14:28:54
+categories: Algorithm
+comments: true
+---
+
+https://www.swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AWIeW7FakkUDFAVH  
+
+오르막->내리막, 오르막->오르막, 내리막->오르막, 내리막->내리막을 고려해야 했기 때문에  
+
+많은 생각을 요한 문제였습니다.  
+
+처음엔 내리막 시 변수와 오르막 시 변수를 따로 만들어서 풀었지만  
+
+좀 더 고민해보니 변수 하나로도 충분히 해결할 수 있을 것 같아 변수 하나로 문제를 해결했습니다.  
+
+오르막은 다들 잘 구현하셨을테니 내리막만 설명하겠습니다.(자세한 건 코드참고)  
+
+`1.변수 2개` 먼저 평지를 갈 시 downLen+=1,  
+
+오르막 시엔 downLen을 x로하여 오르막을 거치고 내리막을 갈시엔 전혀 지장없도록 했고,  
+
+내리막 시엔 downLen을 1로하여 내리막을 거치고 내리막을 갈시엔 downLen이 x길이만큼 가야 갈 수있도록 했습니다.  
+
+`2.변수 1개` 평지를 갈 시엔 len+=1,  
+
+오르막 시엔 len을 1로, 내리막 시엔 len을 -x+1로 줘서 다음 내리막을 갈때 len이 0보다 크기만하면  
+
+갈 수 있도록 했습니다.(-x를 한이유는 2 1 1 2 가 안됨을 판단하기 위해)  
+
+#### 1. 변수 2개
+~~~cpp
+#include <iostream>
+using namespace std;
+int result, n, x;
+int map[21][21];
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    int test_case;
+    cin >> test_case;
+    for (int t = 1; t <= test_case; t++) {
+        //start
+        cin >> n >> x;
+        result = 0;
+        int preH = 0;//이전 높이
+        int upLen = 0;//오르막 시 필요한 변수
+        int downLen = 0;//내리막 시 필요한 변수
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                cin >> map[i][j];
+
+        for (int i = 0; i < n; i++) {
+            //가로
+            upLen = 0;
+            downLen = x - 1;
+            preH = map[i][0];
+            for (int j = 0; j < n; j++) {
+                if (preH == map[i][j]) {//평지
+                    upLen += 1;
+                    downLen += 1;
+                }
+                else if (preH + 1 == map[i][j]) {//오르막
+                    if (upLen < x)break;
+                    upLen = 1;
+                    downLen = x;
+                }
+                else if (preH - 1 == map[i][j]) {//내리막
+                    if (downLen < x) break;
+                    upLen = (-1)*x + 1;
+                    downLen = 1;
+                }
+                else break;//높이 2이상 차이나면 break
+                preH = map[i][j];
+                if (j == n - 1) {
+                    if (upLen < 0)break;
+                    else result += 1;
+                }
+            }
+            //세로
+            preH = map[0][i];
+            upLen = 0;
+            downLen = x - 1;
+            for (int j = 0; j < n; j++) {
+                if (preH == map[j][i]) {//평지
+                    upLen += 1;
+                    downLen += 1;
+                }
+                else if (preH + 1 == map[j][i]) {//오르막
+                    if (upLen < x)break;
+                    upLen = 1;
+                    downLen = x;
+                }
+                else if (preH - 1 == map[j][i]) {//내리막
+                    if (downLen < x)break;
+                    upLen = (-1)*x + 1;
+                    downLen = 1;
+                }
+                else break;//높이 2이상 차이나면 break
+                preH = map[j][i];
+                if (j == n - 1) {
+                    if (upLen < 0)break;
+                    else result += 1;
+                }
+            }
+        }
+        //end
+        cout << '#' << t << ' ' << result << '\n';
+    }
+}
+~~~
+
+---  
+
+#### 2. 변수 1개
+~~~
+#include <iostream>
+using namespace std;
+//10:52
+int result, n, x;
+int map[21][21];
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    int test_case;
+    cin >> test_case;
+    for (int t = 1; t <= test_case; t++) {
+        //start
+        cin >> n >> x;
+        result = 0;
+        int preH = 0;//이전 높이
+        int len = 0;//길이(length)
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                cin >> map[i][j];
+
+        for (int i = 0; i < n; i++) {
+            //가로
+            len = 0;
+            preH = map[i][0];
+            for (int j = 0; j < n; j++) {
+                if (preH == map[i][j]) len++;//평지
+                else if (preH + 1 == map[i][j]) {//오르막
+                    if (len < x)break;
+                    len = 1;
+                }
+                else if (preH - 1 == map[i][j]) {//내리막
+                    if (len < 0)break;
+                    len = -x + 1;
+                }
+                else break;//높이 2이상차이나면 break
+                preH = map[i][j];
+                if (j == n - 1) {//끝까지 탐색했는데 문제없었으면
+                    if (len < 0)break;
+                    else result += 1;
+                }
+
+            }
+            //세로
+            len = 0;
+            preH = map[0][i];
+            for (int j = 0; j < n; j++) {
+                if (preH == map[j][i]) len += 1;//평지
+                else if (preH + 1 == map[j][i]) {//오르막
+                    if (len < x)break;
+                    len = 1;
+                }
+                else if (preH - 1 == map[j][i]) {//내리막
+                    if (len < 0)break;
+                    len = -x + 1;
+                }
+                else break;//높이 2이상 차이나면 break
+                preH = map[j][i];
+                if (j == n - 1) {//끝까지 탐색했는데 문제없었으면
+                    if (len < 0)break;
+                    else result += 1;
+                }
+            }
+        }
+        //end
+        cout << '#' << t << ' ' << result << '\n';
+    }
+}
+~~~
+
+- **나 혼자 말하고 나 혼자 듣는 말**
+
+쉬웠는데... 실수를 많이해서 1시간 걸렸다...ㅠㅠㅠ  
+
