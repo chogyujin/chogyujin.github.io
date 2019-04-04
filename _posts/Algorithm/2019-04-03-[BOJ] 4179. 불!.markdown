@@ -34,7 +34,6 @@ int dx[] = { -1,1,0,0 };
 int dy[] = { 0,0,-1,1 };
 void bfs() {
     int time = 0;
-    int maxSize = r > c ? r : c;
     while (1) {
         time++;
         int fSize = fire.size();
@@ -81,7 +80,6 @@ void bfs() {
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    char ch;
     cin >> r >> c;
     for (int i = 0; i < r; i++) {
         for (int j = 0; j < c; j++) {

@@ -38,114 +38,114 @@ int ch[9][9];
 int dx[] = { 0,-1,0,1 };//좌,상,우,하
 int dy[] = { -1,0,1,0 };
 struct Camera {
-	int dir;
-	int x;
-	int y;
+    int dir;
+    int x;
+    int y;
 }camera[9];
 void see(int dir, int x, int y) {//CCTV가 보는 방향
-	while (1) {//좌,상,우,하
-		x += dx[dir];
-		y += dy[dir];
-		if (x >= 0 && y >= 0 && x < n&&y < m&&map[x][y] != 6) {
-			ch[x][y] += 1;
-		}
-		else break;
-	}
+    while (1) {//좌,상,우,하
+        x += dx[dir];
+        y += dy[dir];
+        if (x >= 0 && y >= 0 && x < n&&y < m&&map[x][y] != 6) {
+            ch[x][y] += 1;
+        }
+        else break;
+    }
 }
 void unsee(int dir, int x, int y) {//dfs해제 이후 CCTV가 다시 안볼때
-	while (1) {//0,1,2,3
-		x += dx[dir];
-		y += dy[dir];
-		if (x >= 0 && y >= 0 && x < n&&y < m&&map[x][y] != 6) {
-			ch[x][y] -= 1;
-		}
-		else break;
-	}
+    while (1) {//0,1,2,3
+        x += dx[dir];
+        y += dy[dir];
+        if (x >= 0 && y >= 0 && x < n&&y < m&&map[x][y] != 6) {
+            ch[x][y] -= 1;
+        }
+        else break;
+    }
 }
 void dfs(int dir, int x, int y, int cnt) {
-	if (cnt == num) {
-		int blind = 0;
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < m; j++) {
-				if (ch[i][j] == 0) blind++;//사각지대 카운트
-			}
-		}
-		result = result < blind ? result : blind;
-		return;
-	}
-	if (dir == 1) {//1방향 카메라
-		for (int i = 0; i < 4; i++) {
-			see(i, x, y);
-			dfs(camera[cnt + 1].dir, camera[cnt + 1].x, camera[cnt + 1].y, cnt + 1);
-			unsee(i, x, y);
-		}
-	}
-	else if (dir == 2) {//2방향 카메라
-		for (int i = 0; i < 2; i++) {
-			see(i, x, y);
-			see(i + 2, x, y);
-			dfs(camera[cnt + 1].dir, camera[cnt + 1].x, camera[cnt + 1].y, cnt + 1);
-			unsee(i, x, y);
-			unsee(i + 2, x, y);
-		}
-	}
-	else if (dir == 3) {//3방향 카메라
-		for (int i = 0; i < 4; i++) {
-			see(i, x, y);
-			see((i + 1) % 4, x, y);
-			dfs(camera[cnt + 1].dir, camera[cnt + 1].x, camera[cnt + 1].y, cnt + 1);
-			unsee(i, x, y);
-			unsee((i + 1) % 4, x, y);
-		}
-	}
-	else if (dir == 4) {//4방향 카메라
-		for (int i = 0; i < 4; i++) {
-			see(i, x, y);
-			see((i + 1) % 4, x, y);
-			see((i + 2) % 4, x, y);
-			dfs(camera[cnt + 1].dir, camera[cnt + 1].x, camera[cnt + 1].y, cnt + 1);
-			unsee(i, x, y);
-			unsee((i + 1) % 4, x, y);
-			unsee((i + 2) % 4, x, y);
-		}
-	}
+    if (cnt == num) {
+        int blind = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (ch[i][j] == 0) blind++;//사각지대 카운트
+            }
+        }
+        result = result < blind ? result : blind;
+        return;
+    }
+    if (dir == 1) {//1방향 카메라
+        for (int i = 0; i < 4; i++) {
+            see(i, x, y);
+            dfs(camera[cnt + 1].dir, camera[cnt + 1].x, camera[cnt + 1].y, cnt + 1);
+            unsee(i, x, y);
+        }
+    }
+    else if (dir == 2) {//2방향 카메라
+        for (int i = 0; i < 2; i++) {
+            see(i, x, y);
+            see(i + 2, x, y);
+            dfs(camera[cnt + 1].dir, camera[cnt + 1].x, camera[cnt + 1].y, cnt + 1);
+            unsee(i, x, y);
+            unsee(i + 2, x, y);
+        }
+    }
+    else if (dir == 3) {//3방향 카메라
+        for (int i = 0; i < 4; i++) {
+            see(i, x, y);
+            see((i + 1) % 4, x, y);
+            dfs(camera[cnt + 1].dir, camera[cnt + 1].x, camera[cnt + 1].y, cnt + 1);
+            unsee(i, x, y);
+            unsee((i + 1) % 4, x, y);
+        }
+    }
+    else if (dir == 4) {//4방향 카메라
+        for (int i = 0; i < 4; i++) {
+            see(i, x, y);
+            see((i + 1) % 4, x, y);
+            see((i + 2) % 4, x, y);
+            dfs(camera[cnt + 1].dir, camera[cnt + 1].x, camera[cnt + 1].y, cnt + 1);
+            unsee(i, x, y);
+            unsee((i + 1) % 4, x, y);
+            unsee((i + 2) % 4, x, y);
+        }
+    }
 }
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-	cin >> n >> m;
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < m; j++) {
-			cin >> map[i][j];
-			if (map[i][j] != 0) {
-				ch[i][j] = map[i][j];
-			}
-			if (map[i][j] >= 1 && map[i][j] < 5) {
-				camera[num].dir = map[i][j];
-				camera[num].x = i;
-				camera[num].y = j;
-				num++;
-			}
-			//else if (map[i][j] == 5) {//이부분은 제 혼잣말이니 그냥 넘어가세요 ㅎㅎ;;
-			//	see(0, i, j);//진짜 이부분때문에 엄청나게 고생했다 하루종일!!!! 
-			//	see(1, i, j);//톡방분들덕분에 해결!! 해당 반례는
-			//	see(2, i, j);// 3 3
-			//	see(3, i, j);// 5 6 0
-			//}                 6 0 0
-		}					//  0 0 0   <-난 이걸 감지 못함 입력 다 받기 전에 처리해버려서
-	}
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < m; j++) {
-			if (map[i][j] == 5) {//5는 방향 상관없으니까 그냥 고정
-			see(0, i, j);
-			see(1, i, j);
-			see(2, i, j);
-			see(3, i, j);
-			}
-		}
-	}
-	dfs(camera[0].dir, camera[0].x, camera[0].y, 0);
-	cout << result << '\n';
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n >> m;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            cin >> map[i][j];
+            if (map[i][j] != 0) {
+                ch[i][j] = map[i][j];
+            }
+            if (map[i][j] >= 1 && map[i][j] < 5) {
+                camera[num].dir = map[i][j];
+                camera[num].x = i;
+                camera[num].y = j;
+                num++;
+            }
+            //else if (map[i][j] == 5) {//이부분은 제 혼잣말이니 그냥 넘어가세요 ㅎㅎ;;
+            //    see(0, i, j);//진짜 이부분때문에 엄청나게 고생했다 하루종일!!!! 
+            //    see(1, i, j);//톡방분들덕분에 해결!! 해당 반례는
+            //    see(2, i, j);// 3 3
+            //    see(3, i, j);// 5 6 0
+            //}                 6 0 0
+        }                    //  0 0 0   <-난 이걸 감지 못함 입력 다 받기 전에 처리해버려서
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (map[i][j] == 5) {//5는 방향 상관없으니까 그냥 고정
+            see(0, i, j);
+            see(1, i, j);
+            see(2, i, j);
+            see(3, i, j);
+            }
+        }
+    }
+    dfs(camera[0].dir, camera[0].x, camera[0].y, 0);
+    cout << result << '\n';
 }
 ~~~
 

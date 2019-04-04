@@ -27,51 +27,51 @@ int dy[] = { 0,-1,1 };
 int purpleX[4][3] = { {1,1,1},{1,1,2},{0,0,1},{1,1,2} };//ㅗㅏㅜㅓ
 int purpleY[4][3] = { {-1,0,1},{0,1,0},{1,2,1},{-1,0,0} };
 void dfs(int x, int y, int cnt, int sum) {//보라색빼고 나머지
-	if (cnt == 4) {
-		result = result > sum ? result : sum;
-		return;
-	}
-	for (int i = 0; i < 3; i++) {
-		int nx = x + dx[i];
-		int ny = y + dy[i];
-		if (nx >= 0 && ny >= 0 && nx < n&&ny < m&&ch[nx][ny] == false) {
-			ch[nx][ny] = true;
-			dfs(nx, ny, cnt + 1, sum + map[nx][ny]);
-			ch[nx][ny] = false;
-		}
-	}
+    if (cnt == 4) {
+        result = result > sum ? result : sum;
+        return;
+    }
+    for (int i = 0; i < 3; i++) {
+        int nx = x + dx[i];
+        int ny = y + dy[i];
+        if (nx >= 0 && ny >= 0 && nx < n&&ny < m&&ch[nx][ny] == false) {
+            ch[nx][ny] = true;
+            dfs(nx, ny, cnt + 1, sum + map[nx][ny]);
+            ch[nx][ny] = false;
+        }
+    }
 }
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-	cin >> n >> m;
-	for (int i = 0; i < n; i++)
-		for (int j = 0; j < m; j++)
-			cin >> map[i][j];
-	for (int i = 0; i < n; i++) {//보라색빼고나머지
-		for (int j = 0; j < m; j++) {
-			ch[i][j] = true;
-			dfs(i, j, 1, map[i][j]);
-			ch[i][j] = false;
-		}
-	}
-	for (int shape = 0; shape < 4; shape++) {//보라색 블록
-		for (int i = 0; i < n - 1; i++) {
-			for (int j = 0; j < m; j++) {
-				int sum = map[i][j];
-				for (int k = 0; k < 3; k++) {
-					int x = i + purpleX[shape][k];
-					int y = j + purpleY[shape][k];
-					if (x >= 0 && y >= 0 && x < n&&y < m) {
-						sum += map[x][y];
-					}
-					else break;
-				}
-				result = result > sum ? result : sum;
-			}
-		}
-	}
-	cout << result;
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n >> m;
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < m; j++)
+            cin >> map[i][j];
+    for (int i = 0; i < n; i++) {//보라색빼고나머지
+        for (int j = 0; j < m; j++) {
+            ch[i][j] = true;
+            dfs(i, j, 1, map[i][j]);
+            ch[i][j] = false;
+        }
+    }
+    for (int shape = 0; shape < 4; shape++) {//보라색 블록
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < m; j++) {
+                int sum = map[i][j];
+                for (int k = 0; k < 3; k++) {
+                    int x = i + purpleX[shape][k];
+                    int y = j + purpleY[shape][k];
+                    if (x >= 0 && y >= 0 && x < n&&y < m) {
+                        sum += map[x][y];
+                    }
+                    else break;
+                }
+                result = result > sum ? result : sum;
+            }
+        }
+    }
+    cout << result;
 }
 ~~~
 ---  
@@ -86,7 +86,7 @@ using namespace std;
 int n, m, result;
 int map[501][501];
 int blockX[19][3] = {//
-	{0,0,0},//-
+    {0,0,0},//-
 {1,2,3},//l
 {0,1,1},//ㅁ
 //----주황블록-----
@@ -112,7 +112,7 @@ int blockX[19][3] = {//
 {1,1,2}//ㅏ
 };
 int blockY[19][3] = {
-	{1,2,3},//ㅡ
+    {1,2,3},//ㅡ
 {0,0,0},//ㅣ
 {1,0,1},//ㅁ
 //-----주황블록------
@@ -138,31 +138,31 @@ int blockY[19][3] = {
 {0,1,0}
 };
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-	cin >> n >> m;
-	for (int i = 0; i < n; i++)
-		for (int j = 0; j < m; j++)
-			cin >> map[i][j];
-	for (int shape = 0; shape < 19; shape++) {
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < m; j++) {
-				int sum = map[i][j];
-				bool success = true;
-				for (int k = 0; k < 3; k++) {//블록모양만큼 합구하기
-					int nx = i + blockX[shape][k];
-					int ny = j + blockY[shape][k];
-					if (nx >= 0 && ny >= 0 && nx < n&&ny < m) sum += map[nx][ny];
-					else {//범위를 벗어나면 바로 break
-						success = false;
-						break;
-					}
-				}
-				if (success == true) result = result > sum ? result : sum;//가장 큰값
-			}
-		}
-	}
-	cout << result;
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n >> m;
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < m; j++)
+            cin >> map[i][j];
+    for (int shape = 0; shape < 19; shape++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                int sum = map[i][j];
+                bool success = true;
+                for (int k = 0; k < 3; k++) {//블록모양만큼 합구하기
+                    int nx = i + blockX[shape][k];
+                    int ny = j + blockY[shape][k];
+                    if (nx >= 0 && ny >= 0 && nx < n&&ny < m) sum += map[nx][ny];
+                    else {//범위를 벗어나면 바로 break
+                        success = false;
+                        break;
+                    }
+                }
+                if (success == true) result = result > sum ? result : sum;//가장 큰값
+            }
+        }
+    }
+    cout << result;
 }
 ~~~
 

@@ -28,63 +28,63 @@ queue <pair<int, int>> q;
 int dx[] = { -1,1,0,0 };
 int dy[] = { 0,0,-1,1 };
 void bfs() {
-	while (!q.empty()) {
-		int x = q.front().first;
-		int y = q.front().second;
-		q.pop();
-		for (int i = 0; i < 4; i++) {
-			int nx = x + dx[i];
-			int ny = y + dy[i];
-			if (nx >= 0 && ny >= 0 && nx < n&&ny < m) {
-				if (calMap[nx][ny] == 0) {//0인 위치에 바이러스를 퍼뜨린다
-					calMap[nx][ny] = 2;
-					q.push(make_pair(nx, ny));
-				}
-			}
-		}
-	}
-	int cnt = 0;
-	for (int i = 0; i < n; i++) {//최종적으로 0인 자리 Count
-		for (int j = 0; j < m; j++) {
-			if (calMap[i][j] == 0) cnt++;
-		}
-	}
-	result = result > cnt ? result : cnt;
+    while (!q.empty()) {
+        int x = q.front().first;
+        int y = q.front().second;
+        q.pop();
+        for (int i = 0; i < 4; i++) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            if (nx >= 0 && ny >= 0 && nx < n&&ny < m) {
+                if (calMap[nx][ny] == 0) {//0인 위치에 바이러스를 퍼뜨린다
+                    calMap[nx][ny] = 2;
+                    q.push(make_pair(nx, ny));
+                }
+            }
+        }
+    }
+    int cnt = 0;
+    for (int i = 0; i < n; i++) {//최종적으로 0인 자리 Count
+        for (int j = 0; j < m; j++) {
+            if (calMap[i][j] == 0) cnt++;
+        }
+    }
+    result = result > cnt ? result : cnt;
 }
 void brute(int x, int y, int cnt) {//3개 벽 넣기
-	if (cnt == 3) {//벽이 3개일 경우
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < m; j++) {
-				calMap[i][j] = map[i][j];//계산할 맵을 따로 구현
-				if (map[i][j] == 2) {
-					q.push(make_pair(i, j));//BFS하기위해 2인 data를 큐에 담는다.
-				}
-			}
-		}
-		bfs();
-		return;
-	}
-	for (int i = x; i < n; i++,y=0) {//시작위치는 기둥 설치위치 다음부터
-		for (int j = y; j < m; j++) {
-			if (map[i][j] == 0) {
-				map[i][j] = 1;
-				brute(i, j, cnt + 1);
-				map[i][j] = 0;
-			}
-		}
-	}
+    if (cnt == 3) {//벽이 3개일 경우
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                calMap[i][j] = map[i][j];//계산할 맵을 따로 구현
+                if (map[i][j] == 2) {
+                    q.push(make_pair(i, j));//BFS하기위해 2인 data를 큐에 담는다.
+                }
+            }
+        }
+        bfs();
+        return;
+    }
+    for (int i = x; i < n; i++,y=0) {//시작위치는 기둥 설치위치 다음부터
+        for (int j = y; j < m; j++) {
+            if (map[i][j] == 0) {
+                map[i][j] = 1;
+                brute(i, j, cnt + 1);
+                map[i][j] = 0;
+            }
+        }
+    }
 }
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-	cin >> n >> m;
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < m; j++) {
-			cin >> map[i][j];
-		}
-	}
-	brute(0, 0, 0);//3개 벽 넣기 
-	cout << result;
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n >> m;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            cin >> map[i][j];
+        }
+    }
+    brute(0, 0, 0);//3개 벽 넣기 
+    cout << result;
 }
 ~~~
 

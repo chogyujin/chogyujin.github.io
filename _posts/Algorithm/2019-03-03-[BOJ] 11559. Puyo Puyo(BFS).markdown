@@ -35,74 +35,74 @@ int dy[] = { 0,0,-1,1 };
 queue <pair<int, int>> q;
 stack <pair<int, int>> s;
 void bfs() {//뿌요가 얼마나 뭉쳐있는지 판단
-	int sameColorCnt = 1;//같은색의뿌요갯수
-	while (!q.empty()) {
-		int x = q.front().first;
-		int y = q.front().second;
-		q.pop();
-		for (int i = 0; i < 4; i++) {
-			int nx = x + dx[i];
-			int ny = y + dy[i];
-			if (nx >= 0 && ny >= 0 && nx < 12 && ny < 6 && ch[nx][ny] == false) {
-				if (map[nx][ny] == color) {//같은 색이면
-					ch[nx][ny] = true;//중복회피
-					q.push(make_pair(nx, ny));
-					sameColorCnt += 1;//갯수 +1
-					s.push(make_pair(nx, ny));//스택에 해당 지점 push
-				}
-			}
-		}
-	}
-	if (sameColorCnt < 4) {//뭉쳐있는 뿌요갯수가 4미만일경우
-		while (sameColorCnt--) s.pop();//해당 갯수만큼 다시 stack에서 빼준다
-	}
+    int sameColorCnt = 1;//같은색의뿌요갯수
+    while (!q.empty()) {
+        int x = q.front().first;
+        int y = q.front().second;
+        q.pop();
+        for (int i = 0; i < 4; i++) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            if (nx >= 0 && ny >= 0 && nx < 12 && ny < 6 && ch[nx][ny] == false) {
+                if (map[nx][ny] == color) {//같은 색이면
+                    ch[nx][ny] = true;//중복회피
+                    q.push(make_pair(nx, ny));
+                    sameColorCnt += 1;//갯수 +1
+                    s.push(make_pair(nx, ny));//스택에 해당 지점 push
+                }
+            }
+        }
+    }
+    if (sameColorCnt < 4) {//뭉쳐있는 뿌요갯수가 4미만일경우
+        while (sameColorCnt--) s.pop();//해당 갯수만큼 다시 stack에서 빼준다
+    }
 }
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-	int chainCnt = 0;
-	for (int i = 0; i < 12; i++) for (int j = 0; j < 6; j++) cin >> map[i][j];
-	while (1) {//없앨 뿌요들이 없을 때까지(stack이 empty가 될때까지)
-		for (int i = 0; i < 12; i++) {
-			for (int j = 0; j < 6; j++) {
-				if (map[i][j] != '.'&&ch[i][j] == false) {
-					//뿌요가 있다면 큐와 스택에 push
-					color = map[i][j];//해당 지점의 컬러 저장
-					q.push(make_pair(i, j));
-					s.push(make_pair(i, j));
-					ch[i][j] = true;//bfs할때 중복 회피
-					bfs();
-				}
-			}
-		}
-		if (s.size() >= 4) {//쌓여있는 스택 사이즈가 4이상이면
-			chainCnt += 1;//연계횟수+1
-			while (!s.empty()) {//스택에있는 모든 애들을 없애준다
-				int x = s.top().first;
-				int y = s.top().second;
-				map[x][y] = '.';
-				s.pop();
-			}
-		}
-		else break;//스택에 쌓여있는 애들이 없을 경우 END~~~~
-		for (int i = 0; i < 6; i++) {//중력법칙 적용
-			for (int j = 11; j >= 0; j--) {
-				if (map[j][i] == '.') {
-					for (int k = j - 1; k >= 0; k--) {
-						if (map[k][i] != '.') {
-							map[j][i] = map[k][i];
-							map[k][i] = '.';
-							break;
-						}
-					}
-				}
-			}
-		}
-		for (int i = 0; i < 12; i++) {//중복을 피하기 위해 만들었던 ch배열 원상복구
-			for (int j = 0; j < 6; j++) ch[i][j] = false;
-		}
-	}
-	cout << chainCnt;//결과값 출력
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    int chainCnt = 0;
+    for (int i = 0; i < 12; i++) for (int j = 0; j < 6; j++) cin >> map[i][j];
+    while (1) {//없앨 뿌요들이 없을 때까지(stack이 empty가 될때까지)
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 6; j++) {
+                if (map[i][j] != '.'&&ch[i][j] == false) {
+                    //뿌요가 있다면 큐와 스택에 push
+                    color = map[i][j];//해당 지점의 컬러 저장
+                    q.push(make_pair(i, j));
+                    s.push(make_pair(i, j));
+                    ch[i][j] = true;//bfs할때 중복 회피
+                    bfs();
+                }
+            }
+        }
+        if (s.size() >= 4) {//쌓여있는 스택 사이즈가 4이상이면
+            chainCnt += 1;//연계횟수+1
+            while (!s.empty()) {//스택에있는 모든 애들을 없애준다
+                int x = s.top().first;
+                int y = s.top().second;
+                map[x][y] = '.';
+                s.pop();
+            }
+        }
+        else break;//스택에 쌓여있는 애들이 없을 경우 END~~~~
+        for (int i = 0; i < 6; i++) {//중력법칙 적용
+            for (int j = 11; j >= 0; j--) {
+                if (map[j][i] == '.') {
+                    for (int k = j - 1; k >= 0; k--) {
+                        if (map[k][i] != '.') {
+                            map[j][i] = map[k][i];
+                            map[k][i] = '.';
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < 12; i++) {//중복을 피하기 위해 만들었던 ch배열 원상복구
+            for (int j = 0; j < 6; j++) ch[i][j] = false;
+        }
+    }
+    cout << chainCnt;//결과값 출력
 }
 ~~~
 

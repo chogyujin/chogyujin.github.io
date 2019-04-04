@@ -35,90 +35,90 @@ int dx[] = { -1,0,1,0 };
 int dy[] = { 0,-1,0,1 };
 int result = 2000000000, n;
 void bfs(int r, int c) {//다리길이를 bfs
-	q.push(make_pair(r, c));
-	while (!q.empty()) {
-		int x = q.front().first;
-		int y = q.front().second;
-		q.pop();
-		for (int i = 0; i < 4; i++) {
-			int nx = x + dx[i];
-			int ny = y + dy[i];
-			if (nx >= 0 && ny >= 0 && nx < n&&ny < n) {
-				if (map[nx][ny] != map[r][c]&&map[nx][ny]!=0) {//다른 섬에 도착했을 때
-					result = result < len[x][y]-1 ? result : len[x][y]-1;
-					while (!q.empty()) q.pop();//큐를 모두 비워준다
-					return;
-				}
-				if (len[nx][ny] == false) {
-					len[nx][ny] = len[x][y]+1;
-					q.push(make_pair(nx, ny));
-				}
-			}
-		}
-	}
+    q.push(make_pair(r, c));
+    while (!q.empty()) {
+        int x = q.front().first;
+        int y = q.front().second;
+        q.pop();
+        for (int i = 0; i < 4; i++) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            if (nx >= 0 && ny >= 0 && nx < n&&ny < n) {
+                if (map[nx][ny] != map[r][c]&&map[nx][ny]!=0) {//다른 섬에 도착했을 때
+                    result = result < len[x][y]-1 ? result : len[x][y]-1;
+                    while (!q.empty()) q.pop();//큐를 모두 비워준다
+                    return;
+                }
+                if (len[nx][ny] == false) {
+                    len[nx][ny] = len[x][y]+1;
+                    q.push(make_pair(nx, ny));
+                }
+            }
+        }
+    }
 }
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-	cin >> n;
-	int tmp, cnt = 0;
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < n; j++) {
-			cin >> tmp;
-			map[i][j] = tmp;
-			len[i][j] = tmp;
-			original[i][j] = tmp;
-		}
-	}
-	for (int i = 0; i < n; i++) {//섬마다 cnt하기위한 bfs
-		for (int j = 0; j < n; j++) {
-			if (map[i][j] != 0 && tmpch[i][j] == false) {
-				cnt++;
-				map[i][j] = cnt;
-				tmpch[i][j] = true;//tmpch를 true로 줘서 4방향에 true 가 있으면 같은 섬으로 구분 짓기위해
-				q.push(make_pair(i, j));
-				while (!q.empty()) {
-					int x = q.front().first;
-					int y = q.front().second;
-					q.pop();
-					for (int k = 0; k < 4; k++) {
-						int nx = dx[k] + x;
-						int ny = dy[k] + y;
-						if (nx >= 0 && ny >= 0 && nx < n&&ny < n) {
-							if (map[nx][ny] != 0 && tmpch[nx][ny] == false) {
-								map[nx][ny] = cnt;
-								tmpch[nx][ny] = true;
-								q.push(make_pair(nx, ny));
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < n; j++) {//섬의 끝에서 다리를 짓기 위해 반복문 사용
-			if (map[i][j] != 0) {
-				for (int k = 0; k < 4; k++) {
-					int nx = dx[k] + i;
-					int ny = dy[k] + j;
-					if (nx >= 0 && ny >= 0 && nx < n&&ny < n) {
-						if (map[nx][ny] == 0) {
-							bfs(i, j);
-							for (int r = 0; r < n; r++) {
-								for (int t = 0; t < n; t++) {
-									len[r][t] = original[r][t];//ch다시 초기화
-								}
-							}
-							break;
-							//한번만 체크하면되니까 바로 break
-						}
-					}
-				}
-			}
-		}
-	}
-	cout << result << '\n';
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n;
+    int tmp, cnt = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cin >> tmp;
+            map[i][j] = tmp;
+            len[i][j] = tmp;
+            original[i][j] = tmp;
+        }
+    }
+    for (int i = 0; i < n; i++) {//섬마다 cnt하기위한 bfs
+        for (int j = 0; j < n; j++) {
+            if (map[i][j] != 0 && tmpch[i][j] == false) {
+                cnt++;
+                map[i][j] = cnt;
+                tmpch[i][j] = true;//tmpch를 true로 줘서 4방향에 true 가 있으면 같은 섬으로 구분 짓기위해
+                q.push(make_pair(i, j));
+                while (!q.empty()) {
+                    int x = q.front().first;
+                    int y = q.front().second;
+                    q.pop();
+                    for (int k = 0; k < 4; k++) {
+                        int nx = dx[k] + x;
+                        int ny = dy[k] + y;
+                        if (nx >= 0 && ny >= 0 && nx < n&&ny < n) {
+                            if (map[nx][ny] != 0 && tmpch[nx][ny] == false) {
+                                map[nx][ny] = cnt;
+                                tmpch[nx][ny] = true;
+                                q.push(make_pair(nx, ny));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {//섬의 끝에서 다리를 짓기 위해 반복문 사용
+            if (map[i][j] != 0) {
+                for (int k = 0; k < 4; k++) {
+                    int nx = dx[k] + i;
+                    int ny = dy[k] + j;
+                    if (nx >= 0 && ny >= 0 && nx < n&&ny < n) {
+                        if (map[nx][ny] == 0) {
+                            bfs(i, j);
+                            for (int r = 0; r < n; r++) {
+                                for (int t = 0; t < n; t++) {
+                                    len[r][t] = original[r][t];//ch다시 초기화
+                                }
+                            }
+                            break;
+                            //한번만 체크하면되니까 바로 break
+                        }
+                    }
+                }
+            }
+        }
+    }
+    cout << result << '\n';
 }
 ~~~
 

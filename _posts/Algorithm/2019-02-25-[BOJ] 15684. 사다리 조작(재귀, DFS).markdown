@@ -55,49 +55,49 @@ int n, m, h, a, b;
 int result = 2e9;
 bool ch[32][11];
 bool check() {//i가 i로 가는지 Check~
-	for (int i = 1; i <= n; i++) {
-		int num = i;//세로선 number
-		for (int j = 1; j <= h; j++) {//내려오다가
-			if (ch[j][num] == true) num += 1; //선을 만나면 한칸 >>로
-			else if (ch[j][num - 1] == true) num -= 1;//왼쪽칸의 선을 만나면 <<로
-			if (j == h) {//다 내려왔는데 같은 num이 아니면 false로 끝
-				if (num != i) return false;
-			}
-		}
-	}
-	return true;
+    for (int i = 1; i <= n; i++) {
+        int num = i;//세로선 number
+        for (int j = 1; j <= h; j++) {//내려오다가
+            if (ch[j][num] == true) num += 1; //선을 만나면 한칸 >>로
+            else if (ch[j][num - 1] == true) num -= 1;//왼쪽칸의 선을 만나면 <<로
+            if (j == h) {//다 내려왔는데 같은 num이 아니면 false로 끝
+                if (num != i) return false;
+            }
+        }
+    }
+    return true;
 }
 void dfs(int row, int col, int cnt) {
-	if (cnt >= result || cnt > 3) return;
-	else if (check()) {
-		result = result < cnt ? result : cnt;
-		return;
-	}
-	for (int i = row; i <= h; i++, col = 1) {
-		for (int j = col; j < n; j++) {//★i=1,j=1이아닌 과거 위치에서 시작!!! 처음부터 돌리는게 아니다!!
-			if (ch[i][j] == false && ch[i][j + 1] == false && ch[i][j - 1] == false) {
-				ch[i][j] = true;
-				dfs(i, j + 2, cnt + 1);
-				ch[i][j] = false;
-			}
-		}
-	}
+    if (cnt >= result || cnt > 3) return;
+    else if (check()) {
+        result = result < cnt ? result : cnt;
+        return;
+    }
+    for (int i = row; i <= h; i++, col = 1) {
+        for (int j = col; j < n; j++) {//★i=1,j=1이아닌 과거 위치에서 시작!!! 처음부터 돌리는게 아니다!!
+            if (ch[i][j] == false && ch[i][j + 1] == false && ch[i][j - 1] == false) {
+                ch[i][j] = true;
+                dfs(i, j + 2, cnt + 1);
+                ch[i][j] = false;
+            }
+        }
+    }
 }
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-	cin >> n >> m >> h;
-	for (int i = 1; i <= m; i++) {
-		cin >> a >> b;
-		ch[a][b] = true;
-	}
-	if (check()) {//선 아무것도 추가하지 않았을 때
-		cout << "0\n";
-		return 0;
-	}
-	dfs(1, 1, 0);
-	if (result == 2e9) cout << "-1\n";
-	else cout << result << '\n';
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n >> m >> h;
+    for (int i = 1; i <= m; i++) {
+        cin >> a >> b;
+        ch[a][b] = true;
+    }
+    if (check()) {//선 아무것도 추가하지 않았을 때
+        cout << "0\n";
+        return 0;
+    }
+    dfs(1, 1, 0);
+    if (result == 2e9) cout << "-1\n";
+    else cout << result << '\n';
 }
 ~~~
 
@@ -118,86 +118,86 @@ bool ch[31][11];
 bool ok;//ok를 줘서 dfs에서 더이상 연산하지 못하도록
 queue <pair<int, int>> q;
 bool check() {//i가 i로 가는지 Check~
-	for (int i = 1; i <= n; i++) {
-		int num = i;//세로선 number
-		for (int j = 1; j <= h; j++) {//내려오다가
-			if (ch[j][num] == true) num += 1; //선을 만나면 한칸 >>로
-			else if (ch[j][num - 1] == true) num -= 1;//왼쪽칸의 선을 만나면 <<로
-			if (j == h) {//다 내려왔는데 같은 num이 아니면 false로 끝
-				if (num != i) return false;
-			}
-		}
-	}
-	return true;
+    for (int i = 1; i <= n; i++) {
+        int num = i;//세로선 number
+        for (int j = 1; j <= h; j++) {//내려오다가
+            if (ch[j][num] == true) num += 1; //선을 만나면 한칸 >>로
+            else if (ch[j][num - 1] == true) num -= 1;//왼쪽칸의 선을 만나면 <<로
+            if (j == h) {//다 내려왔는데 같은 num이 아니면 false로 끝
+                if (num != i) return false;
+            }
+        }
+    }
+    return true;
 }
 void dfs(int row, int col, int cnt) {
-	if (ok == true) return;
-	if (cnt == 3) {//가로선 1,2일때는 앞에서 했으므로 3일때만 체크
-		if (check()) {
-			cout << "3\n";
-			ok = true;//이제 더이상 연산은 무의미 함.
-		}
-		return;
-	}
-	for (int i = row; i <= h; i++,col=1) {
-		for (int j = col; j < n; j++) {//★i=1,j=1이아닌 과거 위치에서 시작!!! 처음부터 돌리는게 아니다!!
-			if (ch[i][j] == false && ch[i][j + 1] == false && ch[i][j - 1] == false) {
-				ch[i][j] = true;
-				dfs(i,j+2,cnt + 1);
-				if (ok == true)return;
-				ch[i][j] = false;
-			}
-		}
-	}
+    if (ok == true) return;
+    if (cnt == 3) {//가로선 1,2일때는 앞에서 했으므로 3일때만 체크
+        if (check()) {
+            cout << "3\n";
+            ok = true;//이제 더이상 연산은 무의미 함.
+        }
+        return;
+    }
+    for (int i = row; i <= h; i++,col=1) {
+        for (int j = col; j < n; j++) {//★i=1,j=1이아닌 과거 위치에서 시작!!! 처음부터 돌리는게 아니다!!
+            if (ch[i][j] == false && ch[i][j + 1] == false && ch[i][j - 1] == false) {
+                ch[i][j] = true;
+                dfs(i,j+2,cnt + 1);
+                if (ok == true)return;
+                ch[i][j] = false;
+            }
+        }
+    }
 
 }
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-	cin >> n >> m >> h;
-	for (int i = 1; i <= m; i++) {
-		cin >> a >> b;
-		ch[a][b] = true;
-	}
-	if (check()) {//가로선을 추가하지 않았을 때
-		cout << "0\n";
-		return 0;
-	}
-	for (int i = 1; i <= h; i++) {//가로선을 하나만 추가했을 때
-		for (int j = 1; j < n; j++) {
-			if (ch[i][j] == false && ch[i][j + 1] == false && ch[i][j - 1] == false) {
-				ch[i][j] = true;
-				q.push(make_pair(i, j));
-				if (check()) {
-					cout << "1\n";
-					return 0;
-				}
-				ch[i][j] = false;
-			}
-		}
-	}
-	while (!q.empty()) {//가로선을 두개만 추가했을 때
-		int x = q.front().first;
-		int y = q.front().second;
-		q.pop();
-		ch[x][y] = true;
-		for (int i = 1; i <= h; i++) {
-			for (int j = 1; j < n; j++) {
-				if (ch[i][j] == false && ch[i][j + 1] == false && ch[i][j - 1] == false) {
-					ch[i][j] = true;
-					if (check()) {
-						cout << "2\n";
-						return 0;
-					}
-					ch[i][j] = false;
-				}
-			}
-		}
-		ch[x][y] = false;
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n >> m >> h;
+    for (int i = 1; i <= m; i++) {
+        cin >> a >> b;
+        ch[a][b] = true;
+    }
+    if (check()) {//가로선을 추가하지 않았을 때
+        cout << "0\n";
+        return 0;
+    }
+    for (int i = 1; i <= h; i++) {//가로선을 하나만 추가했을 때
+        for (int j = 1; j < n; j++) {
+            if (ch[i][j] == false && ch[i][j + 1] == false && ch[i][j - 1] == false) {
+                ch[i][j] = true;
+                q.push(make_pair(i, j));
+                if (check()) {
+                    cout << "1\n";
+                    return 0;
+                }
+                ch[i][j] = false;
+            }
+        }
+    }
+    while (!q.empty()) {//가로선을 두개만 추가했을 때
+        int x = q.front().first;
+        int y = q.front().second;
+        q.pop();
+        ch[x][y] = true;
+        for (int i = 1; i <= h; i++) {
+            for (int j = 1; j < n; j++) {
+                if (ch[i][j] == false && ch[i][j + 1] == false && ch[i][j - 1] == false) {
+                    ch[i][j] = true;
+                    if (check()) {
+                        cout << "2\n";
+                        return 0;
+                    }
+                    ch[i][j] = false;
+                }
+            }
+        }
+        ch[x][y] = false;
 
-	}
-	dfs(1,1,0);//가로선 세개는 dfs로
-	if (ok == false) cout << "-1\n";
+    }
+    dfs(1,1,0);//가로선 세개는 dfs로
+    if (ok == false) cout << "-1\n";
 }
 
 ~~~
