@@ -1,0 +1,164 @@
+---
+layout: post
+title:  "[BOJ] 13460. 구슬 탈출 2"
+date:   2019-04-03 17:30:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/13460  
+
+
+map이 작고, 10회 이하까지만 계산하면 되기 때문에 DFS, BFS 모두 가능한 문제입니다.  
+
+DFS로할 시 모두 완탐하여 카운트가 제일 작은 걸 return해주면 되고,  
+
+BFS할 시 퍼지는 동안 O에들어가면 return 해주면 됩니다.  
+
+여기서 주의할 점은 `빨간공과 파란공이 겹쳤을때`와 `두 공 모두 O에 들어갔을 시` 입니다.  
+
+저는 모두 flag를 주어 판단했습니다.  
+
+또한!! 제가 틀렸던 부분  
+```
+6 6  
+######
+#....#
+#..#R#
+#.#.B#
+#..#.#
+#..#O#
+######
+```
+전 R이 움직였을 때 가만히 있으면 continue 해줬었는데요, 계속 틀린다면 한번 해보세요  
+
+시간을 줄인다고 visit(혹은 check)배열을 이용하여 R이 전에 갔던 곳을 안가게해줬었는데 이것도 전혀 잘못된 판단이었습니다.  
+
+또한, 전의 이동방향과 같은 방향이거나 반대 방향으로 이동 시엔 continue 해주면 보다 빠른 속도를 낼 수 있습니다.(0ms)  
+
+자세한건 코드를 참고하시면 되겠습니다.  
+
+~~~
+#include <iostream>
+#include <queue>
+using namespace std;
+char map[11][11];
+int n, m;
+struct RInfo {
+    int x;
+    int y;
+    int dir;//전의 방향까지 저장
+};
+struct BInfo {
+    int x;
+    int y;
+};
+queue <RInfo> red;
+queue <BInfo> blue;
+int dx[] = { -1,0,1,0 };
+int dy[] = { 0,-1,0,1 };
+int bfs() {
+    int cnt = 0;//이동 횟수
+    bool start = true;//처음은 전의 방향 상관없이 4방향 모두 출발
+    while (!red.empty()) {
+        if (cnt == 10) return -1;
+        cnt++;
+        int size = red.size();
+        for (int t = 0; t < size; t++) {
+            int rx = red.front().x;//현재 값
+            int ry = red.front().y;
+            int dir = red.front().dir;
+            int bx = blue.front().x;
+            int by = blue.front().y;
+            red.pop();
+            blue.pop();
+            for (int i = 0; i < 4; i++) {
+                if (dir == i || dir == (i + 2) % 4) {//전 방향과 같은방향이거나 반대방향은 pass
+                    if (start == false)continue;//처음은 4방향 모두 ㄱㄱ
+                }
+                int rnx = rx;//다음 위치값
+                int rny = ry;
+                int bnx = bx;
+                int bny = by;
+                bool rfirst = false;//빨간공이 먼저
+                bool bfirst = false;//파란공이 먼저
+                bool win = false;
+                bool fail = false;//블루가 'O'에들어가면
+                while (1) {//빨간공
+                    rnx += dx[i];
+                    rny += dy[i];
+                    if (map[rnx][rny] == '#') {
+                        rnx -= dx[i];
+                        rny -= dy[i];
+                        break;
+                    }
+                    else if (rnx == bx && rny == by) {//파란공 위치를 거쳐가면
+                        bfirst = true;
+                    }
+                    else if (map[rnx][rny] == 'O') {
+                        win = true;
+                        break;
+                    }
+                }
+                while (1) {//파란공
+                    bnx += dx[i];
+                    bny += dy[i];
+                    if (map[bnx][bny] == '#') {
+                        bnx -= dx[i];
+                        bny -= dy[i];
+                        break;
+                    }
+                    else if (bnx == rx && bny == ry && bfirst == false) {
+                        rfirst = true;//파란공이 빨간공 위치를 거치고, 위에서 빨간공이 파란공을 안거쳤을 때
+                    }
+                    else if (map[bnx][bny] == 'O') {
+                        win = false;
+                        fail = true;
+                        break;
+                    }
+                }
+                if (fail) continue;//파란공이들어갔으면
+                else if (win) return cnt;//빨간공만들어갔으면
+                if (bfirst) {//공 겹쳤을 때 한칸뒤로
+                    rnx -= dx[i];
+                    rny -= dy[i];
+                }
+                else if (rfirst) {
+                    bnx -= dx[i];
+                    bny -= dy[i];
+                }
+                red.push({ rnx,rny,i });
+                blue.push({ bnx,bny });
+            }
+        }
+        start = false;
+    }
+    return -1;
+}
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n >> m;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            cin >> map[i][j];
+            if (map[i][j] == 'R') red.push({ i,j,0 });
+            else if (map[i][j] == 'B') blue.push({ i,j });
+        }
+    }
+    cout << bfs();
+}
+~~~
+
+
+
+
+- **나 혼자 말하고 나 혼자 듣는 말**
+
+아오... 드럽게 어렵네... 처음엔 빨리 풀려고 막 풀었다가 아주 개망...  
+역시 이래서 처음에 설계를 잘 하고 풀어야하는 것 같다.. 후...  
+다음날 상쾌한 마음으로 설계 하고 푸니까 바로 풀어버렸따~~~~  
+구슬탈출2... testCase 는 아주 쉬운 것만주고 후...  
+질문에 있는 사람들의 반례가 없으면 진짜 힘들었을 듯...  
+예상치 못한 변수들이 너무 많았다  
+
