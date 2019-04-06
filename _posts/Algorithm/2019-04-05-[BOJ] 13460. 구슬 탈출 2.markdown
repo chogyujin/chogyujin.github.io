@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "[BOJ] 13460. 구슬 탈출 2"
-date:   2019-04-03 17:30:54
+date:   2019-04-05 13:37:54
 categories: Algorithm
 comments: true
 ---
@@ -21,7 +21,7 @@ BFS할 시 퍼지는 동안 O에들어가면 return 해주면 됩니다.
 
 또한!! 제가 틀렸던 부분  
 ```
-6 6  
+7 6  
 ######
 #....#
 #..#R#
