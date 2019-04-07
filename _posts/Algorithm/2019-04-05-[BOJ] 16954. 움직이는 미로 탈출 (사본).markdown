@@ -1,0 +1,96 @@
+---
+layout: post
+title:  "[BOJ] 16954. 움직이는 미로 탈출"
+date:   2019-04-05 21:33:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/16954  
+
+
+BFS의 depth를 이용하여 문제를 풀었습니다.  
+
+depth가 1증가할 때마다 벽도 한칸씩 내려줬습니다.  
+
+벽을 내릴 때 전 벽의 현위치와 바로 밑에 위치까지 임시로 벽을 두어 이동을 못하게 했습니다.  
+
+벽밑에 까지 임시로 벽을 둔 이유는 어차피 그곳에 사람이 가봤자 벽이 내려오면 깔려 죽기(?) 때문에  
+
+사전에 차단했습니다.  
+
+또한 벽이 map에 존재 하지않으면(벽이 다내려오거나) 탈출 가능하므로 바로 return 했습니다.  
+
+
+~~~
+#include <iostream>
+#include <queue>
+using namespace std;
+char map[9][9];
+queue <pair<int, int>> w;//wall
+queue <pair<int, int>> q;//사람
+int dx[] = { 0,0,-1,-1,-1,0,1,1,1 };
+int dy[] = { 0,-1,-1,0,1,1,1,0,-1 };
+bool bfs() {
+    while (!q.empty()) {
+        if (w.empty()) return true;//벽이없으면 탈출
+        int size = q.size();
+        for (int t = 0; t < size; t++) {
+            int x = q.front().first;
+            int y = q.front().second;
+            if (x == 0 && y == 7) return true;//탈출
+            q.pop();
+            for (int i = 0; i < 9; i++) {
+                int nx = x + dx[i];
+                int ny = y + dy[i];
+                if (nx >= 0 && ny >= 0 && nx < 8 && ny < 8 && map[nx][ny] != '#')
+                    q.push(make_pair(nx, ny));
+            }
+        }
+        int wsize = w.size();
+        bool wch[8][8] = { 0, };
+        for (int i = 0; i < wsize; i++) {//벽내리기
+            int wx = w.front().first;
+            int wy = w.front().second;
+            w.pop();
+            if (wch[wx][wy] == false) map[wx][wy] = '.';
+            if (wx + 1 < 8) {
+                w.push(make_pair(wx + 1, wy));
+                wch[wx + 1][wy] = true;
+                if (wx + 2 < 8) {//벽밑에까지 임시로 벽을 둔다
+                    wch[wx + 2][wy] = true;
+                    map[wx + 2][wy] = '#';
+                }
+            }
+        }
+    }
+    return false;
+}
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    char input;
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            cin >> input;
+            if (input == '.'&&map[i][j] != '#') map[i][j] = '.';//임시벽있으면pass
+            else if (input == '#') {
+                w.push(make_pair(i, j));
+                map[i][j] = '#';
+                if (i + 1 < 8) map[i + 1][j] = '#';//벽밑에까지벽을둔다
+            }
+        }
+    }
+    q.push(make_pair(7, 0));
+    cout << bfs();
+}
+~~~
+
+
+
+
+- **나 혼자 말하고 나 혼자 듣는 말**
+
+임시벽을 구현하는 중에 실수를 많이해서 시간이 좀 걸렸다..  
+
+
