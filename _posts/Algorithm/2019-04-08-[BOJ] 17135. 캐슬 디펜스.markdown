@@ -35,7 +35,7 @@ https://www.acmicpc.net/problem/17135
 이 후 적 내려오는 건 반복문을 통해 구현했고 적이 없으면 return 시켰습니다.  
 
 
-~~~
+```cpp
 #include <iostream>
 #include <queue>
 using namespace std;
@@ -155,7 +155,7 @@ int main() {
     dfs(0, 0);
     cout << result;
 }
-~~~
+```
 
 
 
