@@ -1,0 +1,56 @@
+---
+layout: post
+title:  "[BOJ] 13458. 시험 감독"
+date:   2019-04-08 15:58:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/13458  
+
+
+long long을 안다면 충분히 풀 수 있는 문제입니다.  
+
+int는 한계가 2백만이기 때문에 해당 문제에선 범위를 초과할 수 밖에 없습니다.  
+
+때문에 `–9,223,372,036,854,775,808 ~ 9,223,372,036,854,775,807`  
+
+범위를 가진 long long이면 충분하고도 남습니다 ㅎㄷㄷ....  
+
+
+~~~cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+long long n, b, c, result;
+vector <long long> student;
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        long long temp = 0;
+        cin >> temp;
+        student.push_back(temp);
+    }
+    cin >> b >> c;
+    for (int i = 0; i < n; i++) {
+        long long temp = 0;
+        student[i] -= b;//먼저 총감독관의 관리가능 학생수를 뺀다
+        if (student[i] > 0) {//부감독관의 필요 수
+            temp = student[i] / c;
+            if (student[i] % c != 0) temp += 1;
+        }
+        result += temp + 1;//부감독관인원 + 총감독관인원(1)
+    }
+    cout << result;
+}
+~~~
+
+
+
+
+- **나 혼자 말하고 나 혼자 듣는 말**
+
+이런게 시험문제로 나오면 을매나 좋을꼬  
+

@@ -22,7 +22,7 @@ https://www.acmicpc.net/problem/12100
 
 다른 방향은 코드를 안바꿔도 되는지 신중하게 판단하시길 바랍니다.  
 
-~~~
+~~~cpp
 #include <iostream>
 using namespace std;
 //10:54
