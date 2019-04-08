@@ -35,7 +35,7 @@ https://www.acmicpc.net/problem/17135
 이 후 적 내려오는 건 반복문을 통해 구현했고 적이 없으면 return 시켰습니다.  
 
 
-```cpp
+~~~cpp
 #include <iostream>
 #include <queue>
 using namespace std;
@@ -141,7 +141,7 @@ void dfs(int loc, int cnt) {//궁수위치선정
         dfs(i + 1, cnt + 1);
         archerLoc[i] = false;
     }
-}
+}//>
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -155,7 +155,7 @@ int main() {
     dfs(0, 0);
     cout << result;
 }
-```
+~~~
 
 
 

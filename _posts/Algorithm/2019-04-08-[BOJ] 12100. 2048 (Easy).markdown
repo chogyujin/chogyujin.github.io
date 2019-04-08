@@ -1,0 +1,175 @@
+---
+layout: post
+title:  "[BOJ] 12100. 2048 (Easy)"
+date:   2019-04-08 14:12:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/12100  
+
+
+방법은 간단하지만 구현은 생각보다 쉽지 않은 문제입니다.  
+
+총 5번까지로 제한 되어있고 맵의 크기도 20x20으로 작기 때문에  
+
+충분히 완탐이 가능합니다.  
+
+전 DFS로 미리 움직일 방향를 정해줬고, 정해진 방향에 따라 블록들을 움직였습니다.  
+
+
+저처럼 방향마다 따로 구현하시는 분들은 방향마다 잘 동작하는지, 어떤 방향의 코드를 바꿨을 때  
+
+다른 방향은 코드를 안바꿔도 되는지 신중하게 판단하시길 바랍니다.  
+
+~~~
+#include <iostream>
+using namespace std;
+//10:54
+int n,result;
+int map[21][21];
+int orimap[21][21];
+int order[5];
+void move(int dir) {
+    if (dir == 0) {//up
+        for (int i = 0; i < n; i++) {
+            int px = 0;
+            for (int j = 1; j < n; j++) {
+                if (map[j][i]>0) {//숫자가 있을 때
+                    if (map[px][i] == 0) {//비교값이 0이면
+                        map[px][i] = map[j][i];
+                        map[j][i] = 0;
+                    }
+                    else if (map[px][i] == map[j][i]) {//같으면
+                        map[px][i] += map[j][i];
+                        map[j][i] = 0;
+                        px++;
+                    }
+                    else {//다르면
+                        px++;
+                        if (px != j) {//비교값자리를 한칸 올렸을 때와 다른 자리면
+                            map[px][i] = map[j][i];
+                            map[j][i] = 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    else if (dir == 1) {//down
+        for (int i =0; i<n; i++) {
+            int px = n - 1;
+            for (int j = n-2; j >=0; j--) {
+                if (map[j][i] > 0) {
+                    if (map[px][i] == 0) {
+                        map[px][i] = map[j][i];
+                        map[j][i] = 0;
+                    }
+                    else if (map[px][i] == map[j][i]) {
+                        map[px][i] += map[j][i];
+                        map[j][i] = 0;
+                        px--;
+                    }
+                    else {
+                        px--;
+                        if (px != j) {
+                            map[px][i] = map[j][i];
+                            map[j][i] = 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    else if (dir == 2) {//left
+        for (int i = 0; i < n; i++) {
+            int py = 0;
+            for (int j = 1; j < n; j++) {
+                if (map[i][j] > 0) {
+                    if (map[i][py] == 0) {
+                        map[i][py] = map[i][j];
+                        map[i][j] = 0;
+                    }
+                    else if (map[i][py] == map[i][j]) {
+                        map[i][py] += map[i][j];
+                        map[i][j] = 0;
+                        py++;
+                    }
+                    else {
+                        py++;
+                        if(py!=j){
+                            map[i][py] = map[i][j];
+                            map[i][j] = 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    else if (dir == 3) {//right
+        for (int i = 0; i < n; i++) {
+            int py = n - 1;
+            for (int j = n - 2; j >= 0; j--) {
+                if (map[i][j] > 0) {
+                    if (map[i][py] == 0) {
+                        map[i][py] = map[i][j];
+                        map[i][j] = 0;
+                    }
+                    else if (map[i][py] == map[i][j]) {
+                        map[i][py] += map[i][j];
+                        map[i][j] = 0;
+                        py--;
+                    }
+                    else {
+                        py--;
+                        if (py != j) {
+                            map[i][py] = map[i][j];
+                            map[i][j] = 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+void dfs(int x,int cnt) {
+    if (cnt == 5) {
+        int max = 0;
+        for (int i = 0; i < 5; i++) move(order[i]);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                max = max > map[i][j] ? max : map[i][j];
+                map[i][j] = orimap[i][j];//초기화
+            }
+        }
+        result = result > max ? result : max;
+        return;
+    }
+    for (int i = 0; i < 4; i++) {
+        order[x] = i;
+        dfs(x + 1, cnt + 1);
+    }
+}
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cin >> map[i][j];
+            orimap[i][j] = map[i][j];
+        }
+    }
+    dfs(0,0);
+    cout << result;
+}
+~~~
+
+
+
+
+- **나 혼자 말하고 나 혼자 듣는 말**
+
+아오... 이런 문제가 제일 싫다.  
+다른거 하나 바꾸면 다른것도 다 생각해야하고  
+겹치거나 이런 예외 상황들을 많이 생각해야해서.. 후..  
