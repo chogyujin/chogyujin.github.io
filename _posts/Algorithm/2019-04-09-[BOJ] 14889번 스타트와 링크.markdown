@@ -1,0 +1,75 @@
+---
+layout: post
+title:  "[BOJ] 14889번 스타트와 링크"
+date:   2019-04-09 20:07:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/14889  
+
+
+
+저는 DFS를 활용하여 문제를 해결했습니다.  
+
+DFS를 통해 팀을 두팀으로 나눴고, 나눈 팀으로 팀원들의 합을 구했습니다.  
+
+시간이 좀 많이 나오길래 DFS는 a[0]이 속한 팀과 a[0]이 속하지 않은 팀으로 나눴고  
+(DFS를 절반까지 해줬습니다)  
+
+예를들어 인원이 4인경우  
+1100  
+1010  
+
+까지만 하면 두팀이 나눠는 경우를 모두 탐색하므로 더이상 연산하지 않아도됩니다.  
+
+또한 팀원들의 합을 구할때 (0,0)부터 (n-1,n-1)까지 구하는 것이아닌 한쪽 면만 구해줬습니다.  
+(자세한건 코드 참고)  
+
+~~~cpp
+#include <iostream>
+using namespace std;
+int n, s[21][21], result = 2e9;
+bool team[21];
+void dfs(int sx, int cnt) {
+    if (cnt == n / 2) {
+        int team1 = 0;
+        int team2 = 0;
+        for (int i = 0; i < n - 1; i++) {//대각선위쪽부분만 반복문 돌린다
+            for (int j = i + 1; j < n; j++) {
+                if (i == j)continue;
+                if (team[i] && team[j]) {
+                    team1 += s[i][j] + s[j][i];
+                }
+                if (team[i] == 0 && team[j] == 0) team2 += s[i][j] + s[j][i];
+            }
+        }
+        int sub = abs(team1 - team2);
+        result = result < sub ? result : sub;
+        return;
+    }
+    for (int i = sx; i < n; i++) {
+        team[i] = true;//true팀과 false팀
+        dfs(i + 1, cnt + 1);
+        team[i] = false;
+        if (team[0] == false) break;//team[0]이 0이되면 더이상 연산 ㄴㄴ
+    }
+}
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cin >> s[i][j];
+        }
+    }
+    dfs(0, 0);
+    cout << result;
+}
+~~~
+
+
+- **나 혼자 말하고 나 혼자 듣는 말**
+
+....
