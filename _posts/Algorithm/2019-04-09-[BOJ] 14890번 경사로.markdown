@@ -1,0 +1,82 @@
+---
+layout: post
+title:  "[BOJ] 14890번 경사로"
+date:   2019-04-09 20:07:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/14890  
+
+
+
+swea의 4014번 활주로 건설과 같은 문제입니다.  
+
+그대로 시뮬레이션을 구현해주면 됩니다.  
+
+~~~cpp
+#include <iostream>
+using namespace std;
+int n, l, map[101][101];
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n >> l;
+    int result = 0;
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            cin >> map[i][j];
+
+    for (int i = 0; i < n; i++) {
+        //가로
+        int len = 0;
+        int pre = map[i][0];
+        for (int j = 0; j < n; j++) {
+            if (pre == map[i][j])len++;
+            else if (pre + 1 == map[i][j]) {
+                if (len >= l) {
+                    len = 1;
+                }
+                else break;
+            }
+            else if (pre - 1 == map[i][j]) {
+                if (len >= 0) {
+                    len = -l+1;
+                }
+                else break;
+            }
+            else break;
+            pre = map[i][j];
+            if (j == n - 1 && len >= 0) result++;
+        }
+
+        //세로
+        len = 0;
+        pre = map[0][i];
+        for (int j = 0; j < n; j++) {
+            if (pre == map[j][i])len++;
+            else if (pre + 1 == map[j][i]) {
+                if (len >= l) {
+                    len = 1;
+                }
+                else break;
+            }
+            else if (pre - 1 == map[j][i]) {
+                if (len >= 0) {
+                    len = -l+1;
+                }
+                else break;
+            }
+            else break;
+            pre = map[j][i];
+            if (j == n - 1 && len >= 0) result++;
+        }
+    }
+    cout << result;
+}
+~~~
+
+
+- **나 혼자 말하고 나 혼자 듣는 말**
+
+....
