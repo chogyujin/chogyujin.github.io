@@ -10,14 +10,11 @@ https://www.acmicpc.net/problem/14888
 
 
 
-넥스트 퍼뮤테이션(next_permutation)을 안다면 그냥 푸는 문제입니다.  
+`next_permutation`방법과 `DFS`방법 두가지가 있습니다.  
 
-만약 모른다면 꼭 공부하세요. 도움이 많이 됩니다.  
+두 방법 모두 서로 장단점이 있으므로 만약 넥퍼뮤를 모르신다면 공부하시는 것도 좋을 것 같습니다.  
 
-모든 경우의 수를 구해야하는데 직접 짜도되지만 그럼 코드가 길어지고 복잡해집니다.  
-
-넥퍼뮤를 사용하여 간편하게 짜시면 됩니다.  
-
+#### 1. next_permutation
 
 ~~~cpp
 #include <iostream>
@@ -55,7 +52,57 @@ int main() {
 }
 ~~~
 
+---  
 
+#### 2. DFS
+
+~~~cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+int n, a[101], oper[4];
+int maxNum = -2e9;
+int minNum = 2e9;
+void dfs(int cnt, int num) {
+    if (cnt == n - 1) {
+        maxNum = maxNum > num ? maxNum : num;
+        minNum = minNum < num ? minNum : num;
+        return;
+    }
+    if (oper[0] > 0) {
+        oper[0] -= 1;
+        dfs(cnt + 1, num + a[cnt + 1]);
+        oper[0] += 1;
+    }
+    if (oper[1] > 0) {
+        oper[1] -= 1;
+        dfs(cnt + 1, num - a[cnt + 1]);
+        oper[1] += 1;
+    }
+    if (oper[2] > 0) {
+        oper[2] -= 1;
+        dfs(cnt + 1, num * a[cnt + 1]);
+        oper[2] += 1;
+    }
+    if (oper[3] > 0) {
+        oper[3] -= 1;
+        dfs(cnt + 1, num / a[cnt + 1]);
+        oper[3] += 1;
+    }
+}
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n;
+    for (int i = 0; i < n; i++)cin >> a[i];
+    for (int i = 0; i < 4; i++) {
+        int operCnt;
+        cin >> oper[i];
+    }
+    dfs(0, a[0]);
+    cout << maxNum << '\n' << minNum;
+}
+~~~
 
 
 - **나 혼자 말하고 나 혼자 듣는 말**
