@@ -1,0 +1,99 @@
+---
+layout: post
+title:  "[BOJ] 17136번 색종이 붙이기"
+date:   2019-04-08 23:45:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/17136  
+
+
+먼저 vector에 1인 애들을 모두 넣어줬고, 그 1을 색종이 크기 5부터 차례대로 비교하며 채워줬습니다.  
+
+예를들어 1인 좌표의 자리가 색종이 5짜리로 안 덮여질 경우 4, 4가 안되면 3,... 식으로 덮어줬고,  
+
+덮어진 자리는 다음 차례때 pass하여 바로 다른 자리의 좌표에 색종이를 또 5부터 차례대로 덮어줬습니다.  
+
+DFS를 사용하여 완전탐색해줬고 방법을 알면 간단하지만 모르면 어려운 문제였던 것 같습니다.  
+
+제 설명보다 코드를 보시면 쉽게 이해하실 수 있으실 겁니다.  
+
+
+
+~~~cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+int map[11][11];
+int ch[11][11];
+int limit[6];
+int result = 2e9;
+vector <pair <int, int> > v;
+bool confirm(int sq, int x, int y, int lx, int ly) {//범위에 충족하는지 확인
+    if (lx > 10 || ly > 10)return false;
+    for (int i = x; i < lx; i++) {
+        for (int j = y; j < ly; j++) {
+            if (ch[i][j]) return false;
+            if (!map[i][j]) return false;
+        }
+    }
+    return true;
+}
+void dfs(int cnt, int colorCnt) {//(사용한 색종이횟수, 덮여진 칸 수)
+    if (colorCnt == v.size()) {//다 덮여졌으면
+        result = result < cnt ? result : cnt;
+        return;
+    }
+    if (result <= cnt)return;
+    for (int i = 0; i < v.size(); i++) {
+        int x = v[i].first;
+        int y = v[i].second;
+        if (ch[x][y])continue;//덮여져있으면 continue
+        for (int j = 5; j > 0; j--) {
+            if (limit[j] > 4)continue;
+            int lx = x + j;
+            int ly = y + j;
+            if (confirm(j, x, y, lx, ly)) {//덮을 수 있으면
+                for (int a = x; a < lx; a++) {//ch배열을 통해 덮는다
+                    for (int b = y; b < ly; b++) {
+                        ch[a][b] = true;
+                    }
+                }
+                limit[j] += 1;//사용한 종이 cnt++
+                dfs(cnt + 1, colorCnt + j * j);
+                for (int a = x; a < lx; a++) {
+                    for (int b = y; b < ly; b++) {
+                        ch[a][b] = false;
+                    }
+                }
+                limit[j] -= 1;
+            }
+        }
+        return;
+    }
+}
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++) {
+            cin >> map[i][j];
+            if (map[i][j])v.push_back(make_pair(i, j));
+        }
+    }
+    dfs(0, 0);
+    if (result == 2e9) cout << "-1";
+    else cout << result;
+}
+~~~
+
+
+
+
+- **나 혼자 말하고 나 혼자 듣는 말**
+
+처음엔 해당 자리에 색종이를 차례대로 덮어보는 방식이아닌,  
+색종이 5가지고 모든 자리 비교, 4가지고 모든자리비교,...  
+식으로해서 시간초과가 났었다... 후.. 멘탈의 붕괴  
+
