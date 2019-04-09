@@ -1,0 +1,63 @@
+---
+layout: post
+title:  "[BOJ] 14888번 연산자 끼워넣기"
+date:   2019-04-09 20:07:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/14888  
+
+
+
+넥스트 퍼뮤테이션(next_permutation)을 안다면 그냥 푸는 문제입니다.  
+
+만약 모른다면 꼭 공부하세요. 도움이 많이 됩니다.  
+
+모든 경우의 수를 구해야하는데 직접 짜도되지만 그럼 코드가 길어지고 복잡해집니다.  
+
+넥퍼뮤를 사용하여 간편하게 짜시면 됩니다.  
+
+
+~~~cpp
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+int n, a[101];
+vector <int> oper;
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n;
+    for (int i = 0; i < n; i++)cin >> a[i];
+    for (int i = 0; i < 4; i++) {
+        int operCnt;
+        cin >> operCnt;
+        for (int j = 0; j < operCnt; j++)
+            oper.push_back(i);//연산자수만큼 벡터에 넣는다
+    }
+    int maxNum = -2e9;
+    int minNum = 2e9;
+    do {
+        int num = a[0];
+        for (int i = 1; i < n; i++) {
+            int cal = oper[i - 1];
+            if (cal == 0) num += a[i];
+            else if (cal == 1) num -= a[i];
+            else if (cal == 2) num *= a[i];
+            else num /= a[i];
+        }
+        maxNum = maxNum > num ? maxNum : num;
+        minNum = minNum < num ? minNum : num;
+    } while (next_permutation(oper.begin(), oper.end()));
+    cout << maxNum << '\n' << minNum;
+}
+~~~
+
+
+
+
+- **나 혼자 말하고 나 혼자 듣는 말**
+
+....
