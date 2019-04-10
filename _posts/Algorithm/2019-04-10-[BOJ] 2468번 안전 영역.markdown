@@ -1,0 +1,78 @@
+---
+layout: post
+title:  "[BOJ] 2468번 안전 영역"
+date:   2019-04-10 19:54:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/2468  
+
+
+전형적인 BFS문제.  
+
+전 높이의 최소값과 최댓값을 입력과 동시에 받은 후 이 범위 내에서 판단했습니다.  
+
+땅의 갯수는 역시 BFS를 통해 구현했습니다.  
+
+
+~~~cpp
+#include <iostream>
+#include <queue>
+using namespace std;
+int n, map[101][101];
+int result = 1;
+int _min, _max;
+int dx[] = { -1,1,0,0 };
+int dy[] = { 0,0,-1,1 };
+void bfs(int limit) {
+    bool ch[101][101] = { 0, };
+    int cnt = 0;
+    queue <pair<int, int>> q;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (map[i][j] <= limit || ch[i][j])continue;
+            //높이가 limit보다 작거나 이미 전 bfs를 통해 탐색한곳은 pass
+            cnt++;
+            q.push(make_pair(i, j));
+            ch[i][j] = true;
+            while (!q.empty()) {
+                int x = q.front().first;
+                int y = q.front().second;
+                q.pop();
+                for (int i = 0; i < 4; i++) {
+                    int nx = x + dx[i];
+                    int ny = y + dy[i];
+                    if (nx >= 0 & ny >= 0 && nx < n&&ny<n
+                        && !ch[nx][ny] && map[nx][ny]>limit) {
+                        q.push(make_pair(nx, ny));
+                        ch[nx][ny] = true;
+                    }
+                }
+            }
+        }
+    }
+    result = result > cnt ? result : cnt;
+}
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cin >> map[i][j];
+            _min = _min < map[i][j] ? _min : map[i][j];
+            _max = _max > map[i][j] ? _max : map[i][j];
+        }
+    }
+    for (_min; _min <= _max; _min++) {//높이 최소부터 최대까지
+        bfs(_min);
+    }
+    cout << result;
+}
+~~~
+
+
+- **나 혼자 말하고 나 혼자 듣는 말**
+
+....
