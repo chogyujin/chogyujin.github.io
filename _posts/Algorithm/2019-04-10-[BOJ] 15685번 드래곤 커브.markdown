@@ -1,0 +1,82 @@
+---
+layout: post
+title:  "[BOJ] 15685번 드래곤 커브"
+date:   2019-04-10 18:14:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/15685  
+
+
+난이도 좀 있는 문제입니다. 전 벡터를 이용하여 풀었습니다.  
+
+들어온 값을 벡터에 넣고, 벡터의 뒷부분부터 차례대로 꺼내서 방향회전 후의 좌표를 찍어줬습니다.  
+
+문제에는 시계방향 어쩌고 되어있지만 실제로 선을 그리기 위해선 반대방향으로 그려줘야합니다.  
+
+자세한건 코드를 참고하시면 되겠습니다.  
+
+
+~~~cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+int n, map[101][101];
+struct Info {
+    int x;
+    int y;
+    int d;
+};
+vector <Info> v;
+int dx[] = { 0,-1,0,1 };//반시계방향
+int dy[] = { 1,0,-1,0 };
+void dragon(int x, int y, int d, int g) {
+    v.push_back({ x + dx[d], y + dy[d], d });//처음 0세대 이어준다
+    map[x + dx[d]][y + dy[d]] = true;//0세대자리 체크
+    for (int cnt = 0; cnt < g; cnt++) {//g세대만큼만
+        int size = v.size();
+        int prex = v[size - 1].x;//끝점
+        int prey = v[size - 1].y;
+        for (int i = size - 1; i >= 0; i--) {//뒤에서부터 거꾸로
+            int nd = (v[i].d + 1) % 4;//반시계
+            int nx = prex + dx[nd];
+            int ny = prey + dy[nd];
+            if (nx >= 0 && ny >= 0 && nx < 101 && ny < 101) {
+                map[nx][ny] = true;
+                v.push_back({ nx,ny,nd });
+                prex = nx;//다음 점을 찍을 때 전위치 필요하므로
+                prey = ny;
+            }
+            else return;
+        }
+    }
+}
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        int x, y, d, g;
+        cin >> y >> x >> d >> g;
+        map[x][y] = true;//처음위치체크
+        dragon(x, y, d, g);
+        v.clear();
+    }
+    int result = 0;
+    for (int a = 0; a < 100; a++) {
+        for (int b = 0; b < 100; b++) {//사방이 체크되있으면 result++
+            if (map[a][b] && map[a][b + 1] && map[a + 1][b] && map[a + 1][b + 1])
+                result++;
+        }
+    }
+    cout << result;
+}
+~~~
+
+
+- **나 혼자 말하고 나 혼자 듣는 말**
+
+어렵다는 사람들이 많아서 잔뜩 쫄았었는데  
+뭐~ 괜찮쿠운~  
+
