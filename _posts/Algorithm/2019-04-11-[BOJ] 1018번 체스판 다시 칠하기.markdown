@@ -1,0 +1,83 @@
+---
+layout: post
+title:  "[BOJ] 1018번 체스판 다시 칠하기"
+date:   2019-04-11 12:27:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/1018  
+
+
+저는 BFS를 통해 문제를 해결했습니다.  
+
+BFS가 퍼질 때 같은 depth에 있는 애들은 모두 같은 색이어야 하는데 다른 색일 경우 cnt++를 해줬습니다.  
+
+제일 처음 depth에서 시작이 'W'인 경우랑 'B'경우 두가지가 있기 때문에 두가지 모두 고려했습니다.  
+
+
+
+~~~cpp
+#include <iostream>
+#include <queue>
+using namespace std;
+int n, m, result = 2e9;
+char map[51][51];
+int dx[] = { -1,1,0,0 };
+int dy[] = { 0,0,-1,1 };
+char color[2] = { 'W','B' };
+void search(int sx, int sy) {//BFS
+    int ex = sx + 8;//endx
+    int ey = sy + 8;
+    for (int startColor = 0; startColor < 2; startColor++) {
+        //처음이 color가 W인경우와 B인경우를 나눠서 구한다
+        int colorCnt = startColor - 1;//밑에서 +1해주므로 -1해주고 시작
+        int cnt = 0;
+        queue <pair <int, int>> q;
+        q.push(make_pair(sx, sy));
+        bool ch[51][51] = { 0, };
+        ch[sx][sy] = true;
+        while (!q.empty()) {//BFS 고고
+            int size = q.size();//처음 큐에 들어온 size만큼만돌린다(같은depth판별)
+            colorCnt = (colorCnt + 1) % 2;
+            if (cnt > result) break;
+            for (int t = 0; t < size; t++) {//같은 depth는 모두 같은 색
+                int x = q.front().first;
+                int y = q.front().second;
+                q.pop();
+                if (color[colorCnt] != map[x][y]) cnt++;//색이 다르면 cnt++
+                for (int i = 0; i < 4; i++) {
+                    int nx = x + dx[i];
+                    int ny = y + dy[i];
+                    if (nx >= sx && ny >= sy && nx < ex&&ny < ey && !ch[nx][ny]) {
+                        ch[nx][ny] = true;
+                        q.push(make_pair(nx, ny));
+                    }
+                }
+            }
+        }
+        result = result < cnt ? result : cnt;
+    }
+}
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n >> m;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            cin >> map[i][j];
+        }
+    }
+    for (int i = 0; i <= n - 8; i++) {
+        for (int j = 0; j <= m - 8; j++) {
+            search(i, j);//범위만큼만 BFS
+        }
+    }
+    cout << result;
+}
+~~~
+
+
+- **나 혼자 말하고 나 혼자 듣는 말**
+
+....
