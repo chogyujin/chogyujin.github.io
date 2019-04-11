@@ -1,0 +1,144 @@
+---
+layout: post
+title:  "[BOJ] 2931번 가스관"
+date:   2019-04-11 20:33:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/2931  
+
+
+후.. 쉬운 듯 어려운 듯 문제였습니다. 구현 방식은 쉽게 떠오르는데 파이프때문에 고려해야할 요소가 많아  
+
+많은 생각을 요구하는 문제였습니다. 저는 BFS로 지워진 위치만 탐색하고  
+
+탐색된 위치를 1~7번 블록까지 모두 비교하면서 알맞은 블록을 찾았습니다.  
+
+
+
+
+
+~~~cpp
+#include <iostream>
+#include <queue>
+using namespace std;
+int r, c;
+int erasedX, erasedY;
+char map[26][26];
+bool blockch[26][26];
+int dx[] = { -1,1,0,0 };//상하좌우
+int dy[] = { 0,0,-1,1 };
+queue < pair <int, int> > q;
+bool ch[26][26] = { 0, };
+void bfs(int mx, int my, int zx, int zy) {
+    q.push(make_pair(mx, my));
+    q.push(make_pair(zx, zy));
+    ch[mx][my] = true;
+    ch[zx][zy] = true;
+    while (!q.empty()) {
+        int x = q.front().first;
+        int y = q.front().second;
+        q.pop();
+        for (int i = 0; i < 4; i++) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            if (nx >= 0 && ny >= 0 && nx < r&&ny < c && !ch[nx][ny]) {
+                if (map[x][y] == 'M' || map[x][y] == 'Z') {
+                    if (map[nx][ny] == '.')continue;
+                }
+                else if (map[x][y] == 124) {//'|'면 우,좌는 못가도록
+                    if (i == 2 || i == 3)continue;
+                }
+                else if (map[x][y] == '-') {
+                    if (i == 0 || i == 1)continue;
+                }
+                else if (map[x][y] == '1') {
+                    if (i == 0 || i == 2)continue;
+                }
+                else if (map[x][y] == '2') {
+                    if (i == 1 || i == 2)continue;
+                }
+                else if (map[x][y] == '3') {
+                    if (i == 1 || i == 3)continue;
+                }
+                else if (map[x][y] == '4') {
+                    if (i == 0 || i == 3)continue;
+                }
+                if (map[nx][ny] == '.') {
+                    erasedX = nx;
+                    erasedY = ny;
+                    return;
+                }
+                q.push(make_pair(nx, ny));
+                ch[nx][ny] = true;
+            }
+        }
+    }
+}
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> r >> c;
+    int mx, my, zx, zy;
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            cin >> map[i][j];
+            if (map[i][j] == 'M') {
+                mx = i;
+                my = j;
+            }
+            else if (map[i][j] == 'Z') {
+                zx = i;
+                zy = j;
+            }
+        }
+    }
+    bfs(mx, my, zx, zy);//지워진 위치 탐색
+    char block[7] = { 124,'-','+','1','2','3','4' };//0~7블록 모두 넣어보면서 비교
+    bool blockCh[7] = { 1,1,1,1,1,1,1 };//처음엔 모두 true고 안되는 블록은 false
+    for (int i = 0; i < 7; i++) {
+        if (i == 0 || i == 2 || i == 4 || i == 5) {//상이 뚫려있는 블록
+            int nx = erasedX + dx[0];
+            int ny = erasedY + dy[0];
+            if (map[nx][ny] == '.' || map[nx][ny] == '-' || map[nx][ny] == '2' || map[nx][ny] == '3'
+                || nx < 0 || ny < 0 || nx >= r || ny >= c)
+                blockCh[i] = false;
+        }
+        if (i == 0 || i == 2 || i == 3 || i == 6) {//하가 뚫려있는 블록
+            int nx = erasedX + dx[1];
+            int ny = erasedY + dy[1];
+            if (map[nx][ny] == '.' || map[nx][ny] == '-' || map[nx][ny] == '1' || map[nx][ny] == '4'
+                || nx < 0 || ny < 0 || nx >= r || ny >= c)
+                blockCh[i] = false;
+        }
+        if (i == 1 || i == 2 || i == 5 || i == 6) {//좌가 뚫려있는 블록
+            int nx = erasedX + dx[2];
+            int ny = erasedY + dy[2];
+            if (map[nx][ny] == '.' || map[nx][ny] == 124 || map[nx][ny] == '3' || map[nx][ny] == '4'
+                || nx < 0 || ny < 0 || nx >= r || ny >= c)
+                blockCh[i] = false;
+        }
+        if (i == 1 || i == 2 || i == 3 || i == 4) {//우가 뚫려있는 블록
+            int nx = erasedX + dx[3];
+            int ny = erasedY + dy[3];
+            if (map[nx][ny] == '.' || map[nx][ny] == 124 || map[nx][ny] == '1' || map[nx][ny] == '2'
+                || nx < 0 || ny < 0 || nx >= r || ny >= c)
+                blockCh[i] = false;
+        }
+    }
+    if (blockCh[2])//'+'가 true이면 출력하고 끝
+        cout << erasedX + 1 << ' ' << erasedY + 1 << ' ' << block[2] << '\n';
+    else {
+        for (int i = 0; i < 7; i++) if (blockCh[i]) {
+            cout << erasedX + 1 << ' ' << erasedY + 1 << ' ' << block[i] << '\n';
+        }
+    }
+}
+~~~
+
+
+- **나 혼자 말하고 나 혼자 듣는 말**
+
+후... 이런 생각 많은 문제들... 짜증...;;  
+

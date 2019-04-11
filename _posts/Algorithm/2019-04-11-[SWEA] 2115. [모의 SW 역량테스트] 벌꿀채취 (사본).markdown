@@ -1,0 +1,88 @@
+---
+layout: post
+title:  "[SWEA] 2115. [모의 SW 역량테스트] 벌꿀채취"
+date:   2019-04-11 12:55:54
+categories: Algorithm
+comments: true
+---
+
+https://www.swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5V4A46AdIDFAWu&&  
+
+생각보다 까다로운 문제였습니다. 처음에 `1. 2명의 인부가 채취할 수 있는 벌통들을 구하기 위해 DFS를 사용`했고,  
+
+`2. 채취할 수 있는 벌통들 중에서 용기에 담을 벌통을 구하기 위해 한번 더 DFS`를 사용했습니다.  
+
+총 DFS를 두번 사용하여 문제를 해결했습니다. 1번은 다들 문제없이 잘 구현하시겠지만  
+
+문제가 있다면 2번에서 있을 것으로 예상됩니다. 전 2번에서도 똑같이 완탐하여 모든 경우의 수를 구한 후  
+
+거기서 max값만 추출하여 판단했습니다. 이렇게 해도 55ms정도의 시간정도 밖에 안나옵니다.  
+
+
+~~~cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+int result, n, m, c;
+int map[11][11];
+vector <int> honeyBox[2];
+bool takeCh[6];
+int maxSum[2];
+void takeDfs(int num, int sx, int sum) {//용기에 담을 벌통들
+    if (sum > c)return;
+    int tempSum = 0;
+    for (int i = 0; i < m; i++) {
+        if (takeCh[i]) {//고른 벌통들 
+            tempSum += honeyBox[num][i] * honeyBox[num][i];
+        }
+    }
+    maxSum[num] = maxSum[num] > tempSum ? maxSum[num] : tempSum;
+    for (int i = sx; i < m; i++) {
+        takeCh[i] = true;
+        takeDfs(num, i + 1, sum + honeyBox[num][i]);
+        takeCh[i] = false;
+    }
+}
+void dfs(int sx, int sy, int cnt) {//채취할 수 있는 벌통들
+    if (cnt == 2) {
+        for (int i = 0; i < 2; i++) {
+            maxSum[i] = 0;
+            takeDfs(i, 0, 0);//용기에 담자
+        }
+        int sum = maxSum[0] + maxSum[1];
+        result = result > sum ? result : sum;
+        return;
+    }
+    for (int i = sx; i < n; i++, sy = 0) {
+        for (int j = sy; j < n - m + 1; j++) {
+            for (int a = j; a < j + m; a++) honeyBox[cnt].push_back(map[i][a]);
+            dfs(i, j + m, cnt + 1);
+            honeyBox[cnt].clear();
+        }
+    }
+}
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    int test_case;
+    cin >> test_case;
+    for (int t = 1; t <= test_case; t++) {
+        //start
+        result = 0;
+        cin >> n >> m >> c;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                cin >> map[i][j];
+            }
+        }
+        dfs(0, 0, 0);
+        //end
+        cout << '#' << t << ' ' << result << '\n';
+    }
+}
+~~~
+
+- **나 혼자 말하고 나 혼자 듣는 말**
+
+2번 DFS에서 좀 헤맸다..   
+
