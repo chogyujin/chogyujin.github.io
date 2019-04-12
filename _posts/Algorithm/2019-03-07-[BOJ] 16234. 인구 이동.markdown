@@ -13,6 +13,84 @@ https://www.acmicpc.net/problem/16234
 자세한 사항은 코드의 주석을 참고해주세요!  
 
 
+#### 2차
+~~~cpp
+#include <iostream>
+#include <queue>
+#include <vector>
+using namespace std;
+//1020
+int n, l, r, map[51][51];
+queue < pair<int, int> >q;
+vector <pair<int, int>> v;
+int dx[] = { -1,1,0,0 };
+int dy[] = { 0,0,-1,1 };
+void bfs() {
+    int cnt = 0;
+    while (1) {
+        bool ch[51][51] = { 0, };
+        bool notEnd = false;
+        for (int a = 0; a < n; a++) {
+            for (int b = 0; b < n; b++) {//처음부터 끝까지
+                if (ch[a][b]) continue;//bfs에의해 check된 위치는 pass
+                v.clear();
+                v.push_back(make_pair(a, b));
+                q.push(make_pair(a, b));
+                ch[a][b] = true;
+                int sum = map[a][b];
+                while (!q.empty()) {//bfs gogo
+                    int x = q.front().first;
+                    int y = q.front().second;
+                    q.pop();
+                    for (int i = 0; i < 4; i++) {
+                        int nx = x + dx[i];
+                        int ny = y + dy[i];
+                        if (nx >= 0 && ny >= 0 && nx < n&&ny < n && !ch[nx][ny]) {
+                            if (abs(map[x][y] - map[nx][ny]) >= l
+                                && abs(map[x][y] - map[nx][ny]) <= r) {//이상이하
+                                ch[nx][ny] = true;
+                                sum += map[nx][ny];
+                                v.push_back(make_pair(nx, ny));
+                                q.push(make_pair(nx, ny));
+                            }
+                        }
+                    }
+                }
+                if (v.size() > 1) {//한곳이라도 열렸으면
+                    for (int i = 0; i < v.size(); i++) {
+                        int x = v[i].first;
+                        int y = v[i].second;
+                        map[x][y] = sum / v.size();
+                    }
+                    notEnd = true;//끝나지않았따!
+                }
+
+            }
+        }
+        if (!notEnd) break;//열린곳이업으면 끝난것이므로 break
+        cnt++;
+    }
+    cout << cnt;
+}
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n >> l >> r;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cin >> map[i][j];
+        }
+    }
+    bfs();
+}
+
+~~~
+
+---  
+
+
+#### 1차
+
 ~~~
 #include <iostream>
 #include <queue>
@@ -27,70 +105,70 @@ int dy[] = { 0,0,-1,1 };
 queue <pair<int, int>> q;
 vector <pair<int, int>> v;
 int abs(int x) {//절댓값
-	return x >= 0 ? x : -x;
+    return x >= 0 ? x : -x;
 }
 void bfs() {
-	int cnt = 1;//연합한 국가 수
-	int unionSum = 0;//연합한 국가들 총 인구 수
-	int peopleAfterMove = 0;//이동후 사람 수
-	while (!q.empty()) {
-		int x = q.front().first;
-		int y = q.front().second;
-		unionSum += a[x][y];//연합한 나라의 총 인구수
-		q.pop();
-		for (int i = 0; i < 4; i++) {
-			int nx = x + dx[i];
-			int ny = y + dy[i];
-			if (nx >= 0 && ny >= 0 && nx < n&&ny < n&&ch[nx][ny] == false) {
-				if (abs(a[x][y] - a[nx][ny]) >= l && abs(a[x][y] - a[nx][ny]) <= r) {//L과 R사이 값이면
-					q.push(make_pair(nx, ny));
-					ch[nx][ny] = true;
-					v.push_back(make_pair(nx, ny));//연합된 나라 좌표 저장
-					cnt++;
-				}
-			}
-		}
-	}
-	if (cnt > 1) {//연합한 국가 수가 1을 초과하면 국경선이 열렸다는 의미이므로
-		unionCnt += 1;//연합수 +1~
-		peopleAfterMove = unionSum / cnt;//이동 후 사람 수만큼 각 나라에 적용
-		for (int i = 0; i < v.size(); i++) {//vector에서 꺼내 나라에 peopleAfterMove를 넣어준다.
-			a[v[i].first][v[i].second] = peopleAfterMove;
-		}
-	}
-	v.clear();
+    int cnt = 1;//연합한 국가 수
+    int unionSum = 0;//연합한 국가들 총 인구 수
+    int peopleAfterMove = 0;//이동후 사람 수
+    while (!q.empty()) {
+        int x = q.front().first;
+        int y = q.front().second;
+        unionSum += a[x][y];//연합한 나라의 총 인구수
+        q.pop();
+        for (int i = 0; i < 4; i++) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            if (nx >= 0 && ny >= 0 && nx < n&&ny < n&&ch[nx][ny] == false) {
+                if (abs(a[x][y] - a[nx][ny]) >= l && abs(a[x][y] - a[nx][ny]) <= r) {//L과 R사이 값이면
+                    q.push(make_pair(nx, ny));
+                    ch[nx][ny] = true;
+                    v.push_back(make_pair(nx, ny));//연합된 나라 좌표 저장
+                    cnt++;
+                }
+            }
+        }
+    }
+    if (cnt > 1) {//연합한 국가 수가 1을 초과하면 국경선이 열렸다는 의미이므로
+        unionCnt += 1;//연합수 +1~
+        peopleAfterMove = unionSum / cnt;//이동 후 사람 수만큼 각 나라에 적용
+        for (int i = 0; i < v.size(); i++) {//vector에서 꺼내 나라에 peopleAfterMove를 넣어준다.
+            a[v[i].first][v[i].second] = peopleAfterMove;
+        }
+    }
+    v.clear();
 }
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-	cin >> n >> l >> r;
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < n; j++)
-			cin >> a[i][j];
-	}
-	while (1) {
-		unionCnt = 0;
-		//초기화
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				ch[i][j] = false;
-			}
-		}
-		//start
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				if (ch[i][j] == false) {
-					q.push(make_pair(i, j));
-					ch[i][j] = true;
-					v.push_back(make_pair(i, j));//나라 좌표
-					bfs();
-				}
-			}
-		}
-		if (unionCnt == 0)break;//BFS를 돌렸는데 연합수가 0이면 끝~~
-		else moveResult += 1;//연합수가 1이상이면 최종이동수를 +1하고 루프 한번 더~
-	}
-	cout << moveResult;
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n >> l >> r;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++)
+            cin >> a[i][j];
+    }
+    while (1) {
+        unionCnt = 0;
+        //초기화
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                ch[i][j] = false;
+            }
+        }
+        //start
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (ch[i][j] == false) {
+                    q.push(make_pair(i, j));
+                    ch[i][j] = true;
+                    v.push_back(make_pair(i, j));//나라 좌표
+                    bfs();
+                }
+            }
+        }
+        if (unionCnt == 0)break;//BFS를 돌렸는데 연합수가 0이면 끝~~
+        else moveResult += 1;//연합수가 1이상이면 최종이동수를 +1하고 루프 한번 더~
+    }
+    cout << moveResult;
 }
 ~~~
 
