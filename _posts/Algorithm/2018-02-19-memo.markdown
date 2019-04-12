@@ -53,3 +53,17 @@ arr[60][30]으로 주지말고!!!
 조심 또조심!!  
 예) 사다리 타기  
 
+* BFS 사용할 때 q.pop()을 잘 하자!!!  
+
+* i+1이다!! sx+1아니다!!  
+~~~
+void dfs(int sx,int cnt) {
+for (int i = sx; i < c.size(); i++) {
+		selectedCh[i] = true;
+		dfs(i + 1, cnt + 1);
+		selectedCh[i] = false;
+	}
+~~~  
+
+* 큐나벡터는 만드는게 시간 오래걸린다!! 차라리 초기화를하자!!!   
+
