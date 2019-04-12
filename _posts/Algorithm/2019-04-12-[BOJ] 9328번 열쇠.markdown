@@ -1,0 +1,149 @@
+---
+layout: post
+title:  "[BOJ] 9328번 열쇠"
+date:   2019-04-12 20:47:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/9328  
+
+
+난이도 있는 문제입니다....  
+
+저는 BFS를 통해 문제를 해결했습니다.  
+
+`1. 외곽에서 BFS`와 `2. 방에서 BFS` 두 가지 경우로 나눠서 풀었으며,  
+
+상근이는 바깥에서 들어오기 때문에 1번 방법을 사용했습니다. 또한  
+
+계속 BFS를 돌리기엔 시간이 아깝기 때문에 방에 좌표만 벡터에 집어넣어서  
+
+2번을 통해 방의 좌표에서 BFS를 출발시켰습니다.(물론 열쇠가 있는 경우에만)  
+
+처음엔 1번을 통해 외곽만 한번 돌려주고 다음부턴 2번을 계속 반복시켰습니다.  
+
+반복 시키다가 열쇠를 못 얻는 경우가 생기면 찾기를 종료시켰습니다.  
+
+
+
+
+
+~~~cpp
+#include <iostream>
+#include <string>
+#include <queue>
+#include <vector>
+using namespace std;
+int h, w,result;
+char map[101][101];
+bool ch[101][101];
+bool key[25];//열쇠꾸러미
+queue <pair <int, int> >q;
+int dx[] = { -1,1,0,0 };
+int dy[] = { 0,0,-1,1 };
+vector < pair <int, int> > v;//방 좌표(처음 못들어간)
+bool bfs(int r, int c,bool start) {
+    if (start == 1) {//처음 외곽 돌때만(방에서 출발할 때는 출발좌표의 정보가 필요없으므로
+        if (map[r][c] == '$') result++;
+        else if (map[r][c] >= 'A'&&map[r][c] <= 'Z') {
+            int num = map[r][c] - 'A';
+            if (!key[num]) {
+                v.push_back(make_pair(r, c));
+                return false;
+            }
+        }
+        else if (map[r][c] > 'a'&&map[r][c] <= 'z') {
+            int num = map[r][c] - 'a';
+            key[num] = true;
+        }
+    }
+    q.push(make_pair(r, c));
+    ch[r][c] = true;
+    bool getKey = false;
+    while (!q.empty()) {
+        int x = q.front().first;
+        int y = q.front().second;
+        q.pop();
+        for (int i = 0; i < 4; i++) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            if (nx >= 0 && ny >= 0 && nx < h&&ny < w&&!ch[nx][ny]
+                &&map[nx][ny]!='*') {
+                if (map[nx][ny] == '$') result++;
+                else if (map[nx][ny] >= 'A'&&map[nx][ny] <= 'Z') {//방
+                    int num = map[nx][ny] - 'A';
+                    if (!key[num]) {//열쇠없으면
+                        v.push_back(make_pair(nx, ny));
+                        ch[nx][ny] = true;
+                        continue;
+                    }
+                }
+                else if (map[nx][ny] >= 'a'&&map[nx][ny] <= 'z') {//열쇠
+                    int num = map[nx][ny] - 'a';
+                    key[num] = true;//열쇠 저장
+                    getKey = true;
+                }
+                q.push(make_pair(nx, ny));
+                ch[nx][ny] = true;
+            }
+        }
+    }
+    return getKey;
+}
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    int test_case;
+    cin >> test_case;
+    for (int t = 1; t <= test_case; t++) {
+        //start
+        result = 0;
+        for (int i = 0; i < 25;i++) key[i] = false;
+        v.clear();
+        cin >> h >> w;
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                cin >> map[i][j];
+                ch[i][j] = false;
+            }
+        }
+        string keys;
+        cin >> keys;
+        if (keys != "0") {
+            for (int i = 0; i < keys.size(); i++) {
+                int num = keys[i] - 'a';
+                key[num] = true;//열쇠 저장
+            }
+        }
+        for (int i = 0; i < h; i++) {//처음 출발(외곽)
+            for (int j = 0; j < w; j++) {
+                if (i == 0 || i == h - 1 || j == 0 || j == w - 1) {
+                    if(!ch[i][j]&&map[i][j]!='*')bfs(i, j,1);
+                }
+            }
+        }
+        while (1) {//대문자 좌표에서 출발
+            bool getKey = false;
+            for (int i = 0; i < v.size(); i++) {
+                int x = v[i].first;
+                int y = v[i].second;
+                int num = map[x][y] - 'A';
+                if(key[num]) if (bfs(x, y,0)) getKey = true;
+            }
+            if (!getKey) break;//방을 다 돌았는데 열쇠를 못찾은 경우 종료
+        }
+        //end
+        cout << result << '\n';
+    }
+}
+~~~
+
+
+- **나 혼자 말하고 나 혼자 듣는 말**
+
+후... 어렵네.. 왜 정답률이 20퍼인지 알겠다... 후.. 진짜  
+생각을 잠시라도 멈출 수가 없네 집중 빡해야되고  
+예외케이스가 너무 다양해서 주어진 테케로는 도저히 해결불가..  
+질문게시판의 예외케이스들을 안봤으면 문제해결 못했을뻔.. 후..  
+어려워어려워
