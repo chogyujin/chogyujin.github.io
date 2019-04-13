@@ -106,6 +106,82 @@ int main() {
 }
 ~~~
 
+---
+
+#### 2nd
+
+~~~cpp
+#include <iostream>
+#include <queue>
+#include <vector>
+using namespace std;
+char map[13][7];
+int dx[] = { -1,1,0,0 };
+int dy[] = { 0,0,-1,1 };
+queue < pair <int, int > > q;
+vector < pair <int, int> > v;
+bool bfs() {
+    bool end = true;
+    bool ch[13][7] = { 0. };
+    for (int i = 0; i < 11; i++) {
+        for (int j = 0; j < 6; j++) {
+            if (map[i][j] == '.' || ch[i][j])continue;
+            v.clear();
+            q.push(make_pair(i, j));
+            v.push_back(make_pair(i, j));
+            ch[i][j] = true;
+            int cnt = 1;
+            while (!q.empty()) {
+                int x = q.front().first;
+                int y = q.front().second;
+                q.pop();
+                for (int dir = 0; dir < 4; dir++) {
+                    int nx = x + dx[dir];
+                    int ny = y + dy[dir];
+                    if (nx >= 0 && ny >= 0 && nx < 12 && ny < 6 && !ch[nx][ny]
+                        && map[nx][ny] == map[i][j]) {
+                        cnt++;
+                        ch[nx][ny] = true;
+                        q.push(make_pair(nx, ny));
+                        v.push_back(make_pair(nx, ny));
+                    }
+                }
+            }
+            if (cnt >= 4) {
+                end = false;
+                for (int t = 0; t < v.size(); t++)
+                    map[v[t].first][v[t].second] = '.';
+            }
+        }
+    }
+    //down
+    for (int i = 0; i < 6; i++) {
+        int sx = 11;
+        for (int j = 11; j >= 0; j--) {
+            if (map[j][i] == '.') continue;
+            else {
+                char temp = map[j][i];
+                map[j][i] = '.';
+                map[sx][i] = temp;
+                sx--;
+            }
+        }
+    }
+    return end;
+}
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    for (int i = 0; i < 12; i++) {
+        for (int j = 0; j < 6; j++) {
+            cin >> map[i][j];
+        }
+    }
+    int result = 0;
+    while (!bfs()) result++;
+    cout << result;
+}
+~~~
 - **혼잣말**
 
 처음풀긴했지만 배웠던 것들 쓴거라 그렇게 어렵진않았다. 한번에 풀려서 좋넵
