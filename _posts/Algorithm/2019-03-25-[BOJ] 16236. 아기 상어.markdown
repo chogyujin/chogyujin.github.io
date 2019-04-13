@@ -34,90 +34,90 @@ int dy[] = { 0,-1,1,0 };
 queue <pair<int, int>> q;
 bool ch[21][21];
 bool bfs() {
-	bool eat = false;
-	int time = 0;//먹으러갈때 걸린 시간
-	int gox = 0, goy = 0;//최종적으로 갈 좌표
-	q.push(make_pair(sx, sy));
-	ch[sx][sy] = true;
-	while (!q.empty()) {
-		time++;
-		int size = q.size();
-		while (size--) {
-			int x = q.front().first;
-			int y = q.front().second;
-			q.pop();
-			for (int i = 0; i < 4; i++) {
-				int nx = x + dx[i];
-				int ny = y + dy[i];
-				if (nx >= 0 && ny >= 0 && nx < n&&ny < n
-					&&ch[nx][ny] == false && map[nx][ny] <= sharkSize) {
-					ch[nx][ny] = true;
-					if (map[nx][ny] == sharkSize || map[nx][ny] == 0) {//그냥 지나가고
-						q.push(make_pair(nx, ny));
-					}
-					else {//작은 애들은 먹는다
-						if (eat == false) {//처음먹는거면 일단 좌표 저장
-							gox = nx;
-							goy = ny;
-						}
-						else {//두번째 발견한 녀석이면 비교 후 더 가까운 녀석으로
-							if (nx < gox) {//제일 윗 녀석
-								gox = nx;
-								goy = ny;
-							}
-							else if (nx == gox && ny < goy) {//같은 위이면 제일 왼쪽 녀석
-								gox = nx;
-								goy = ny;
-							}
-						}
-						eat = true;
-					}
-				}
-			}
-		}
-		if (eat) {//같은 범위 내 먹이를 모두 확인했으면
-			eatCnt += 1;
-			map[gox][goy] = 9;//상어 이동
-			map[sx][sy] = 0;
-			sx = gox;
-			sy = goy;
-			resultTime += time;
-			if (eatCnt == sharkSize) {//크기가 같아졌으면 성장
-				eatCnt = 0;
-				sharkSize += 1;
-			}
-			//--초기화
-			while (!q.empty())q.pop();
-			for (int cleari = 0; cleari < n; cleari++) {
-				for (int clearj = 0; clearj < n; clearj++) {
-					ch[cleari][clearj] = false;
-				}
-			}
-			return true;
-		}
-	}
-	return false;
+    bool eat = false;
+    int time = 0;//먹으러갈때 걸린 시간
+    int gox = 0, goy = 0;//최종적으로 갈 좌표
+    q.push(make_pair(sx, sy));
+    ch[sx][sy] = true;
+    while (!q.empty()) {
+        time++;
+        int size = q.size();
+        while (size--) {
+            int x = q.front().first;
+            int y = q.front().second;
+            q.pop();
+            for (int i = 0; i < 4; i++) {
+                int nx = x + dx[i];
+                int ny = y + dy[i];
+                if (nx >= 0 && ny >= 0 && nx < n&&ny < n
+                    &&ch[nx][ny] == false && map[nx][ny] <= sharkSize) {
+                    ch[nx][ny] = true;
+                    if (map[nx][ny] == sharkSize || map[nx][ny] == 0) {//그냥 지나가고
+                        q.push(make_pair(nx, ny));
+                    }
+                    else {//작은 애들은 먹는다
+                        if (eat == false) {//처음먹는거면 일단 좌표 저장
+                            gox = nx;
+                            goy = ny;
+                        }
+                        else {//두번째 발견한 녀석이면 비교 후 더 가까운 녀석으로
+                            if (nx < gox) {//제일 윗 녀석
+                                gox = nx;
+                                goy = ny;
+                            }
+                            else if (nx == gox && ny < goy) {//같은 위이면 제일 왼쪽 녀석
+                                gox = nx;
+                                goy = ny;
+                            }
+                        }
+                        eat = true;
+                    }
+                }
+            }
+        }
+        if (eat) {//같은 범위 내 먹이를 모두 확인했으면
+            eatCnt += 1;
+            map[gox][goy] = 9;//상어 이동
+            map[sx][sy] = 0;
+            sx = gox;
+            sy = goy;
+            resultTime += time;
+            if (eatCnt == sharkSize) {//크기가 같아졌으면 성장
+                eatCnt = 0;
+                sharkSize += 1;
+            }
+            //--초기화
+            while (!q.empty())q.pop();
+            for (int cleari = 0; cleari < n; cleari++) {
+                for (int clearj = 0; clearj < n; clearj++) {
+                    ch[cleari][clearj] = false;
+                }
+            }
+            return true;
+        }
+    }
+    return false;
 }
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-	cin >> n;
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < n; j++) {
-			cin >> map[i][j];
-			if (map[i][j] == 9) {
-				sx = i;//시작좌표 저장
-				sy = j;
-			}
-		}
-	}
-	while (1) {
-		if (!bfs()) {//못먹었으면 엄마불러야지
-			cout << resultTime << '\n';
-			break;
-		}
-	} 
-	return 0;
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cin >> map[i][j];
+            if (map[i][j] == 9) {
+                sx = i;//시작좌표 저장
+                sy = j;
+            }
+        }
+    }
+    while (1) {
+        if (!bfs()) {//못먹었으면 엄마불러야지
+            cout << resultTime << '\n';
+            break;
+        }
+    } 
+    return 0;
 }
 ~~~
 

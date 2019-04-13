@@ -32,64 +32,64 @@ queue <pair<int, int>> q;
 int dx[] = { -1,1,0,0 };
 int dy[] = { 0,0,-1,1 };
 void bfs(int profit, int homeCnt) {//(집이 내는 수익,집 갯수)
-	for (int cnt = 1; cnt < 2 * n; cnt++) {
-		int size = q.size();//큐에들어있는사이즈만큼 돌려서 k depth 계산
-		if (profit - k[cnt] >= 0&&result<homeCnt) result = homeCnt;//k depth늘어날때마다 result 체크
-		while (size--) {
-			int x = q.front().first;
-			int y = q.front().second;
-			q.pop();
-			for (int i = 0; i < 4; i++) {
-				int nx = x + dx[i];
-				int ny = y + dy[i];
-				if (nx >= 0 && ny >= 0 && nx < n&&ny < n&&ch[nx][ny] == false) {
-					if (map[nx][ny] == 1) {
-						profit += m;//이익 추가
-						homeCnt += 1;//집 cnt 추가
-					}
-					ch[nx][ny] = true;
-					q.push(make_pair(nx, ny));
-				}
-			}
-		}
-	}
-	//초기화
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < n; j++) {
-			ch[i][j] = false;
-		}
-	}
-	while (!q.empty())q.pop();
+    for (int cnt = 1; cnt < 2 * n; cnt++) {
+        int size = q.size();//큐에들어있는사이즈만큼 돌려서 k depth 계산
+        if (profit - k[cnt] >= 0&&result<homeCnt) result = homeCnt;//k depth늘어날때마다 result 체크
+        while (size--) {
+            int x = q.front().first;
+            int y = q.front().second;
+            q.pop();
+            for (int i = 0; i < 4; i++) {
+                int nx = x + dx[i];
+                int ny = y + dy[i];
+                if (nx >= 0 && ny >= 0 && nx < n&&ny < n&&ch[nx][ny] == false) {
+                    if (map[nx][ny] == 1) {
+                        profit += m;//이익 추가
+                        homeCnt += 1;//집 cnt 추가
+                    }
+                    ch[nx][ny] = true;
+                    q.push(make_pair(nx, ny));
+                }
+            }
+        }
+    }
+    //초기화
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            ch[i][j] = false;
+        }
+    }
+    while (!q.empty())q.pop();
 }
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-	int test_case;
-	cin >> test_case;
-	for (int i = 1; i <= 40; i++) {
-		k[i] = i * i + (i - 1)*(i - 1);
-	}
-	for (int t = 1; t <= test_case; t++) {
-		//start
-		result = 0;
-		cin >> n >> m;
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				cin >> map[i][j];
-			}
-		}
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {//bfs 출발위치 설정하고 들어간다
-				ch[i][j] = true;
-				q.push(make_pair(i, j));
-				if(map[i][j]==0) bfs(0,0);
-				else bfs(m, 1);
-				ch[i][j] = false;
-			}
-		}
-		//end
-		cout << '#' << t << ' ' << result << '\n';
-	}
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    int test_case;
+    cin >> test_case;
+    for (int i = 1; i <= 40; i++) {
+        k[i] = i * i + (i - 1)*(i - 1);
+    }
+    for (int t = 1; t <= test_case; t++) {
+        //start
+        result = 0;
+        cin >> n >> m;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                cin >> map[i][j];
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {//bfs 출발위치 설정하고 들어간다
+                ch[i][j] = true;
+                q.push(make_pair(i, j));
+                if(map[i][j]==0) bfs(0,0);
+                else bfs(m, 1);
+                ch[i][j] = false;
+            }
+        }
+        //end
+        cout << '#' << t << ' ' << result << '\n';
+    }
 }
 ~~~
 

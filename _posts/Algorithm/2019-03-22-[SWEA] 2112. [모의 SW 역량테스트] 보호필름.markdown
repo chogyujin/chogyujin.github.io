@@ -35,100 +35,100 @@ int checkD[14];//depth 체크
 int ch[14];
 bool restart = true;
 void reset() {
-	for (int i = 0; i < d; i++) {
-		for (int j = 0; j < w; j++) {
-			film[i][j] = recoverFilm[i][j];
-		}
-	}
+    for (int i = 0; i < d; i++) {
+        for (int j = 0; j < w; j++) {
+            film[i][j] = recoverFilm[i][j];
+        }
+    }
 }
 bool pass() {//통과되는지 확인
-	for (int i = 0; i < w; i++) {
-		int cnt = 1;
-		int preM = 2;
-		for (int j = 0; j < d; j++) {
-			if (preM == film[j][i])cnt += 1;//바로 위녀석과 비교
-			else cnt = 1;
-			preM = film[j][i];
-			if (cnt == k) break;
-		}
-		if (cnt < k) return false;
-	}
-	return true;
+    for (int i = 0; i < w; i++) {
+        int cnt = 1;
+        int preM = 2;
+        for (int j = 0; j < d; j++) {
+            if (preM == film[j][i])cnt += 1;//바로 위녀석과 비교
+            else cnt = 1;
+            preM = film[j][i];
+            if (cnt == k) break;
+        }
+        if (cnt < k) return false;
+    }
+    return true;
 }
 void insertDfs(int cnt, int pos) {//a를넣을지 b를 넣을지
-	if (cnt == insertCnt) {
-		bool forNext[14] = { false, };
-		for (int i = 0; i < insertCnt; i++) {
-			for (int j = 0; j < d; j++) {//차례대로 바꿀위치에 시약을 넣는다
-				if (checkD[j] == true && forNext[j] == false) {
-					forNext[j] = true;
-					for (int k = 0; k < w; k++) {
-						film[j][k] = ch[i];
-					}
-					break;
-				}
-			}
-		}
-		if (pass()) {
-			result = insertCnt;
-			return;
-		}
-		return;
-	}
-	for (int i = pos + 1; i < insertCnt; i++) {
-		for (int j = 0; j < 2; j++) {
-			ch[i] = j;//ch배열에 a를 넣을지 b를 넣을지 정한다
-			insertDfs(cnt + 1, i);
-		}
-	}
+    if (cnt == insertCnt) {
+        bool forNext[14] = { false, };
+        for (int i = 0; i < insertCnt; i++) {
+            for (int j = 0; j < d; j++) {//차례대로 바꿀위치에 시약을 넣는다
+                if (checkD[j] == true && forNext[j] == false) {
+                    forNext[j] = true;
+                    for (int k = 0; k < w; k++) {
+                        film[j][k] = ch[i];
+                    }
+                    break;
+                }
+            }
+        }
+        if (pass()) {
+            result = insertCnt;
+            return;
+        }
+        return;
+    }
+    for (int i = pos + 1; i < insertCnt; i++) {
+        for (int j = 0; j < 2; j++) {
+            ch[i] = j;//ch배열에 a를 넣을지 b를 넣을지 정한다
+            insertDfs(cnt + 1, i);
+        }
+    }
 }
 void decideDepth(int depth, int cnt) {//시약을 투입할 depth를 판단하는 함수
-	if (result != 0) return;//result를 구했으면 바로 리턴
-	if (insertCnt == cnt) {
-		insertDfs(0, -1);//시약을 투입할 함수
-		reset();//원상복귀
-		if (restart) {//예를들어 1 Count에 못찾아서 2Count에서 찾아야할 때 다시 처음부터
-			restart = false;
-			insertCnt += 1;//횟수 1증가
-			for (int i = 0; i < d; i++) checkD[i] = false;//체크배열 원상복구
-			for (int i = 0; i < d - insertCnt + 1; i++) {//전 까지
-				if (checkD[i] == false) {
-					checkD[i] = true;
-					if (i == d - insertCnt) restart = true;//해당 카운트에서 끝까지 체크했는데 pass못했으면
-					decideDepth(i, 1);
-					checkD[i] = false;
-				}
-			}
-		}
-		return;
-	}
-	for (int i = depth + 1; i < d; i++) {
-		if (checkD[i] == false) {
-			checkD[i] = true;
-			decideDepth(i, cnt + 1);
-			checkD[i] = false;
-		}
-	}
+    if (result != 0) return;//result를 구했으면 바로 리턴
+    if (insertCnt == cnt) {
+        insertDfs(0, -1);//시약을 투입할 함수
+        reset();//원상복귀
+        if (restart) {//예를들어 1 Count에 못찾아서 2Count에서 찾아야할 때 다시 처음부터
+            restart = false;
+            insertCnt += 1;//횟수 1증가
+            for (int i = 0; i < d; i++) checkD[i] = false;//체크배열 원상복구
+            for (int i = 0; i < d - insertCnt + 1; i++) {//전 까지
+                if (checkD[i] == false) {
+                    checkD[i] = true;
+                    if (i == d - insertCnt) restart = true;//해당 카운트에서 끝까지 체크했는데 pass못했으면
+                    decideDepth(i, 1);
+                    checkD[i] = false;
+                }
+            }
+        }
+        return;
+    }
+    for (int i = depth + 1; i < d; i++) {
+        if (checkD[i] == false) {
+            checkD[i] = true;
+            decideDepth(i, cnt + 1);
+            checkD[i] = false;
+        }
+    }
 }
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-	int test_case;
-	cin >> test_case;
-	for (int t = 1; t <= test_case; t++) {
-		//start
-		insertCnt = 0;
-		result = 0;
-		cin >> d >> w >> k;
-		for (int i = 0; i < d; i++) {
-			for (int j = 0; j < w; j++) {
-				cin >> film[i][j];
-				recoverFilm[i][j] = film[i][j];
-			}
-		}
-		if (pass() == false) decideDepth(-1, 0);//아무것도 안바꿨을 때 pass가 안되면 연산 ㄱㄱ
-		cout << '#' << t << ' ' << result << '\n';
-	}
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    int test_case;
+    cin >> test_case;
+    for (int t = 1; t <= test_case; t++) {
+        //start
+        insertCnt = 0;
+        result = 0;
+        cin >> d >> w >> k;
+        for (int i = 0; i < d; i++) {
+            for (int j = 0; j < w; j++) {
+                cin >> film[i][j];
+                recoverFilm[i][j] = film[i][j];
+            }
+        }
+        if (pass() == false) decideDepth(-1, 0);//아무것도 안바꿨을 때 pass가 안되면 연산 ㄱㄱ
+        cout << '#' << t << ' ' << result << '\n';
+    }
 }
 
 ~~~

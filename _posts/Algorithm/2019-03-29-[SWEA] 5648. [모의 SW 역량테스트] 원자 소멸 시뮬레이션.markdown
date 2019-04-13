@@ -48,95 +48,95 @@ https://www.swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId
 #include <iostream>
 using namespace std;
 struct atomInfo {
-	int x;
-	int y;
-	int dir;
-	int k;
+    int x;
+    int y;
+    int dir;
+    int k;
 }atom[1001];
 int map[2002][2002];
 int nmap[2002][2002];
 int dx[] = { 0,0,-1,1 };
 int dy[] = { 1,-1,0,0 };
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-	int test_case;
-	cin >> test_case;
-	for (int t = 1; t <= test_case; t++) {
-		//초기화
-		int n,result = 0;
-		int time = 0;
-		bool crushed[1001] = { 0, };
-		bool out[1001] = { 0, };
-		for (int i = 0; i < 2002; i++)
-			for (int j = 0; j < 2002; j++)
-				map[i][j] = 0;
-		//start
-		cin >> n;
-		for (int i = 1; i <= n; i++) {
-			int x, y, dir, k;
-			cin >> x >> y >> dir >> k;
-			atom[i].x = x + 1001;//양수로 변환
-			atom[i].y = y + 1001;
-			atom[i].dir = dir;
-			atom[i].k = k;
-			map[x + 1001][y + 1001] = i;
-		}
-		while (1) {
-			time++;
-			if (time == 2001) break;//2001을넘으면 범위를 벗어나므로
-			for (int i = 1; i <= n; i++) {
-				if (crushed[i] == true||out[i]==true) continue;//충돌했거나 범위 밖이면 패스
-				int x = atom[i].x;
-				int y = atom[i].y;
-				int dir = atom[i].dir;
-				int k = atom[i].k;
-				int nx = x + dx[dir];//이동후 위치(next x)
-				int ny = y + dy[dir];
-				if (nx < 0 || ny < 0 || nx >= 2002 || ny >= 2002) {
-					out[i] = true;//범위밖으로나간원자
-					continue;
-				}
-				atom[i].x = nx;//좌표이동 후 갱신
-				atom[i].y = ny;
-				map[x][y] = 0;//초기화
-				if (map[nx][ny] != 0) {//반대방향 충돌
-					int ori = map[nx][ny];
-					if (dir + atom[ori].dir == 1 || dir + atom[ori].dir == 5) {
-						crushed[i] = true;
-						crushed[ori] = true;
-						map[nx][ny] = 0;
-						continue;
-					}
-				}
-				if (nmap[nx][ny] == 0) {//충돌x
-					nmap[nx][ny] = i;
-				}
-				else {
-					//다른방향 충돌
-					int ori = nmap[nx][ny];
-					crushed[i] = true;
-					crushed[ori] = true;
-				}
-			}
-			for (int i = 1; i <= n; i++) {//이동후를 map에 다시그림
-				int nx = atom[i].x;
-				int ny = atom[i].y;
-				nmap[nx][ny] = 0;//nmap은 다 0으로 초기화
-				if (crushed[i] == false&&out[i]==false) {
-					map[nx][ny] = i;
-				}
-			}
-		}
-		//충돌한애들 모두 더하기
-		for (int i = 1; i <= n; i++) {
-			if (crushed[i] == true) {
-				result += atom[i].k;
-			}
-		}
-		cout << '#' << t << ' ' << result << '\n';
-		//end
-	}
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    int test_case;
+    cin >> test_case;
+    for (int t = 1; t <= test_case; t++) {
+        //초기화
+        int n,result = 0;
+        int time = 0;
+        bool crushed[1001] = { 0, };
+        bool out[1001] = { 0, };
+        for (int i = 0; i < 2002; i++)
+            for (int j = 0; j < 2002; j++)
+                map[i][j] = 0;
+        //start
+        cin >> n;
+        for (int i = 1; i <= n; i++) {
+            int x, y, dir, k;
+            cin >> x >> y >> dir >> k;
+            atom[i].x = x + 1001;//양수로 변환
+            atom[i].y = y + 1001;
+            atom[i].dir = dir;
+            atom[i].k = k;
+            map[x + 1001][y + 1001] = i;
+        }
+        while (1) {
+            time++;
+            if (time == 2001) break;//2001을넘으면 범위를 벗어나므로
+            for (int i = 1; i <= n; i++) {
+                if (crushed[i] == true||out[i]==true) continue;//충돌했거나 범위 밖이면 패스
+                int x = atom[i].x;
+                int y = atom[i].y;
+                int dir = atom[i].dir;
+                int k = atom[i].k;
+                int nx = x + dx[dir];//이동후 위치(next x)
+                int ny = y + dy[dir];
+                if (nx < 0 || ny < 0 || nx >= 2002 || ny >= 2002) {
+                    out[i] = true;//범위밖으로나간원자
+                    continue;
+                }
+                atom[i].x = nx;//좌표이동 후 갱신
+                atom[i].y = ny;
+                map[x][y] = 0;//초기화
+                if (map[nx][ny] != 0) {//반대방향 충돌
+                    int ori = map[nx][ny];
+                    if (dir + atom[ori].dir == 1 || dir + atom[ori].dir == 5) {
+                        crushed[i] = true;
+                        crushed[ori] = true;
+                        map[nx][ny] = 0;
+                        continue;
+                    }
+                }
+                if (nmap[nx][ny] == 0) {//충돌x
+                    nmap[nx][ny] = i;
+                }
+                else {
+                    //다른방향 충돌
+                    int ori = nmap[nx][ny];
+                    crushed[i] = true;
+                    crushed[ori] = true;
+                }
+            }
+            for (int i = 1; i <= n; i++) {//이동후를 map에 다시그림
+                int nx = atom[i].x;
+                int ny = atom[i].y;
+                nmap[nx][ny] = 0;//nmap은 다 0으로 초기화
+                if (crushed[i] == false&&out[i]==false) {
+                    map[nx][ny] = i;
+                }
+            }
+        }
+        //충돌한애들 모두 더하기
+        for (int i = 1; i <= n; i++) {
+            if (crushed[i] == true) {
+                result += atom[i].k;
+            }
+        }
+        cout << '#' << t << ' ' << result << '\n';
+        //end
+    }
 }
 ~~~
 
