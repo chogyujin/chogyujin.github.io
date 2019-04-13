@@ -1,0 +1,96 @@
+---
+layout: post
+title:  "[BOJ] 1600번 말이 되고픈 원숭이"
+date:   2019-04-13 20:26:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/1600  
+
+
+BFS문제입니다. 이 문제에서 중요한 점은 BFS돌릴 때 단순히 좌표만 체크하는 것이 아닌,  
+
+3차원으로 check(또는 visit)배열을 만들어서 능력을 얼만큼 썼는지도 같이 체크해주셔야합니다.  
+
+비슷한문제로는 `벽 부수고 이동하기`가 있습니다. 3차원으로 큐와 배열을 사용하여 BFS를 풀면 원활히 해결하실 수 있고  
+
+이렇게 했는데도 메모리초과나 틀렸다고 나오시는 분은  
+
+저가 코드에서 ★한 부분을 잘 보시면 될 것 같습니다.  
+
+
+
+~~~cpp
+#include <iostream>
+#include <queue>
+using namespace std;
+//1832
+int k, h, w;
+int map[201][201];
+bool ch[31][201][201];
+struct Info {
+    int jump;
+    int x;
+    int y;
+};
+int dx[] = { -1,1,0,0,-1,-2,-2,-1,1,2,2,1 };
+int dy[] = { 0,0,-1,1,-2,-1,1,2,2,1,-1,-2 };
+queue <Info> q;
+void bfs() {
+    int cnt = 0;
+    while (!q.empty()) {
+        int size = q.size();
+        cnt++;
+        for (int t = 0; t < size; t++) {
+            int x = q.front().x;
+            int y = q.front().y;
+            int jump = q.front().jump;
+            q.pop();
+            if (x == h - 1 && y == w - 1) {
+                cout << cnt - 1;
+                return;
+            }
+            for (int i = 0; i < 12; i++) {
+                int nx = x + dx[i];
+                int ny = y + dy[i];
+                if (i == 4 && jump >= k)break;//점프능력다썼으면 더이상 x
+                if (nx >= 0 && ny >= 0 && nx < h&&ny < w
+                    && map[nx][ny] != 1) {//★★★여기서부터 중요
+                    if (i < 4) {
+                        if (!ch[jump][nx][ny]) {//체크배열을 따로해줘야한다
+                            q.push({ jump,nx,ny });
+                            ch[jump][nx][ny] = true;
+                        }
+                    }//말처럼뛸떄랑 안뛸때 체크를 따로구현해야한다!
+                    else {
+                        if (!ch[jump + 1][nx][ny]) {//!!!체크배열 따로!!
+                            q.push({ jump + 1,nx,ny });
+                            ch[jump + 1][nx][ny] = true;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    cout << "-1";
+}
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> k >> w >> h;
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            cin >> map[i][j];
+        }
+    }
+    q.push({ 0,0,0 });
+    ch[0][0][0] = true;
+    bfs();
+}
+~~~
+
+
+- **나 혼자 말하고 나 혼자 듣는 말**
+
+....
