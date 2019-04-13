@@ -30,7 +30,7 @@ int life[501][501];//대나무 루트 중 제일 오래살 수 있는 날
 int dx[] = { -1,1,0,0 };
 int dy[] = { 0,0,-1,1 };
 int dfs(int x, int y) {
-	if (life[x][y]) return life[x][y];
+    if (life[x][y]) return life[x][y];
     life[x][y] = 1;
     for (int i = 0; i < 4; i++) {
         int nx = x + dx[i];
@@ -60,7 +60,54 @@ int main() {
 }
 ~~~
 
+---  
 
+#### 2nd
+
+~~~cpp
+#include <iostream>
+using namespace std;
+int n, map[501][501];
+bool ch[501][501];
+int len[501][501];
+int dx[] = { -1,1,0,0 };
+int dy[] = { 0,0,-1,1 };
+int max(int a, int b) {
+    return a > b ? a : b;
+}
+int dfs(int sx, int sy) {
+    if (len[sx][sy])return len[sx][sy] + 1;
+    for (int i = 0; i < 4; i++) {
+        int nx = sx + dx[i];
+        int ny = sy + dy[i];
+        if (nx >= 0 && ny >= 0 && nx < n&&ny < n && !ch[nx][ny]
+            && map[sx][sy] < map[nx][ny]) {
+            ch[nx][ny] = true;
+            len[sx][sy] = max(dfs(nx, ny), len[sx][sy]);
+            ch[nx][ny] = false;
+        }
+        if (i == 3 && len[sx][sy] == 0) len[sx][sy] = 1;
+    }
+    return len[sx][sy] + 1;
+}
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n;
+    int result = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cin >> map[i][j];
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (!len[i][j]) result = max(result, dfs(i, j) - 1);
+        }
+    }
+    cout << result;
+}
+~~~
 
 
 - **나 혼자 말하고 나 혼자 듣는 말**
