@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "저의 주관적인 메모입니다."
+title:  "저만의 메모입니다."
 date:   2018-12-18 11:00:54
 categories: Memo
 comments: true
@@ -66,4 +66,9 @@ for (int i = sx; i < c.size(); i++) {
 ~~~  
 
 * 큐나벡터는 만드는게 시간 오래걸린다!! 차라리 초기화를하자!!!   
+
+* bfs하면서 거리나 시간 측정할때 사이에 장애물이 있으니까 depth를 시간(or거리)으로하라!  
+((ax-bx)+(ay-by)같은거리계산x)  
+ex)아기 상어  
+
 
