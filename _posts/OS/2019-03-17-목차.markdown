@@ -31,7 +31,7 @@ https://book.naver.com/bookdb/book_detail.nhn?bid=4392911
 - [2.8 저장 장치의 계층 구조](https://chogyujin.github.io/2019/03/26/2.8-%EC%A0%80%EC%9E%A5-%EC%9E%A5%EC%B9%98%EC%9D%98-%EA%B3%84%EC%B8%B5-%EA%B5%AC%EC%A1%B0/)
 - [2.9 하드웨어의 보안](https://chogyujin.github.io/2019/03/26/2.9-%ED%95%98%EB%93%9C%EC%9B%A8%EC%96%B4%EC%9D%98-%EB%B3%B4%EC%95%88/)
 - [2.10 메모리 보안](https://chogyujin.github.io/2019/03/26/2.10-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%B3%B4%EC%95%88/)
-- 2.11 CPU 보호
+- [2.11 CPU 보호](https://chogyujin.github.io/2019/03/26/2.11-CPU-%EB%B3%B4%ED%98%B8/)
 - 2.12 시스템 콜을 이용한 입출력 수행
 
 ## 3. 인터럽트의 원리
