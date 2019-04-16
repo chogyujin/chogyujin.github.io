@@ -1,0 +1,56 @@
+---
+layout: post
+title:  "[BOJ] 3986번 좋은 단어"
+date:   2019-04-15 15:58:54
+categories: Algorithm
+comments: true
+---
+
+https://www.acmicpc.net/problem/3986  
+
+
+
+
+
+
+~~~cpp
+#include <iostream>
+#include <stack>
+#include <string>
+using namespace std;
+stack <char> s;
+string str;
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    int n;
+    int result = 0;
+    char ch;
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        cin >> str;
+        int cnt = 0;
+        s.push(str[0]);
+        while (1) {
+            cnt++;
+            if (str[cnt] == 'A' || str[cnt] == 'B') {
+                if (!s.empty()) {
+                    if (s.top() == str[cnt]) s.pop();
+                    else s.push(str[cnt]);
+                }
+                else s.push(str[cnt]);
+            }
+            else break;
+        }
+        if (!s.empty()) while (!s.empty()) s.pop();
+        else result += 1;
+    }
+    cout << result << '\n';
+    return 0;
+}
+~~~
+
+
+- **나 혼자 말하고 나 혼자 듣는 말**
+
+....
