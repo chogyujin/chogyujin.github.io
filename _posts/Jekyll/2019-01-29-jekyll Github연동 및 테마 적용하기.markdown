@@ -6,9 +6,6 @@ categories: Jekyll
 comments: true
 ---
 
-## Jekyll Github와 연동하기
-
-----
 
 ### 1. Github에 Repository 생성
 
