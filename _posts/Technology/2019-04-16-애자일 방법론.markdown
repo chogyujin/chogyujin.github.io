@@ -2,7 +2,7 @@
 layout: post
 title:  "애자일 방법론 간단 정리"
 date:   2019-04-16 22:10:54
-categories: Etc
+categories: Technology
 comments: true
 ---
 
