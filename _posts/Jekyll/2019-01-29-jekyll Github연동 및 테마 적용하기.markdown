@@ -20,7 +20,7 @@ $git add .
 
 $git commit -m "Commit mesaage
 
-$git remote add origin "자신의 Git URL주소 ex)https://github.com/asdasd/asdasd.github.io.git"
+$git remote add origin "자신의 Git URL주소" ex)https://github.com/asdasd/asdasd.github.io.git
 
 ~~~  
 
@@ -56,7 +56,11 @@ http://jekyllthems.org/
 
 넣은 후 위에서 2번을 다시 반복해주면 자신의 테마가 바뀌었음을 확인할 수 있다.  
 
-또는 `jekyll s`를 통해 바로 확인할 수 있다. <- 방법은 [jekyll 설치 및 준비하기](https://chogyujin.github.io/2019/01/28/jekyll-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%A4%80%EB%B9%84%ED%95%98%EA%B8%B0/)를 참고하면 된다.  
+또는  
+~~~
+jekyll s
+~~~  
+를 통해 바로 확인할 수 있다. <- 방법은 [jekyll 설치 및 준비하기](https://chogyujin.github.io/2019/01/28/jekyll-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%A4%80%EB%B9%84%ED%95%98%EA%B8%B0/)를 참고하면 된다.  
 
 이후부턴   
 
@@ -66,7 +70,7 @@ $git init
 과  
 
 ~~~
-git remote add origin
+$git remote add origin "자신의 Git URL주소"
 ~~~  
 
 는 생략가능 하다.  
