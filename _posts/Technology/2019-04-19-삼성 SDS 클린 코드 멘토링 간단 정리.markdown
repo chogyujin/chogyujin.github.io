@@ -1,0 +1,99 @@
+---
+layout: post
+title:  "삼성 SDS 클린 코드 멘토링 간단 정리"
+date:   2019-04-19 10:00:54
+categories: Technology
+comments: true
+---
+
+## Clean Code의 주요원칙
+
+### General
+
+- **Follow Standard Conventions**  
+Coding 표준, 아키텍처 표준 및 설계 가이드를 준수하라.
+
+- **Keep It Simple, Stupid (KISS)**  
+단순한 것이 효율적이며, 복잡함을 최소화하라.
+
+- **Boy Scout Rule**  
+캠핑장을 떠나기 전에 원래보다 깨끗하게 해야 한다.
+(참조되거나 수정되는 코드는 원래보다 clean하게 해야 함)
+
+- **Do Not Multiple Languages in One Source File**  
+하나의 언어는 하나의 파일로 작성
+
+---  
+
+### Class Design (SOLID)
+
+#### S 단일 책임 원칙 (Single Responsibility Principle)
+한 클래스는 하나의 책임만 가져야 한다.
+#### O 개방-폐쇄 원칙 (Open/Closed Principle)
+클래스는 확장에는 열려 있어야 하고, 변경에는 닫혀 있어야 한다.
+#### L 리스코프 치환 원칙 (Liskov Substitution Principle)
+파생 클래스의 메소드는 기반 클래스의 메소드를 대체하여 사용될 수 있어야 한다.
+#### I 인터페이스 분리 원칙 (Interface Segregation Principle)
+클라이언트가 사용 하지 않는 메소드에 의존하지 않아야 한다.
+#### D 의존관계 역전 원칙 (Dependency Inversion Principle)
+추상화된 것은 구체적인 것에 의존하면 안된다.
+(자주 변경되는 구체적인 것에 의존하지 말고 추상화된 것을 참조)
+
+---  
+
+#### 1. Naming
+의미 있는 이름을 사용하자.  
+~~~cpp
+//before
+string id; //사용자 계정
+string pwd;//비밀번호
+string rm; //학번
+string em; //이메일
+
+//after
+string studentId;
+string studentPassword;
+string studentSequenceNumber;
+string studentname;
+string studentEmailAddress;
+~~~
+#### 2. Style
+
+적절한 행 길이와 들여 쓰기를 유지하고, 개념은 빈행으로 분리하라.  
+
+변수는 사용하는 위치에 최대한 가까이 선언해라.  
+
+#### 3. 주석
+주석으로 나쁜 코드를 보완하지 말고, 코드의 의도를 표현하라.  
+
+주석도 최대한 정성스럽게 작성해야 한다.  
+
+나중에 다시 사용하거나 임시로 저장한 코드에 주석처리 하는 경우도 있는데  
+
+이는 보는 사람에게 혼란을 준다. 과감하게 삭제시키자.  
+
+(이 코드가 다른 코드에 어떤 영향을 줄 수 있는지 알려주는 주석은 좋은 주석)  
+
+#### 4. Dead Code
+
+사용하지 않는 코드는 과감히 지워라.  
+
+#### 5. Method
+
+함수에서 인수의 개수는 적을수록 좋다.  
+
+최대한 단순하게 처리하자.  
+
+단일 역할을 수행하도록 한다. 의도하지 않은 결과를 초래하지 않도록 하자.  
+
+---  
+
+### 어떻게 프로그래머를 준비할 것 인가?
+Agile & DevOps  
+
+StarUML, GitHub, Slack등 기업 비지니스 어플리케이션 개발 환경 경험을 쌓자  
+
+- 내가 짠코드 자동점검 받기 sonarcloud에서 github를통해 코드 점검 가능
+- 개발 관련 밋업/멘토링 프로그램 참여하기 밋업 부스트코스 오노픽스
+- 정리해보기(블로그)공부한 것들
+- 벤치마킹 ->사람들을 만난 것도 도움
