@@ -8,7 +8,7 @@ comments: true
 
 ## Clean Code의 주요원칙
 
-### General
+### 1. General
 
 - **Follow Standard Conventions**  
 Coding 표준, 아키텍처 표준 및 설계 가이드를 준수하라.
@@ -25,7 +25,7 @@ Coding 표준, 아키텍처 표준 및 설계 가이드를 준수하라.
 
 ---  
 
-### Class Design (SOLID)
+### 2. Class Design (SOLID)
 
 #### S 단일 책임 원칙 (Single Responsibility Principle)
 한 클래스는 하나의 책임만 가져야 한다.
@@ -38,6 +38,8 @@ Coding 표준, 아키텍처 표준 및 설계 가이드를 준수하라.
 #### D 의존관계 역전 원칙 (Dependency Inversion Principle)
 추상화된 것은 구체적인 것에 의존하면 안된다.
 (자주 변경되는 구체적인 것에 의존하지 말고 추상화된 것을 참조)
+
+---  
 
 ---  
 
@@ -88,7 +90,11 @@ string studentEmailAddress;
 
 ---  
 
-### 어떻게 프로그래머를 준비할 것 인가?
+---  
+
+
+## 어떻게 프로그래머를 준비할 것 인가?  
+
 Agile & DevOps  
 
 StarUML, GitHub, Slack등 기업 비지니스 어플리케이션 개발 환경 경험을 쌓자  
