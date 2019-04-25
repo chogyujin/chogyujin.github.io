@@ -2,7 +2,7 @@
 layout: post
 title:  "Two Pointer(투 포인터)"
 date:   2019-04-21 00:14:54
-categories: Algorithm Theory
+categories: AlgorithmTheory
 comments: true
 ---
 

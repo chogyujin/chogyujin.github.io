@@ -2,7 +2,7 @@
 layout: post
 title:  "Divide and Conquer(분할정복)과 병합정렬"
 date:   2019-04-23 21:14:54
-categories: Algorithm Theory
+categories: AlgorithmTheory
 comments: true
 ---
 
