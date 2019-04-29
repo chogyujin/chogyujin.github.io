@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "jekyll이란? Jekyll요약 정리"
+title:  "jekyll이란? Jekyll간단 정리"
 date:   2019-04-20 20:28:54
 categories: Jekyll
 comments: true
