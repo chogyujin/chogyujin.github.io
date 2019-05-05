@@ -2,7 +2,7 @@
 layout: frontpage
 ---
 
-## Welcome to my website
+## Welcome to 규진규진's website
 
 This is the place where I share my ideas on topics and algorithm.  
 Feel free to send me emails.  
