@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "[SWEA] 1953. [모의 SW 역량테스트] 탈주범 검거"
-date:   2019-02-22 12:19:54
+date:   2019-10-11 22:19:54
 categories: Algorithm
 comments: true
 ---
@@ -21,7 +21,6 @@ BFS를 사용해서 풀었습니다.
 에를들어 i=0(현위치에서 '상'방향으로 올라올경우 1,2,5,6파이프만 받을 수 있도록 했습니다.  
 
 BFS가 아직 익숙하지 않은 분들한텐 어려울 수 있지만 BFS의 기초적 문제인 것 같습니다.  
-
 
 
 ~~~
@@ -113,6 +112,95 @@ int main() {
         bfs();
         cout << '#' << t << ' ' << result << '\n';
     }
+}
+
+
+
+
+
+
+//2019-10-11 
+//파이프를 너무 노가다하는 것 같아 다시 풀어봤습니다.
+//나올때 파이프와 들어갈때 파이프를 방향에 따라 적절한지 판단하는 값을 
+//미리 계산하였습니다.
+
+#include <iostream>
+#include <queue>
+using namespace std;
+int n, m, r, c, l,result;
+int map[51][51];
+queue <pair <int, int> > q;
+bool outp[8][4] = { {0,0,0,0},
+{1,1,1,1},
+{1,1,0,0},
+{0,0,1,1},
+{1,0,0,1},
+{0,1,0,1},
+{0,1,1,0},
+{1,0,1,0} };
+bool inp[8][4] = { {0,0,0,0},
+{1,1,1,1},
+{1,1,0,0},
+{0,0,1,1},
+{0,1,1,0},
+{1,0,1,0},
+{1,0,0,1},
+{0,1,0,1} };
+//상하좌우
+int dr[] = { -1,1,0,0 };
+int dc[] = { 0,0,-1,1 };
+void bfs() {
+	bool ch[51][51] = { 0, };
+	ch[r][c] = true;
+	int cnt = 1;
+	while (1) {
+		if (cnt == l) break;
+		cnt++;
+		int qsize = q.size();
+		for (int i = 0; i < qsize; i++) {
+			int r = q.front().first;
+			int c = q.front().second;
+			q.pop();
+			for (int d = 0; d < 4; d++) {
+				if (outp[map[r][c]][d]) {
+					int nr = r + dr[d];
+					int nc = c + dc[d];
+					if (map[nr][nc] && !ch[nr][nc] && inp[map[nr][nc]][d]) {
+						ch[nr][nc] = true;
+						q.push(make_pair(nr, nc));
+						result++;
+					}
+				}
+			}
+		}
+	}
+
+}
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	int test_case;
+	cin >> test_case;
+	for (int t = 1; t <= test_case; t++) {
+		//start
+		result = 1;
+		while (!q.empty()) q.pop();
+		cin >> n >> m >> r >> c >> l;
+		q.push(make_pair(r, c));
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				cin >> map[i][j];
+			}
+		}
+		bfs();
+		for (int i = 0; i< n; i++) {
+			for (int j = 0; j < m; j++) {
+				map[i][j] = 0;
+			}
+		}
+		//end
+		cout << '#' << t << ' ' << result << '\n';
+	}
 }
 ~~~
 
