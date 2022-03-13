@@ -37,6 +37,6 @@ markdown: kramdown
 analytics:
   provider               : "google-gtag" 
                           # false (default), "google", "google-universal", "google-gtag", "custom"
-  google:
+  google_analytics:
     tracking_id          : "G-WDB2N4E9W8"
     anonymize_ip         : false
