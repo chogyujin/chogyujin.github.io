@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "[Programmers] 실패율★"
-date:   2022-04-73 23:40:54
+date:   2022-04-17 23:40:54
 categories: Algorithm
 comments: true
 ---
