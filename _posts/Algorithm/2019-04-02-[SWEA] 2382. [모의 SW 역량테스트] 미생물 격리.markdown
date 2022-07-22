@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[SWEA] 2382. [모의 SW 역량테스트] 미생물 격리"
+title:  "[SWEA] 2382. [모의 SW 역량테스트] 미생물 격리★"
 date:   2019-04-02 16:22:54
 categories: Algorithm
 comments: true
